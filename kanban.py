@@ -11,7 +11,7 @@ import re
 st.set_page_config(page_title="OpenClaw Kanban", layout="wide")
 
 # GitHub raw URLs for backlogs
-GITHUB_BASE = "https://raw.githubusercontent.com/ahorton/openclaw-kanban/main/backlogs"
+GITHUB_BASE = "https://raw.githubusercontent.com/mobiusframeworks/openclaw-kanban/main/backlogs"
 
 BACKLOGS = {
     "BML CEO": f"{GITHUB_BASE}/bml-ceo.md",

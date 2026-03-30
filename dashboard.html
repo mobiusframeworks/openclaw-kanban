@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Command Center</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            min-height: 100vh;
+        }
+
+        /* Top Nav */
+        .topnav {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topnav h1 { font-size: 18px; }
+        .view-tabs {
+            display: flex;
+            gap: 4px;
+        }
+        .view-tab {
+            background: #21262d;
+            border: none;
+            color: #8b949e;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .view-tab.active { background: #238636; color: #fff; }
+        .view-tab:hover:not(.active) { background: #30363d; }
+        .nav-actions button {
+            background: #30363d;
+            border: none;
+            color: #e6edf3;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+        .nav-actions button:hover { background: #3d444d; }
+        .nav-actions button.primary { background: #238636; }
+
+        /* Main Content */
+        .main-content {
+            height: calc(100vh - 56px);
+            overflow: hidden;
+        }
+        .view { display: none; height: 100%; }
+        .view.active { display: flex; }
+
+        /* ==================== KANBAN VIEW ==================== */
+        .kanban-view {
+            padding: 20px;
+            gap: 16px;
+            overflow-x: auto;
+        }
+        .kanban-column {
+            min-width: 300px;
+            max-width: 320px;
+            background: #161b22;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+        }
+        .kanban-header {
+            padding: 14px;
+            font-weight: 600;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .kanban-header .count {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+        .col-todo .kanban-header { background: #f6c90e; color: #000; }
+        .col-progress .kanban-header { background: #3da5d9; color: #fff; }
+        .col-blocked .kanban-header { background: #da3633; color: #fff; }
+        .col-done .kanban-header { background: #3fb950; color: #fff; }
+
+        .kanban-cards {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+            min-height: 100px;
+        }
+        .kanban-cards.drag-over { background: rgba(56,139,253,0.1); }
+
+        /* ==================== TIMELINE VIEW ==================== */
+        .timeline-view {
+            flex-direction: column;
+        }
+        .timeline-sidebar {
+            width: 280px;
+            background: #161b22;
+            border-right: 1px solid #30363d;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        .sidebar-header {
+            padding: 14px;
+            border-bottom: 1px solid #30363d;
+        }
+        .matrix-tabs {
+            display: flex;
+            gap: 4px;
+            margin-top: 10px;
+        }
+        .matrix-tab {
+            flex: 1;
+            padding: 6px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .matrix-tab.q1 { background: #da3633; color: #fff; }
+        .matrix-tab.q2 { background: #f0883e; color: #fff; }
+        .matrix-tab.q3 { background: #3fb950; color: #fff; }
+        .matrix-tab.q4 { background: #8b949e; color: #fff; }
+        .matrix-tab.active { outline: 2px solid #58a6ff; }
+
+        .unscheduled-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .timeline-main {
+            flex: 1;
+            overflow: auto;
+            padding: 16px;
+        }
+        .swimlanes { min-width: 1000px; }
+        .time-header {
+            display: flex;
+            margin-left: 120px;
+            margin-bottom: 8px;
+        }
+        .time-slot-label {
+            width: 100px;
+            text-align: center;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .time-slot-label.now { color: #3fb950; font-weight: bold; }
+
+        .swimlane {
+            display: flex;
+            margin-bottom: 4px;
+        }
+        .swimlane-label {
+            width: 120px;
+            padding: 10px;
+            background: #21262d;
+            border-radius: 6px 0 0 6px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .swimlane-label .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .swimlane-track {
+            flex: 1;
+            display: flex;
+            background: #21262d;
+            border-radius: 0 6px 6px 0;
+        }
+        .time-slot {
+            width: 100px;
+            min-height: 60px;
+            border-left: 1px dashed #30363d;
+            padding: 4px;
+        }
+        .time-slot:first-child { border-left: none; }
+        .time-slot.drag-over { background: rgba(56,139,253,0.15); }
+        .time-slot.now { background: rgba(63,185,80,0.1); }
+
+        /* ==================== SHARED CARD STYLES ==================== */
+        .task-card {
+            background: #21262d;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: grab;
+            border-left: 4px solid #30363d;
+            position: relative;
+        }
+        .task-card:hover { background: #30363d; }
+        .task-card.dragging { opacity: 0.4; }
+        .task-card.completed { opacity: 0.5; }
+        .task-card.completed .task-text { text-decoration: line-through; }
+
+        .task-card.bml { border-left-color: #f7931a; }
+        .task-card.ene { border-left-color: #3fb950; }
+        .task-card.rea { border-left-color: #58a6ff; }
+        .task-card.ana { border-left-color: #a371f7; }
+        .task-card.ass { border-left-color: #f78166; }
+
+        .task-badges {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .badge {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .badge.agent { background: #30363d; }
+        .badge.q1 { background: #da3633; }
+        .badge.q2 { background: #f0883e; }
+        .badge.q3 { background: #3fb950; }
+        .badge.q4 { background: #8b949e; }
+
+        .task-text { font-size: 13px; line-height: 1.4; }
+
+        .task-actions {
+            display: none;
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            gap: 4px;
+        }
+        .task-card:hover .task-actions { display: flex; }
+        .task-actions button {
+            background: #30363d;
+            border: none;
+            color: #8b949e;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .task-actions button:hover { background: #3d444d; color: #fff; }
+
+        /* Timeline mini card */
+        .mini-card {
+            background: #30363d;
+            border-radius: 4px;
+            padding: 6px;
+            font-size: 11px;
+            margin-bottom: 4px;
+            cursor: grab;
+            border-left: 3px solid #8b949e;
+        }
+        .mini-card.q1 { border-left-color: #da3633; }
+        .mini-card.q2 { border-left-color: #f0883e; }
+        .mini-card.q3 { border-left-color: #3fb950; }
+        .mini-card.completed { opacity: 0.5; text-decoration: line-through; }
+
+        /* ==================== MODAL ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: #161b22;
+            border-radius: 12px;
+            padding: 24px;
+            width: 450px;
+            max-width: 95%;
+            border: 1px solid #30363d;
+        }
+        .modal h3 { margin-bottom: 16px; }
+        .modal input, .modal select, .modal textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #e6edf3;
+            font-size: 14px;
+        }
+        .modal textarea { min-height: 80px; resize: vertical; }
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+        .modal-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .modal-buttons .cancel { background: #30363d; color: #e6edf3; }
+        .modal-buttons .save { background: #238636; color: #fff; }
+        .modal-buttons .delete { background: #da3633; color: #fff; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .kanban-view { flex-direction: column; padding: 10px; }
+            .kanban-column { min-width: 100%; max-width: 100%; }
+            .timeline-view { flex-direction: column; }
+            .timeline-sidebar { width: 100%; height: 35vh; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="topnav">
+        <h1>OpenClaw Command Center</h1>
+        <div class="view-tabs">
+            <button class="view-tab active" onclick="switchView('kanban')">Kanban</button>
+            <button class="view-tab" onclick="switchView('timeline')">Timeline</button>
+        </div>
+        <div class="nav-actions">
+            <button onclick="loadFromGitHub()">Sync GitHub</button>
+            <button onclick="openAddModal()" class="primary">+ Add Task</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Kanban View -->
+        <div id="kanban-view" class="view kanban-view active">
+            <div class="kanban-column col-todo" data-status="todo">
+                <div class="kanban-header">TODO <span class="count" id="k-count-todo">0</span></div>
+                <div class="kanban-cards" id="k-todo"></div>
+            </div>
+            <div class="kanban-column col-progress" data-status="progress">
+                <div class="kanban-header">IN PROGRESS <span class="count" id="k-count-progress">0</span></div>
+                <div class="kanban-cards" id="k-progress"></div>
+            </div>
+            <div class="kanban-column col-blocked" data-status="blocked">
+                <div class="kanban-header">BLOCKED <span class="count" id="k-count-blocked">0</span></div>
+                <div class="kanban-cards" id="k-blocked"></div>
+            </div>
+            <div class="kanban-column col-done" data-status="done">
+                <div class="kanban-header">DONE <span class="count" id="k-count-done">0</span></div>
+                <div class="kanban-cards" id="k-done"></div>
+            </div>
+        </div>
+
+        <!-- Timeline View -->
+        <div id="timeline-view" class="view timeline-view">
+            <div class="timeline-sidebar">
+                <div class="sidebar-header">
+                    <strong>Unscheduled</strong>
+                    <div class="matrix-tabs">
+                        <button class="matrix-tab q1 active" onclick="filterMatrix('q1')">Q1</button>
+                        <button class="matrix-tab q2" onclick="filterMatrix('q2')">Q2</button>
+                        <button class="matrix-tab q3" onclick="filterMatrix('q3')">Q3</button>
+                        <button class="matrix-tab q4" onclick="filterMatrix('q4')">Q4</button>
+                    </div>
+                </div>
+                <div class="unscheduled-list" id="unscheduled"></div>
+            </div>
+            <div class="timeline-main">
+                <div class="swimlanes">
+                    <div class="time-header" id="time-header"></div>
+                    <div id="swimlanes"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3 id="modal-title">Edit Task</h3>
+            <input type="hidden" id="edit-id">
+            <input type="text" id="edit-text" placeholder="Task description">
+            <div style="display:flex;gap:10px;">
+                <select id="edit-agent" style="flex:1;">
+                    <option value="bml">BML CEO</option>
+                    <option value="ene">EnergyScout</option>
+                    <option value="rea">Real Estate</option>
+                    <option value="ana">Analytics</option>
+                    <option value="ass">Assistant</option>
+                </select>
+                <select id="edit-quadrant" style="flex:1;">
+                    <option value="q1">Q1 - Urgent+Important</option>
+                    <option value="q2">Q2 - Important</option>
+                    <option value="q3">Q3 - Urgent</option>
+                    <option value="q4">Q4 - Low Priority</option>
+                </select>
+            </div>
+            <select id="edit-status">
+                <option value="todo">TODO</option>
+                <option value="progress">In Progress</option>
+                <option value="blocked">Blocked</option>
+                <option value="done">Done</option>
+            </select>
+            <div class="modal-buttons">
+                <button class="delete" id="delete-btn" onclick="deleteTask()">Delete</button>
+                <button class="cancel" onclick="closeModal()">Cancel</button>
+                <button class="save" onclick="saveTask()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const AGENTS = [
+            { id: 'bml', name: 'BML CEO', color: '#f7931a' },
+            { id: 'ene', name: 'EnergyScout', color: '#3fb950' },
+            { id: 'rea', name: 'Real Estate', color: '#58a6ff' },
+            { id: 'ana', name: 'Analytics', color: '#a371f7' },
+            { id: 'ass', name: 'Assistant', color: '#f78166' }
+        ];
+        const TIME_SLOTS = ['Now', '+1h', '+2h', '+3h', 'Today', 'Tomorrow', 'This Week', 'Next Week', 'Later'];
+
+        let tasks = JSON.parse(localStorage.getItem('dashboard-tasks') || '[]');
+        let currentView = 'kanban';
+        let matrixFilter = 'q1';
+        let draggedId = null;
+
+        function init() {
+            renderAll();
+            setupDragDrop();
+        }
+
+        function switchView(view) {
+            currentView = view;
+            document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.view-tab[onclick="switchView('${view}')"]`).classList.add('active');
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(`${view}-view`).classList.add('active');
+            renderAll();
+        }
+
+        function renderAll() {
+            if (currentView === 'kanban') renderKanban();
+            else renderTimeline();
+        }
+
+        function renderKanban() {
+            ['todo', 'progress', 'blocked', 'done'].forEach(status => {
+                const container = document.getElementById(`k-${status}`);
+                const statusTasks = tasks.filter(t => t.status === status);
+                document.getElementById(`k-count-${status}`).textContent = statusTasks.length;
+
+                container.innerHTML = statusTasks.map(t => renderCard(t)).join('');
+            });
+            setupDragDrop();
+        }
+
+        function renderTimeline() {
+            // Time header
+            document.getElementById('time-header').innerHTML = TIME_SLOTS.map((s, i) =>
+                `<div class="time-slot-label ${i === 0 ? 'now' : ''}">${s}</div>`
+            ).join('');
+
+            // Swimlanes
+            document.getElementById('swimlanes').innerHTML = AGENTS.map(agent => `
+                <div class="swimlane">
+                    <div class="swimlane-label">
+                        <div class="dot" style="background:${agent.color}"></div>
+                        ${agent.name}
+                    </div>
+                    <div class="swimlane-track">
+                        ${TIME_SLOTS.map((_, i) => `
+                            <div class="time-slot ${i === 0 ? 'now' : ''}"
+                                 data-agent="${agent.id}" data-slot="${i}"></div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Render scheduled tasks
+            tasks.filter(t => t.scheduled).forEach(t => {
+                const slot = document.querySelector(`.time-slot[data-agent="${t.scheduledAgent}"][data-slot="${t.scheduledSlot}"]`);
+                if (slot) {
+                    slot.innerHTML += `<div class="mini-card ${t.quadrant} ${t.status === 'done' ? 'completed' : ''}"
+                        draggable="true" data-id="${t.id}">${t.text.substring(0, 30)}</div>`;
+                }
+            });
+
+            // Unscheduled sidebar
+            const unscheduled = tasks.filter(t => !t.scheduled && t.quadrant === matrixFilter);
+            document.getElementById('unscheduled').innerHTML = unscheduled.map(t => renderCard(t, true)).join('')
+                || '<div style="color:#8b949e;padding:20px;text-align:center;">No tasks</div>';
+
+            setupDragDrop();
+        }
+
+        function renderCard(t, mini = false) {
+            return `
+                <div class="task-card ${t.agent} ${t.status === 'done' ? 'completed' : ''}"
+                     draggable="true" data-id="${t.id}">
+                    <div class="task-actions">
+                        <button onclick="toggleComplete('${t.id}')" title="Toggle complete">✓</button>
+                        <button onclick="openEditModal('${t.id}')" title="Edit">✎</button>
+                    </div>
+                    <div class="task-badges">
+                        <span class="badge agent">${t.agent.toUpperCase()}</span>
+                        <span class="badge ${t.quadrant}">Q${t.quadrant.charAt(1)}</span>
+                    </div>
+                    <div class="task-text">${t.text}</div>
+                </div>
+            `;
+        }
+
+        function setupDragDrop() {
+            document.querySelectorAll('[draggable="true"]').forEach(el => {
+                el.ondragstart = e => {
+                    draggedId = e.target.dataset.id;
+                    e.target.classList.add('dragging');
+                };
+                el.ondragend = e => e.target.classList.remove('dragging');
+            });
+
+            // Kanban columns
+            document.querySelectorAll('.kanban-cards').forEach(col => {
+                col.ondragover = e => { e.preventDefault(); col.classList.add('drag-over'); };
+                col.ondragleave = () => col.classList.remove('drag-over');
+                col.ondrop = e => {
+                    e.preventDefault();
+                    col.classList.remove('drag-over');
+                    const task = tasks.find(t => t.id === draggedId);
+                    if (task) {
+                        task.status = col.id.replace('k-', '');
+                        task.scheduled = false;
+                        save(); renderAll();
+                    }
+                };
+            });
+
+            // Timeline slots
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.ondragover = e => { e.preventDefault(); slot.classList.add('drag-over'); };
+                slot.ondragleave = () => slot.classList.remove('drag-over');
+                slot.ondrop = e => {
+                    e.preventDefault();
+                    slot.classList.remove('drag-over');
+                    const task = tasks.find(t => t.id === draggedId);
+                    if (task) {
+                        task.scheduled = true;
+                        task.scheduledAgent = slot.dataset.agent;
+                        task.scheduledSlot = parseInt(slot.dataset.slot);
+                        save(); renderAll();
+                    }
+                };
+            });
+        }
+
+        function filterMatrix(q) {
+            matrixFilter = q;
+            document.querySelectorAll('.matrix-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.matrix-tab.${q}`).classList.add('active');
+            renderTimeline();
+        }
+
+        function toggleComplete(id) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.status = task.status === 'done' ? 'todo' : 'done';
+                save(); renderAll();
+            }
+        }
+
+        function openAddModal() {
+            document.getElementById('modal-title').textContent = 'Add Task';
+            document.getElementById('edit-id').value = '';
+            document.getElementById('edit-text').value = '';
+            document.getElementById('edit-agent').value = 'bml';
+            document.getElementById('edit-quadrant').value = 'q2';
+            document.getElementById('edit-status').value = 'todo';
+            document.getElementById('delete-btn').style.display = 'none';
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        function openEditModal(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            document.getElementById('modal-title').textContent = 'Edit Task';
+            document.getElementById('edit-id').value = task.id;
+            document.getElementById('edit-text').value = task.text;
+            document.getElementById('edit-agent').value = task.agent;
+            document.getElementById('edit-quadrant').value = task.quadrant;
+            document.getElementById('edit-status').value = task.status;
+            document.getElementById('delete-btn').style.display = 'block';
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').classList.remove('show');
+        }
+
+        function saveTask() {
+            const id = document.getElementById('edit-id').value;
+            const text = document.getElementById('edit-text').value.trim();
+            if (!text) return;
+
+            if (id) {
+                const task = tasks.find(t => t.id === id);
+                if (task) {
+                    task.text = text;
+                    task.agent = document.getElementById('edit-agent').value;
+                    task.quadrant = document.getElementById('edit-quadrant').value;
+                    task.status = document.getElementById('edit-status').value;
+                }
+            } else {
+                tasks.push({
+                    id: 'task-' + Date.now(),
+                    text: text,
+                    agent: document.getElementById('edit-agent').value,
+                    quadrant: document.getElementById('edit-quadrant').value,
+                    status: document.getElementById('edit-status').value,
+                    scheduled: false
+                });
+            }
+            closeModal(); save(); renderAll();
+        }
+
+        function deleteTask() {
+            const id = document.getElementById('edit-id').value;
+            if (confirm('Delete this task?')) {
+                tasks = tasks.filter(t => t.id !== id);
+                closeModal(); save(); renderAll();
+            }
+        }
+
+        function save() {
+            localStorage.setItem('dashboard-tasks', JSON.stringify(tasks));
+        }
+
+        async function loadFromGitHub() {
+            const GITHUB_BASE = 'https://raw.githubusercontent.com/mobiusframeworks/openclaw-kanban/main/backlogs';
+            const files = { bml: 'bml-ceo.md', ene: 'energyscout-ceo.md', rea: 'realestate-ceo.md', ana: 'analytics.md', ass: 'assistant.md' };
+
+            for (const [agent, file] of Object.entries(files)) {
+                try {
+                    const resp = await fetch(`${GITHUB_BASE}/${file}`);
+                    if (!resp.ok) continue;
+                    const content = await resp.text();
+                    let status = 'todo';
+
+                    content.split('\n').forEach(line => {
+                        if (line.includes('Status:')) {
+                            const ll = line.toLowerCase();
+                            if (ll.includes('done') || ll.includes('complete')) status = 'done';
+                            else if (ll.includes('progress')) status = 'progress';
+                            else if (ll.includes('blocked')) status = 'blocked';
+                            else status = 'todo';
+                        }
+
+                        let text = null;
+                        if (line.startsWith('### ')) text = line.replace('###', '').replace(/^\d+\.\s*/, '').trim();
+                        else if (line.trim().startsWith('- [x]')) { text = line.replace('- [x]', '').trim(); status = 'done'; }
+                        else if (line.trim().startsWith('- [ ]')) text = line.replace('- [ ]', '').trim();
+
+                        if (text && !tasks.some(t => t.text === text)) {
+                            let q = 'q2';
+                            const ll = text.toLowerCase();
+                            if (ll.includes('urgent') || ll.includes('asap')) q = 'q1';
+                            else if (ll.includes('research') || ll.includes('plan')) q = 'q2';
+                            else if (ll.includes('email') || ll.includes('call')) q = 'q3';
+                            else if (ll.includes('maybe') || ll.includes('optional')) q = 'q4';
+
+                            tasks.push({ id: 'gh-' + Date.now() + Math.random(), text, agent, quadrant: q, status, scheduled: false });
+                        }
+                    });
+                } catch (e) { console.error(e); }
+            }
+            save(); renderAll();
+            alert(`Loaded tasks. Total: ${tasks.length}`);
+        }
+
+        init();
+    </script>
+</body>
+</html>

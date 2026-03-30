@@ -238,6 +238,23 @@
             font-family: monospace; font-size: 12px; white-space: pre-wrap;
         }
 
+        /* Detail View */
+        .detail-section { margin-bottom: 16px; }
+        .detail-section h4 { font-size: 12px; color: #8b949e; margin-bottom: 8px; text-transform: uppercase; }
+        .detail-content { background: #21262d; border-radius: 6px; padding: 12px; font-size: 14px; }
+        .detail-status { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .detail-status.done { background: #238636; }
+        .detail-status.progress { background: #3da5d9; }
+        .detail-status.blocked { background: #f0883e; }
+        .detail-status.todo { background: #8b949e; }
+        .work-log { margin-top: 12px; }
+        .work-log-entry { background: #0d1117; border-left: 3px solid #30363d; padding: 10px; margin-bottom: 8px; border-radius: 0 6px 6px 0; }
+        .work-log-entry.completed { border-left-color: #238636; }
+        .work-log-entry .timestamp { font-size: 11px; color: #8b949e; }
+        .work-log-entry .content { margin-top: 6px; font-size: 13px; }
+        .artifact-link { display: inline-flex; align-items: center; gap: 6px; background: #30363d; padding: 6px 12px; border-radius: 6px; color: #58a6ff; text-decoration: none; margin-right: 8px; margin-bottom: 8px; font-size: 13px; }
+        .artifact-link:hover { background: #3d444d; }
+
         @media (max-width: 768px) {
             .kanban-view { flex-direction: column; padding: 10px; }
             .kanban-column { min-width: 100%; max-width: 100%; }
@@ -307,6 +324,34 @@
                     <div class="time-header" id="time-header"></div>
                     <div id="swimlanes"></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content" style="width:600px;">
+            <h3 id="detail-title">Task Details</h3>
+            <div class="detail-section">
+                <h4>Status</h4>
+                <span class="detail-status" id="detail-status">Done</span>
+                <span id="detail-agent" style="margin-left:10px;"></span>
+            </div>
+            <div class="detail-section">
+                <h4>Description</h4>
+                <div class="detail-content" id="detail-text"></div>
+            </div>
+            <div class="detail-section">
+                <h4>Artifacts & Links</h4>
+                <div id="detail-artifacts"></div>
+            </div>
+            <div class="detail-section">
+                <h4>Work Log</h4>
+                <div class="work-log" id="detail-worklog"></div>
+            </div>
+            <div class="modal-buttons">
+                <button class="cancel" onclick="closeDetailModal()">Close</button>
+                <button class="save" onclick="openEditFromDetail()">Edit</button>
             </div>
         </div>
     </div>
@@ -409,10 +454,12 @@
                         const lower = data.content.toLowerCase();
                         if (lower.includes('done') || lower.includes('completed') || lower.includes('finished')) {
                             task.status = 'done';
-                            task.notes = 'Auto-completed: ' + data.content.substring(0, 100);
+                            task.notes = data.content.substring(0, 200);
+                            addWorkLog(task.id, 'Completed: ' + data.content.substring(0, 300), 'completed');
                         } else if (lower.includes('blocked') || lower.includes('need') || lower.includes('error')) {
                             task.status = 'blocked';
-                            task.notes = 'Needs attention: ' + data.content.substring(0, 100);
+                            task.notes = data.content.substring(0, 200);
+                            addWorkLog(task.id, 'Blocked: ' + data.content.substring(0, 300), 'blocked');
                         }
                     }
                 } catch {}
@@ -505,8 +552,8 @@
             const executingClass = t.status === 'executing' ? 'executing' : '';
             const completedClass = t.status === 'done' ? 'completed' : '';
             return `
-                <div class="task-card ${t.agent} ${executingClass} ${completedClass}" draggable="true" data-id="${t.id}">
-                    <div class="task-actions">
+                <div class="task-card ${t.agent} ${executingClass} ${completedClass}" draggable="true" data-id="${t.id}" onclick="openDetailModal('${t.id}')">
+                    <div class="task-actions" onclick="event.stopPropagation()">
                         ${executorOnline ? `<button class="run" onclick="quickExecute('${t.id}')" title="Execute">▶</button>` : ''}
                         <button onclick="toggleComplete('${t.id}')" title="Toggle complete">✓</button>
                         <button onclick="openEditModal('${t.id}')" title="Edit">✎</button>
@@ -515,6 +562,7 @@
                         <span class="badge agent">${t.agent.toUpperCase()}</span>
                         <span class="badge ${t.quadrant}">Q${t.quadrant.charAt(1)}</span>
                         ${t.status === 'executing' ? '<span class="badge executing">RUNNING</span>' : ''}
+                        ${t.workLog && t.workLog.length ? '<span class="badge" style="background:#238636;">📋</span>' : ''}
                     </div>
                     <div class="task-text">${t.text}</div>
                     ${t.notes ? `<div class="task-notes">${t.notes.substring(0, 80)}</div>` : ''}
@@ -568,20 +616,37 @@
 
         async function quickExecute(id) {
             const task = tasks.find(t => t.id === id);
-            if (!task || !executorOnline) return;
+            if (!task) return;
+
+            if (!executorOnline) {
+                alert('Executor not running. Starting it now...\n\nIf this doesn\'t work, run manually:\ncd ~/Vaults/openclaw/bridge/kanban && python executor.py');
+                // Try to start executor via system
+                try {
+                    await fetch(`${EXECUTOR_URL}/status`);
+                } catch {
+                    // Can't auto-start from browser, need manual
+                }
+                return;
+            }
 
             task.status = 'executing';
+            addWorkLog(task.id, `Started execution via ${task.agent}`, 'started');
             save(); renderAll();
 
             try {
-                await fetch(`${EXECUTOR_URL}/execute`, {
+                const resp = await fetch(`${EXECUTOR_URL}/execute`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ task_id: task.id, text: task.text, agent: task.agent })
                 });
+                const data = await resp.json();
+                if (data.success) {
+                    addWorkLog(task.id, `Task sent to ${task.agent} inbox`, 'progress');
+                }
             } catch (e) {
                 task.status = 'blocked';
                 task.notes = 'Executor error: ' + e.message;
+                addWorkLog(task.id, 'Execution failed: ' + e.message, 'error');
                 save(); renderAll();
             }
         }
@@ -604,6 +669,68 @@
         function startExecutor() {
             if (executorOnline) return;
             alert('Run this in terminal:\n\ncd ~/Vaults/openclaw/bridge/kanban && python executor.py');
+        }
+
+        function openDetailModal(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+
+            document.getElementById('detail-title').textContent = task.text;
+            document.getElementById('detail-status').textContent = task.status.toUpperCase();
+            document.getElementById('detail-status').className = 'detail-status ' + task.status;
+            document.getElementById('detail-agent').innerHTML = `<span class="badge agent">${task.agent.toUpperCase()}</span>`;
+            document.getElementById('detail-text').textContent = task.text;
+
+            // Artifacts
+            const artifacts = task.artifacts || [];
+            document.getElementById('detail-artifacts').innerHTML = artifacts.length
+                ? artifacts.map(a => `<a href="${a.url}" target="_blank" class="artifact-link">📎 ${a.name}</a>`).join('')
+                : '<span style="color:#8b949e;">No artifacts yet</span>';
+
+            // Work log
+            const workLog = task.workLog || [];
+            document.getElementById('detail-worklog').innerHTML = workLog.length
+                ? workLog.map(log => `
+                    <div class="work-log-entry ${log.type || ''}">
+                        <div class="timestamp">${log.timestamp}</div>
+                        <div class="content">${log.content}</div>
+                    </div>
+                `).join('')
+                : `<div style="color:#8b949e;">No work logged yet.</div>
+                   ${task.notes ? `<div class="work-log-entry"><div class="content">${task.notes}</div></div>` : ''}`;
+
+            document.getElementById('detailModal').classList.add('show');
+            document.getElementById('detailModal').dataset.taskId = id;
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.remove('show');
+        }
+
+        function openEditFromDetail() {
+            const id = document.getElementById('detailModal').dataset.taskId;
+            closeDetailModal();
+            openEditModal(id);
+        }
+
+        function addWorkLog(taskId, content, type = '') {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+            if (!task.workLog) task.workLog = [];
+            task.workLog.push({
+                timestamp: new Date().toLocaleString(),
+                content: content,
+                type: type
+            });
+            save();
+        }
+
+        function addArtifact(taskId, name, url) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+            if (!task.artifacts) task.artifacts = [];
+            task.artifacts.push({ name, url });
+            save();
         }
 
         function openAddModal() {

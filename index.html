@@ -168,6 +168,55 @@
         .modal-buttons button.cancel {
             background: #444;
         }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 24px; margin-bottom: 12px; }
+            .toolbar {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .toolbar button {
+                flex: 1;
+                min-width: 100px;
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+            .board {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .column {
+                min-width: 100%;
+                max-width: 100%;
+                max-height: none;
+            }
+            .cards {
+                min-height: 60px;
+                max-height: 300px;
+            }
+            .card {
+                padding: 14px;
+                margin-bottom: 8px;
+            }
+            .card .text { font-size: 15px; }
+            .column-header {
+                padding: 14px;
+                font-size: 15px;
+            }
+        }
+
+        /* Touch feedback */
+        .card.touch-drag {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            opacity: 0.9;
+        }
+        .cards.touch-over {
+            background: rgba(61, 165, 217, 0.2);
+            border: 2px dashed #3da5d9;
+        }
     </style>
 </head>
 <body>
@@ -259,14 +308,55 @@
             save();
         }
 
+        let draggedCard = null;
+        let touchStartY = 0;
+
         function setupDragDrop() {
             document.querySelectorAll('.card').forEach(card => {
+                // Desktop drag
                 card.addEventListener('dragstart', e => {
                     card.classList.add('dragging');
                     e.dataTransfer.setData('text/plain', card.dataset.id);
                 });
                 card.addEventListener('dragend', () => {
                     card.classList.remove('dragging');
+                });
+
+                // Mobile touch
+                card.addEventListener('touchstart', e => {
+                    draggedCard = card;
+                    touchStartY = e.touches[0].clientY;
+                    setTimeout(() => card.classList.add('touch-drag'), 100);
+                }, {passive: true});
+
+                card.addEventListener('touchmove', e => {
+                    if (!draggedCard) return;
+                    const touch = e.touches[0];
+                    const elem = document.elementFromPoint(touch.clientX, touch.clientY);
+                    document.querySelectorAll('.cards').forEach(c => c.classList.remove('touch-over'));
+                    const container = elem?.closest('.cards');
+                    if (container) container.classList.add('touch-over');
+                }, {passive: true});
+
+                card.addEventListener('touchend', e => {
+                    if (!draggedCard) return;
+                    const touch = e.changedTouches[0];
+                    const elem = document.elementFromPoint(touch.clientX, touch.clientY);
+                    const container = elem?.closest('.cards');
+
+                    if (container) {
+                        const id = draggedCard.dataset.id;
+                        const newStatus = container.id;
+                        const task = tasks.find(t => t.id === id);
+                        if (task && task.status !== newStatus) {
+                            task.status = newStatus;
+                            render();
+                        }
+                    }
+
+                    document.querySelectorAll('.cards').forEach(c => c.classList.remove('touch-over'));
+                    draggedCard.classList.remove('touch-drag');
+                    draggedCard = null;
                 });
             });
 

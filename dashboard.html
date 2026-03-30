@@ -21,12 +21,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        .topnav h1 { font-size: 18px; }
-        .view-tabs {
-            display: flex;
-            gap: 4px;
-        }
+        .topnav h1 { font-size: 18px; display: flex; align-items: center; gap: 8px; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .status-dot.online { background: #3fb950; }
+        .status-dot.offline { background: #da3633; }
+
+        .view-tabs { display: flex; gap: 4px; }
         .view-tab {
             background: #21262d;
             border: none;
@@ -37,7 +40,6 @@
             font-size: 13px;
         }
         .view-tab.active { background: #238636; color: #fff; }
-        .view-tab:hover:not(.active) { background: #30363d; }
         .nav-actions button {
             background: #30363d;
             border: none;
@@ -49,21 +51,14 @@
         }
         .nav-actions button:hover { background: #3d444d; }
         .nav-actions button.primary { background: #238636; }
+        .nav-actions button.danger { background: #da3633; }
 
-        /* Main Content */
-        .main-content {
-            height: calc(100vh - 56px);
-            overflow: hidden;
-        }
+        .main-content { height: calc(100vh - 56px); overflow: hidden; }
         .view { display: none; height: 100%; }
         .view.active { display: flex; }
 
         /* ==================== KANBAN VIEW ==================== */
-        .kanban-view {
-            padding: 20px;
-            gap: 16px;
-            overflow-x: auto;
-        }
+        .kanban-view { padding: 20px; gap: 16px; overflow-x: auto; }
         .kanban-column {
             min-width: 300px;
             max-width: 320px;
@@ -80,54 +75,46 @@
             display: flex;
             justify-content: space-between;
         }
-        .kanban-header .count {
-            background: rgba(0,0,0,0.3);
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-        }
+        .kanban-header .count { background: rgba(0,0,0,0.3); padding: 2px 10px; border-radius: 10px; font-size: 12px; }
         .col-todo .kanban-header { background: #f6c90e; color: #000; }
         .col-progress .kanban-header { background: #3da5d9; color: #fff; }
         .col-blocked .kanban-header { background: #da3633; color: #fff; }
         .col-done .kanban-header { background: #3fb950; color: #fff; }
-
-        .kanban-cards {
-            flex: 1;
-            overflow-y: auto;
-            padding: 12px;
-            min-height: 100px;
-        }
+        .kanban-cards { flex: 1; overflow-y: auto; padding: 12px; min-height: 100px; }
         .kanban-cards.drag-over { background: rgba(56,139,253,0.1); }
 
         /* ==================== TIMELINE VIEW ==================== */
-        .timeline-view {
-            flex-direction: column;
-        }
+        .timeline-view { flex-direction: column; }
         .timeline-sidebar {
-            width: 280px;
+            width: 300px;
             background: #161b22;
             border-right: 1px solid #30363d;
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
         }
-        .sidebar-header {
-            padding: 14px;
-            border-bottom: 1px solid #30363d;
-        }
-        .matrix-tabs {
-            display: flex;
-            gap: 4px;
-            margin-top: 10px;
-        }
-        .matrix-tab {
-            flex: 1;
-            padding: 6px;
-            border: none;
-            border-radius: 4px;
+        .sidebar-section { padding: 12px; border-bottom: 1px solid #30363d; }
+        .sidebar-section h3 { font-size: 13px; margin-bottom: 8px; color: #8b949e; }
+
+        .cron-job {
+            background: #21262d;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 6px;
             cursor: pointer;
-            font-size: 11px;
-            font-weight: 600;
+            border-left: 3px solid #8b949e;
+            font-size: 12px;
+        }
+        .cron-job:hover { background: #30363d; }
+        .cron-job.active { border-left-color: #3fb950; background: rgba(63,185,80,0.1); }
+        .cron-job .time { font-weight: bold; color: #58a6ff; }
+        .cron-job .name { margin-top: 4px; }
+        .cron-job .bot { font-size: 10px; color: #8b949e; margin-top: 2px; }
+
+        .matrix-tabs { display: flex; gap: 4px; margin-top: 10px; }
+        .matrix-tab {
+            flex: 1; padding: 6px; border: none; border-radius: 4px;
+            cursor: pointer; font-size: 11px; font-weight: 600;
         }
         .matrix-tab.q1 { background: #da3633; color: #fff; }
         .matrix-tab.q2 { background: #f0883e; color: #fff; }
@@ -135,67 +122,30 @@
         .matrix-tab.q4 { background: #8b949e; color: #fff; }
         .matrix-tab.active { outline: 2px solid #58a6ff; }
 
-        .unscheduled-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-        }
+        .unscheduled-list { flex: 1; overflow-y: auto; padding: 10px; }
 
-        .timeline-main {
-            flex: 1;
-            overflow: auto;
-            padding: 16px;
-        }
+        .timeline-main { flex: 1; overflow: auto; padding: 16px; }
         .swimlanes { min-width: 1000px; }
-        .time-header {
-            display: flex;
-            margin-left: 120px;
-            margin-bottom: 8px;
-        }
-        .time-slot-label {
-            width: 100px;
-            text-align: center;
-            font-size: 11px;
-            color: #8b949e;
-        }
+        .time-header { display: flex; margin-left: 120px; margin-bottom: 8px; }
+        .time-slot-label { width: 100px; text-align: center; font-size: 11px; color: #8b949e; }
         .time-slot-label.now { color: #3fb950; font-weight: bold; }
 
-        .swimlane {
-            display: flex;
-            margin-bottom: 4px;
-        }
+        .swimlane { display: flex; margin-bottom: 4px; }
         .swimlane-label {
-            width: 120px;
-            padding: 10px;
-            background: #21262d;
-            border-radius: 6px 0 0 6px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            width: 120px; padding: 10px; background: #21262d;
+            border-radius: 6px 0 0 6px; font-size: 12px;
+            display: flex; align-items: center; gap: 8px;
         }
-        .swimlane-label .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        .swimlane-track {
-            flex: 1;
-            display: flex;
-            background: #21262d;
-            border-radius: 0 6px 6px 0;
-        }
+        .swimlane-label .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .swimlane-track { flex: 1; display: flex; background: #21262d; border-radius: 0 6px 6px 0; }
         .time-slot {
-            width: 100px;
-            min-height: 60px;
-            border-left: 1px dashed #30363d;
-            padding: 4px;
+            width: 100px; min-height: 60px; border-left: 1px dashed #30363d; padding: 4px;
         }
         .time-slot:first-child { border-left: none; }
         .time-slot.drag-over { background: rgba(56,139,253,0.15); }
         .time-slot.now { background: rgba(63,185,80,0.1); }
 
-        /* ==================== SHARED CARD STYLES ==================== */
+        /* ==================== TASK CARDS ==================== */
         .task-card {
             background: #21262d;
             border-radius: 8px;
@@ -209,6 +159,12 @@
         .task-card.dragging { opacity: 0.4; }
         .task-card.completed { opacity: 0.5; }
         .task-card.completed .task-text { text-decoration: line-through; }
+        .task-card.executing { border-left-color: #f0883e; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
 
         .task-card.bml { border-left-color: #f7931a; }
         .task-card.ene { border-left-color: #3fb950; }
@@ -216,24 +172,17 @@
         .task-card.ana { border-left-color: #a371f7; }
         .task-card.ass { border-left-color: #f78166; }
 
-        .task-badges {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 6px;
-        }
-        .badge {
-            font-size: 9px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
+        .task-badges { display: flex; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+        .badge { font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
         .badge.agent { background: #30363d; }
         .badge.q1 { background: #da3633; }
         .badge.q2 { background: #f0883e; }
         .badge.q3 { background: #3fb950; }
         .badge.q4 { background: #8b949e; }
+        .badge.executing { background: #f0883e; animation: pulse 1s infinite; }
 
         .task-text { font-size: 13px; line-height: 1.4; }
+        .task-notes { font-size: 11px; color: #8b949e; margin-top: 6px; font-style: italic; }
 
         .task-actions {
             display: none;
@@ -244,80 +193,51 @@
         }
         .task-card:hover .task-actions { display: flex; }
         .task-actions button {
-            background: #30363d;
-            border: none;
-            color: #8b949e;
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
+            background: #30363d; border: none; color: #8b949e;
+            width: 24px; height: 24px; border-radius: 4px;
+            cursor: pointer; font-size: 12px;
         }
         .task-actions button:hover { background: #3d444d; color: #fff; }
+        .task-actions button.run { background: #238636; color: #fff; }
 
-        /* Timeline mini card */
         .mini-card {
-            background: #30363d;
-            border-radius: 4px;
-            padding: 6px;
-            font-size: 11px;
-            margin-bottom: 4px;
-            cursor: grab;
-            border-left: 3px solid #8b949e;
+            background: #30363d; border-radius: 4px; padding: 6px;
+            font-size: 11px; margin-bottom: 4px; cursor: grab; border-left: 3px solid #8b949e;
         }
         .mini-card.q1 { border-left-color: #da3633; }
         .mini-card.q2 { border-left-color: #f0883e; }
-        .mini-card.q3 { border-left-color: #3fb950; }
         .mini-card.completed { opacity: 0.5; text-decoration: line-through; }
 
         /* ==================== MODAL ==================== */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000;
         }
         .modal.show { display: flex; }
         .modal-content {
-            background: #161b22;
-            border-radius: 12px;
-            padding: 24px;
-            width: 450px;
-            max-width: 95%;
-            border: 1px solid #30363d;
+            background: #161b22; border-radius: 12px; padding: 24px;
+            width: 500px; max-width: 95%; border: 1px solid #30363d; max-height: 90vh; overflow-y: auto;
         }
         .modal h3 { margin-bottom: 16px; }
         .modal input, .modal select, .modal textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            background: #21262d;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            color: #e6edf3;
-            font-size: 14px;
+            width: 100%; padding: 10px; margin-bottom: 12px;
+            background: #21262d; border: 1px solid #30363d;
+            border-radius: 6px; color: #e6edf3; font-size: 14px;
         }
         .modal textarea { min-height: 80px; resize: vertical; }
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 8px;
-        }
-        .modal-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+        .modal-buttons { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+        .modal-buttons button { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
         .modal-buttons .cancel { background: #30363d; color: #e6edf3; }
         .modal-buttons .save { background: #238636; color: #fff; }
         .modal-buttons .delete { background: #da3633; color: #fff; }
+        .modal-buttons .run { background: #f0883e; color: #fff; }
 
-        /* Mobile */
+        .outbox-preview {
+            background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+            padding: 12px; margin-top: 12px; max-height: 200px; overflow-y: auto;
+            font-family: monospace; font-size: 12px; white-space: pre-wrap;
+        }
+
         @media (max-width: 768px) {
             .kanban-view { flex-direction: column; padding: 10px; }
             .kanban-column { min-width: 100%; max-width: 100%; }
@@ -327,20 +247,22 @@
     </style>
 </head>
 <body>
-    <!-- Top Navigation -->
     <div class="topnav">
-        <h1>OpenClaw Command Center</h1>
+        <h1>
+            <span class="status-dot" id="serverStatus"></span>
+            OpenClaw Command Center
+        </h1>
         <div class="view-tabs">
             <button class="view-tab active" onclick="switchView('kanban')">Kanban</button>
             <button class="view-tab" onclick="switchView('timeline')">Timeline</button>
         </div>
         <div class="nav-actions">
-            <button onclick="loadFromGitHub()">Sync GitHub</button>
+            <button onclick="syncFromGitHub()">Sync GitHub</button>
+            <button onclick="startExecutor()" id="executorBtn">Start Executor</button>
             <button onclick="openAddModal()" class="primary">+ Add Task</button>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
         <!-- Kanban View -->
         <div id="kanban-view" class="view kanban-view active">
@@ -365,8 +287,12 @@
         <!-- Timeline View -->
         <div id="timeline-view" class="view timeline-view">
             <div class="timeline-sidebar">
-                <div class="sidebar-header">
-                    <strong>Unscheduled</strong>
+                <div class="sidebar-section">
+                    <h3>CRON SCHEDULE</h3>
+                    <div id="cronJobs"></div>
+                </div>
+                <div class="sidebar-section">
+                    <h3>UNSCHEDULED TASKS</h3>
                     <div class="matrix-tabs">
                         <button class="matrix-tab q1 active" onclick="filterMatrix('q1')">Q1</button>
                         <button class="matrix-tab q2" onclick="filterMatrix('q2')">Q2</button>
@@ -410,10 +336,14 @@
                 <option value="todo">TODO</option>
                 <option value="progress">In Progress</option>
                 <option value="blocked">Blocked</option>
+                <option value="executing">Executing...</option>
                 <option value="done">Done</option>
             </select>
+            <textarea id="edit-notes" placeholder="Notes (results, blockers, etc.)"></textarea>
+            <div class="outbox-preview" id="outbox-preview" style="display:none;"></div>
             <div class="modal-buttons">
                 <button class="delete" id="delete-btn" onclick="deleteTask()">Delete</button>
+                <button class="run" id="run-btn" onclick="executeTask()">▶ Execute</button>
                 <button class="cancel" onclick="closeModal()">Cancel</button>
                 <button class="save" onclick="saveTask()">Save</button>
             </div>
@@ -421,6 +351,7 @@
     </div>
 
     <script>
+        const EXECUTOR_URL = 'http://localhost:8765';
         const AGENTS = [
             { id: 'bml', name: 'BML CEO', color: '#f7931a' },
             { id: 'ene', name: 'EnergyScout', color: '#3fb950' },
@@ -431,13 +362,63 @@
         const TIME_SLOTS = ['Now', '+1h', '+2h', '+3h', 'Today', 'Tomorrow', 'This Week', 'Next Week', 'Later'];
 
         let tasks = JSON.parse(localStorage.getItem('dashboard-tasks') || '[]');
+        let cronJobs = [];
         let currentView = 'kanban';
         let matrixFilter = 'q1';
         let draggedId = null;
+        let executorOnline = false;
 
-        function init() {
+        async function init() {
+            await checkExecutor();
+            await loadCronJobs();
             renderAll();
-            setupDragDrop();
+            setInterval(checkExecutor, 10000);
+            setInterval(pollTaskStatus, 15000);
+        }
+
+        async function checkExecutor() {
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/status`, { mode: 'cors' });
+                executorOnline = resp.ok;
+            } catch { executorOnline = false; }
+
+            const dot = document.getElementById('serverStatus');
+            dot.className = 'status-dot ' + (executorOnline ? 'online' : 'offline');
+            document.getElementById('executorBtn').textContent = executorOnline ? 'Executor Online' : 'Start Executor';
+        }
+
+        async function loadCronJobs() {
+            if (!executorOnline) return;
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/jobs`);
+                const data = await resp.json();
+                cronJobs = data.jobs || [];
+            } catch { cronJobs = []; }
+        }
+
+        async function pollTaskStatus() {
+            if (!executorOnline) return;
+            const executing = tasks.filter(t => t.status === 'executing');
+            if (executing.length === 0) return;
+
+            for (const task of executing) {
+                try {
+                    const resp = await fetch(`${EXECUTOR_URL}/outbox?bot=${task.agent}`);
+                    const data = await resp.json();
+                    if (data.content) {
+                        const lower = data.content.toLowerCase();
+                        if (lower.includes('done') || lower.includes('completed') || lower.includes('finished')) {
+                            task.status = 'done';
+                            task.notes = 'Auto-completed: ' + data.content.substring(0, 100);
+                        } else if (lower.includes('blocked') || lower.includes('need') || lower.includes('error')) {
+                            task.status = 'blocked';
+                            task.notes = 'Needs attention: ' + data.content.substring(0, 100);
+                        }
+                    }
+                } catch {}
+            }
+            save();
+            renderAll();
         }
 
         function switchView(view) {
@@ -457,15 +438,29 @@
         function renderKanban() {
             ['todo', 'progress', 'blocked', 'done'].forEach(status => {
                 const container = document.getElementById(`k-${status}`);
-                const statusTasks = tasks.filter(t => t.status === status);
+                const statusTasks = tasks.filter(t => t.status === status || (status === 'progress' && t.status === 'executing'));
                 document.getElementById(`k-count-${status}`).textContent = statusTasks.length;
-
                 container.innerHTML = statusTasks.map(t => renderCard(t)).join('');
             });
             setupDragDrop();
         }
 
         function renderTimeline() {
+            // Cron jobs
+            const cronHTML = cronJobs.map(job => {
+                const now = new Date();
+                const [h, m] = (job.schedule || '').split(':');
+                const isActive = h && parseInt(h) === now.getHours();
+                return `
+                    <div class="cron-job ${isActive ? 'active' : ''}" onclick="runCronJob('${job.name}')">
+                        <div class="time">${job.schedule}</div>
+                        <div class="name">${job.name}</div>
+                        <div class="bot">${job.bot || 'system'}</div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('cronJobs').innerHTML = cronHTML || '<div style="color:#8b949e;padding:10px;">Load executor to see jobs</div>';
+
             // Time header
             document.getElementById('time-header').innerHTML = TIME_SLOTS.map((s, i) =>
                 `<div class="time-slot-label ${i === 0 ? 'now' : ''}">${s}</div>`
@@ -480,24 +475,23 @@
                     </div>
                     <div class="swimlane-track">
                         ${TIME_SLOTS.map((_, i) => `
-                            <div class="time-slot ${i === 0 ? 'now' : ''}"
-                                 data-agent="${agent.id}" data-slot="${i}"></div>
+                            <div class="time-slot ${i === 0 ? 'now' : ''}" data-agent="${agent.id}" data-slot="${i}"></div>
                         `).join('')}
                     </div>
                 </div>
             `).join('');
 
-            // Render scheduled tasks
+            // Scheduled tasks
             tasks.filter(t => t.scheduled).forEach(t => {
                 const slot = document.querySelector(`.time-slot[data-agent="${t.scheduledAgent}"][data-slot="${t.scheduledSlot}"]`);
                 if (slot) {
                     slot.innerHTML += `<div class="mini-card ${t.quadrant} ${t.status === 'done' ? 'completed' : ''}"
-                        draggable="true" data-id="${t.id}">${t.text.substring(0, 30)}</div>`;
+                        draggable="true" data-id="${t.id}">${t.text.substring(0, 25)}</div>`;
                 }
             });
 
-            // Unscheduled sidebar
-            const unscheduled = tasks.filter(t => !t.scheduled && t.quadrant === matrixFilter);
+            // Unscheduled
+            const unscheduled = tasks.filter(t => !t.scheduled && t.quadrant === matrixFilter && t.status !== 'done');
             document.getElementById('unscheduled').innerHTML = unscheduled.map(t => renderCard(t, true)).join('')
                 || '<div style="color:#8b949e;padding:20px;text-align:center;">No tasks</div>';
 
@@ -505,54 +499,47 @@
         }
 
         function renderCard(t, mini = false) {
+            const executingClass = t.status === 'executing' ? 'executing' : '';
+            const completedClass = t.status === 'done' ? 'completed' : '';
             return `
-                <div class="task-card ${t.agent} ${t.status === 'done' ? 'completed' : ''}"
-                     draggable="true" data-id="${t.id}">
+                <div class="task-card ${t.agent} ${executingClass} ${completedClass}" draggable="true" data-id="${t.id}">
                     <div class="task-actions">
+                        ${executorOnline ? `<button class="run" onclick="quickExecute('${t.id}')" title="Execute">▶</button>` : ''}
                         <button onclick="toggleComplete('${t.id}')" title="Toggle complete">✓</button>
                         <button onclick="openEditModal('${t.id}')" title="Edit">✎</button>
                     </div>
                     <div class="task-badges">
                         <span class="badge agent">${t.agent.toUpperCase()}</span>
                         <span class="badge ${t.quadrant}">Q${t.quadrant.charAt(1)}</span>
+                        ${t.status === 'executing' ? '<span class="badge executing">RUNNING</span>' : ''}
                     </div>
                     <div class="task-text">${t.text}</div>
+                    ${t.notes ? `<div class="task-notes">${t.notes.substring(0, 80)}</div>` : ''}
                 </div>
             `;
         }
 
         function setupDragDrop() {
             document.querySelectorAll('[draggable="true"]').forEach(el => {
-                el.ondragstart = e => {
-                    draggedId = e.target.dataset.id;
-                    e.target.classList.add('dragging');
-                };
+                el.ondragstart = e => { draggedId = e.target.dataset.id; e.target.classList.add('dragging'); };
                 el.ondragend = e => e.target.classList.remove('dragging');
             });
 
-            // Kanban columns
             document.querySelectorAll('.kanban-cards').forEach(col => {
                 col.ondragover = e => { e.preventDefault(); col.classList.add('drag-over'); };
                 col.ondragleave = () => col.classList.remove('drag-over');
                 col.ondrop = e => {
-                    e.preventDefault();
-                    col.classList.remove('drag-over');
+                    e.preventDefault(); col.classList.remove('drag-over');
                     const task = tasks.find(t => t.id === draggedId);
-                    if (task) {
-                        task.status = col.id.replace('k-', '');
-                        task.scheduled = false;
-                        save(); renderAll();
-                    }
+                    if (task) { task.status = col.id.replace('k-', ''); task.scheduled = false; save(); renderAll(); }
                 };
             });
 
-            // Timeline slots
             document.querySelectorAll('.time-slot').forEach(slot => {
                 slot.ondragover = e => { e.preventDefault(); slot.classList.add('drag-over'); };
                 slot.ondragleave = () => slot.classList.remove('drag-over');
                 slot.ondrop = e => {
-                    e.preventDefault();
-                    slot.classList.remove('drag-over');
+                    e.preventDefault(); slot.classList.remove('drag-over');
                     const task = tasks.find(t => t.id === draggedId);
                     if (task) {
                         task.scheduled = true;
@@ -573,10 +560,47 @@
 
         function toggleComplete(id) {
             const task = tasks.find(t => t.id === id);
-            if (task) {
-                task.status = task.status === 'done' ? 'todo' : 'done';
+            if (task) { task.status = task.status === 'done' ? 'todo' : 'done'; save(); renderAll(); }
+        }
+
+        async function quickExecute(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task || !executorOnline) return;
+
+            task.status = 'executing';
+            save(); renderAll();
+
+            try {
+                await fetch(`${EXECUTOR_URL}/execute`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ task_id: task.id, text: task.text, agent: task.agent })
+                });
+            } catch (e) {
+                task.status = 'blocked';
+                task.notes = 'Executor error: ' + e.message;
                 save(); renderAll();
             }
+        }
+
+        async function runCronJob(jobName) {
+            if (!executorOnline) { alert('Start executor first'); return; }
+            if (!confirm(`Run "${jobName}" now?`)) return;
+
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/run-job`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ job_name: jobName })
+                });
+                const data = await resp.json();
+                alert(data.success ? `Job "${jobName}" started` : `Error: ${data.error}`);
+            } catch (e) { alert('Error: ' + e.message); }
+        }
+
+        function startExecutor() {
+            if (executorOnline) return;
+            alert('Run this in terminal:\n\ncd ~/Vaults/openclaw/bridge/kanban && python executor.py');
         }
 
         function openAddModal() {
@@ -586,11 +610,14 @@
             document.getElementById('edit-agent').value = 'bml';
             document.getElementById('edit-quadrant').value = 'q2';
             document.getElementById('edit-status').value = 'todo';
+            document.getElementById('edit-notes').value = '';
             document.getElementById('delete-btn').style.display = 'none';
+            document.getElementById('run-btn').style.display = 'none';
+            document.getElementById('outbox-preview').style.display = 'none';
             document.getElementById('editModal').classList.add('show');
         }
 
-        function openEditModal(id) {
+        async function openEditModal(id) {
             const task = tasks.find(t => t.id === id);
             if (!task) return;
             document.getElementById('modal-title').textContent = 'Edit Task';
@@ -599,12 +626,33 @@
             document.getElementById('edit-agent').value = task.agent;
             document.getElementById('edit-quadrant').value = task.quadrant;
             document.getElementById('edit-status').value = task.status;
+            document.getElementById('edit-notes').value = task.notes || '';
             document.getElementById('delete-btn').style.display = 'block';
+            document.getElementById('run-btn').style.display = executorOnline ? 'block' : 'none';
+
+            // Load outbox preview
+            if (executorOnline) {
+                try {
+                    const resp = await fetch(`${EXECUTOR_URL}/outbox?bot=${task.agent}`);
+                    const data = await resp.json();
+                    if (data.content) {
+                        document.getElementById('outbox-preview').textContent = data.content;
+                        document.getElementById('outbox-preview').style.display = 'block';
+                    }
+                } catch {}
+            }
+
             document.getElementById('editModal').classList.add('show');
         }
 
         function closeModal() {
             document.getElementById('editModal').classList.remove('show');
+            document.getElementById('outbox-preview').style.display = 'none';
+        }
+
+        async function executeTask() {
+            const id = document.getElementById('edit-id').value;
+            if (id) { await quickExecute(id); closeModal(); }
         }
 
         function saveTask() {
@@ -619,15 +667,15 @@
                     task.agent = document.getElementById('edit-agent').value;
                     task.quadrant = document.getElementById('edit-quadrant').value;
                     task.status = document.getElementById('edit-status').value;
+                    task.notes = document.getElementById('edit-notes').value;
                 }
             } else {
                 tasks.push({
                     id: 'task-' + Date.now(),
-                    text: text,
-                    agent: document.getElementById('edit-agent').value,
+                    text, agent: document.getElementById('edit-agent').value,
                     quadrant: document.getElementById('edit-quadrant').value,
                     status: document.getElementById('edit-status').value,
-                    scheduled: false
+                    notes: '', scheduled: false
                 });
             }
             closeModal(); save(); renderAll();
@@ -641,11 +689,9 @@
             }
         }
 
-        function save() {
-            localStorage.setItem('dashboard-tasks', JSON.stringify(tasks));
-        }
+        function save() { localStorage.setItem('dashboard-tasks', JSON.stringify(tasks)); }
 
-        async function loadFromGitHub() {
+        async function syncFromGitHub() {
             const GITHUB_BASE = 'https://raw.githubusercontent.com/mobiusframeworks/openclaw-kanban/main/backlogs';
             const files = { bml: 'bml-ceo.md', ene: 'energyscout-ceo.md', rea: 'realestate-ceo.md', ana: 'analytics.md', ass: 'assistant.md' };
 
@@ -678,13 +724,13 @@
                             else if (ll.includes('email') || ll.includes('call')) q = 'q3';
                             else if (ll.includes('maybe') || ll.includes('optional')) q = 'q4';
 
-                            tasks.push({ id: 'gh-' + Date.now() + Math.random(), text, agent, quadrant: q, status, scheduled: false });
+                            tasks.push({ id: 'gh-' + Date.now() + Math.random(), text, agent, quadrant: q, status, scheduled: false, notes: '' });
                         }
                     });
-                } catch (e) { console.error(e); }
+                } catch {}
             }
             save(); renderAll();
-            alert(`Loaded tasks. Total: ${tasks.length}`);
+            alert(`Synced. Total: ${tasks.length} tasks`);
         }
 
         init();

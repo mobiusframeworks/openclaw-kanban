@@ -1,20 +1,58 @@
 #!/usr/bin/env python3
 """
-OpenClaw Kanban v4 - Using streamlit-sortables
+OpenClaw Kanban v5 - Native Streamlit Columns
 """
 
 import streamlit as st
-from streamlit_sortables import sort_items
 import requests
 import re
 from datetime import datetime
 
 st.set_page_config(page_title="OpenClaw Kanban", layout="wide")
 
+# Custom CSS for kanban styling
+st.markdown("""
+<style>
+.kanban-card {
+    background: #2d2d2d;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+    border-left: 4px solid #666;
+    font-size: 14px;
+}
+.kanban-card.bml { border-left-color: #f7931a; }
+.kanban-card.ene { border-left-color: #4CAF50; }
+.kanban-card.rea { border-left-color: #2196F3; }
+.kanban-card.ana { border-left-color: #9C27B0; }
+.kanban-card.ass { border-left-color: #FF5722; }
+.agent-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #444;
+    margin-right: 6px;
+}
+.col-header {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.todo-header { background: #FFE082; color: #333; }
+.progress-header { background: #81D4FA; color: #333; }
+.blocked-header { background: #EF9A9A; color: #333; }
+.done-header { background: #A5D6A7; color: #333; }
+</style>
+""", unsafe_allow_html=True)
+
 GITHUB_REPO = "mobiusframeworks/openclaw-kanban"
 GITHUB_BASE = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main/backlogs"
 
 AGENTS = ["BML CEO", "EnergyScout CEO", "Real Estate CEO", "Analytics", "Assistant"]
+AGENT_KEYS = {"BML CEO": "bml", "EnergyScout CEO": "ene", "Real Estate CEO": "rea", "Analytics": "ana", "Assistant": "ass"}
 
 BOT_SCHEDULE = {
     "07:00": "morning-briefing (Assistant)",
@@ -55,7 +93,9 @@ def parse_tasks():
         if not content:
             continue
 
+        agent_key = AGENT_KEYS.get(agent, "unk")
         current_status = "TODO"
+
         for line in content.split('\n'):
             if "**Status:**" in line or "Status:" in line:
                 ll = line.lower()
@@ -71,18 +111,25 @@ def parse_tasks():
             if line.startswith("### "):
                 task = re.sub(r'^\d+\.\s*', '', line.replace("###", "").strip())
                 if task:
-                    tasks[current_status].append(f"[{agent[:3]}] {task[:50]}")
+                    tasks[current_status].append({"text": task[:60], "agent": agent, "key": agent_key})
 
             if line.strip().startswith("- [x]"):
                 task = line.replace("- [x]", "").strip()
                 if task:
-                    tasks["DONE"].append(f"[{agent[:3]}] {task[:50]}")
+                    tasks["DONE"].append({"text": task[:60], "agent": agent, "key": agent_key})
             elif line.strip().startswith("- [ ]"):
                 task = line.replace("- [ ]", "").strip()
                 if task:
-                    tasks["TODO"].append(f"[{agent[:3]}] {task[:50]}")
+                    tasks["TODO"].append({"text": task[:60], "agent": agent, "key": agent_key})
 
     return tasks
+
+def render_card(task):
+    """Render a single task card"""
+    return f"""<div class="kanban-card {task['key']}">
+        <span class="agent-tag">{task['key'].upper()}</span>
+        {task['text']}
+    </div>"""
 
 # Main UI
 st.title("OpenClaw Kanban")
@@ -90,39 +137,40 @@ st.title("OpenClaw Kanban")
 tab1, tab2 = st.tabs(["Board", "Schedule"])
 
 with tab1:
-    col1, col2 = st.columns([1, 4])
-    with col1:
-        if st.button("Refresh"):
-            st.cache_data.clear()
-            st.rerun()
+    if st.button("🔄 Refresh Data"):
+        st.cache_data.clear()
+        st.rerun()
 
     tasks = parse_tasks()
 
-    # Build sortable containers
-    containers = [
-        {"header": "TODO", "items": tasks["TODO"]},
-        {"header": "IN PROGRESS", "items": tasks["IN PROGRESS"]},
-        {"header": "BLOCKED", "items": tasks["BLOCKED"]},
-        {"header": "DONE", "items": tasks["DONE"]},
-    ]
+    # Create 4 columns for kanban
+    col1, col2, col3, col4 = st.columns(4)
 
-    st.markdown("**Drag tasks between columns:**")
+    with col1:
+        st.markdown('<div class="col-header todo-header">📋 TODO</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['TODO'])} tasks")
+        for task in tasks["TODO"]:
+            st.markdown(render_card(task), unsafe_allow_html=True)
 
-    sorted_items = sort_items(
-        containers,
-        multi_containers=True,
-        direction="horizontal"
-    )
+    with col2:
+        st.markdown('<div class="col-header progress-header">🔄 IN PROGRESS</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['IN PROGRESS'])} tasks")
+        for task in tasks["IN PROGRESS"]:
+            st.markdown(render_card(task), unsafe_allow_html=True)
 
-    # Show counts
-    st.divider()
-    cols = st.columns(4)
-    labels = ["TODO", "IN PROGRESS", "BLOCKED", "DONE"]
-    colors = ["#FFE082", "#81D4FA", "#EF9A9A", "#A5D6A7"]
+    with col3:
+        st.markdown('<div class="col-header blocked-header">🚫 BLOCKED</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['BLOCKED'])} tasks")
+        for task in tasks["BLOCKED"]:
+            st.markdown(render_card(task), unsafe_allow_html=True)
 
-    for i, (col, label, color) in enumerate(zip(cols, labels, colors)):
-        count = len([c for c in sorted_items if c.get("header") == label][0].get("items", [])) if sorted_items else 0
-        col.markdown(f"<div style='background:{color};padding:8px;border-radius:4px;text-align:center'><b>{label}</b><br>{count} tasks</div>", unsafe_allow_html=True)
+    with col4:
+        st.markdown('<div class="col-header done-header">✅ DONE</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['DONE'])} tasks")
+        for task in tasks["DONE"][:20]:  # Limit done to 20
+            st.markdown(render_card(task), unsafe_allow_html=True)
+        if len(tasks["DONE"]) > 20:
+            st.caption(f"...and {len(tasks['DONE']) - 20} more")
 
 with tab2:
     st.subheader("Bot Schedule")
@@ -133,4 +181,4 @@ with tab2:
         st.markdown(f"{icon} **{time}** - {job}")
 
 st.divider()
-st.caption(f"[GitHub](https://github.com/{GITHUB_REPO}) • Drag tasks to reorder")
+st.caption(f"[GitHub](https://github.com/{GITHUB_REPO}) • Read-only view from backlogs")

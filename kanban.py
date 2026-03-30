@@ -138,7 +138,11 @@ with tab1:
     result = kanban_board(
         stages=stages,
         deals=deals,
-        key="kanban"
+        key="kanban",
+        height=700,
+        draggable_stages=["todo", "in_progress", "blocked", "done"],
+        allow_empty_stages=True,
+        show_tooltips=True
     )
 
     if result:

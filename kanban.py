@@ -1,24 +1,21 @@
 #!/usr/bin/env python3
 """
 OpenClaw Kanban v3 - Drag & Drop Edition
-Uses streamlit-kanban-board for proper UX
 """
 
 import streamlit as st
-from streamlit_kanban_board import kanban_board
+from streamlit_kanban_board_goviceversa import kanban_board
 import requests
 import re
 from datetime import datetime
 
 st.set_page_config(page_title="OpenClaw Kanban", layout="wide")
 
-# GitHub config
 GITHUB_REPO = "mobiusframeworks/openclaw-kanban"
 GITHUB_BASE = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main/backlogs"
 
 AGENTS = ["BML CEO", "EnergyScout CEO", "Real Estate CEO", "Analytics", "Assistant"]
 
-# Bot schedule
 BOT_SCHEDULE = {
     "07:00": "morning-briefing (Assistant)",
     "08:00": "realestate-leads (RE)",
@@ -51,15 +48,16 @@ def fetch_backlog(agent: str) -> str:
 
 def parse_to_kanban_format():
     """Parse all backlogs into kanban board format"""
-    columns = [
-        {"id": "todo", "title": "TODO", "cards": []},
-        {"id": "in_progress", "title": "IN PROGRESS", "cards": []},
-        {"id": "blocked", "title": "BLOCKED", "cards": []},
-        {"id": "done", "title": "DONE", "cards": []},
+    stages = [
+        {"id": "todo", "name": "TODO", "color": "#FFE082"},
+        {"id": "in_progress", "name": "IN PROGRESS", "color": "#81D4FA"},
+        {"id": "blocked", "name": "BLOCKED", "color": "#EF9A9A"},
+        {"id": "done", "name": "DONE", "color": "#A5D6A7"},
     ]
 
-    col_map = {"TODO": 0, "IN PROGRESS": 1, "BLOCKED": 2, "DONE": 3}
-    card_id = 0
+    deals = []
+    stage_map = {"TODO": "todo", "IN PROGRESS": "in_progress", "BLOCKED": "blocked", "DONE": "done"}
+    deal_id = 0
 
     for agent in AGENTS:
         content = fetch_backlog(agent)
@@ -82,33 +80,48 @@ def parse_to_kanban_format():
             if line.startswith("### "):
                 task = re.sub(r'^\d+\.\s*', '', line.replace("###", "").strip())
                 if task:
-                    columns[col_map[current_status]]["cards"].append({
-                        "id": str(card_id),
-                        "title": f"[{agent[:3]}] {task[:50]}",
-                        "description": task,
+                    deals.append({
+                        "id": f"deal_{deal_id}",
+                        "stage": stage_map[current_status],
+                        "deal_id": f"T-{deal_id}",
+                        "company_name": task[:40],
+                        "product_type": agent,
+                        "date": datetime.now().strftime("%Y-%m-%d"),
+                        "underwriter": agent[:3],
+                        "source": "OC"
                     })
-                    card_id += 1
+                    deal_id += 1
 
             if line.strip().startswith("- [x]"):
                 task = line.replace("- [x]", "").strip()
                 if task:
-                    columns[col_map["DONE"]]["cards"].append({
-                        "id": str(card_id),
-                        "title": f"[{agent[:3]}] {task[:50]}",
-                        "description": task,
+                    deals.append({
+                        "id": f"deal_{deal_id}",
+                        "stage": "done",
+                        "deal_id": f"T-{deal_id}",
+                        "company_name": task[:40],
+                        "product_type": agent,
+                        "date": datetime.now().strftime("%Y-%m-%d"),
+                        "underwriter": agent[:3],
+                        "source": "OC"
                     })
-                    card_id += 1
+                    deal_id += 1
             elif line.strip().startswith("- [ ]"):
                 task = line.replace("- [ ]", "").strip()
                 if task:
-                    columns[col_map["TODO"]]["cards"].append({
-                        "id": str(card_id),
-                        "title": f"[{agent[:3]}] {task[:50]}",
-                        "description": task,
+                    deals.append({
+                        "id": f"deal_{deal_id}",
+                        "stage": "todo",
+                        "deal_id": f"T-{deal_id}",
+                        "company_name": task[:40],
+                        "product_type": agent,
+                        "date": datetime.now().strftime("%Y-%m-%d"),
+                        "underwriter": agent[:3],
+                        "source": "OC"
                     })
-                    card_id += 1
+                    deal_id += 1
 
-    return columns
+    return stages, deals
 
 # Main UI
 st.title("🗂️ OpenClaw Kanban")
@@ -120,16 +133,19 @@ with tab1:
         st.cache_data.clear()
         st.rerun()
 
-    columns = parse_to_kanban_format()
+    stages, deals = parse_to_kanban_format()
 
-    # Render kanban board with drag-drop
     result = kanban_board(
-        columns=columns,
-        key="kanban",
+        stages=stages,
+        deals=deals,
+        key="kanban"
     )
 
     if result:
-        st.write("Board updated:", result)
+        if result.get("moved_deal"):
+            st.success(f"Moved to: {result['moved_deal']['to_stage']}")
+        elif result.get("clicked_deal"):
+            st.info(f"Task: {result['clicked_deal']['company_name']}")
 
 with tab2:
     st.subheader("Bot Schedule")
@@ -140,4 +156,4 @@ with tab2:
         st.markdown(f"{icon} **{time}** - {job}")
 
 st.divider()
-st.caption(f"[GitHub Repo](https://github.com/{GITHUB_REPO}) • Drag cards to reorder")
+st.caption(f"[GitHub](https://github.com/{GITHUB_REPO}) • Drag cards to move")

@@ -84,17 +84,9 @@
         .kanban-cards.drag-over { background: rgba(56,139,253,0.1); }
 
         /* ==================== TIMELINE VIEW ==================== */
-        .timeline-view { flex-direction: row; }
-        .timeline-sidebar {
-            width: 300px;
-            background: #161b22;
-            border-right: 1px solid #30363d;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-        }
-        .sidebar-section { padding: 12px; border-bottom: 1px solid #30363d; }
-        .sidebar-section h3 { font-size: 13px; margin-bottom: 8px; color: #8b949e; }
+        .timeline-view { flex-direction: column; padding: 16px; }
+        .timeline-sidebar { display: none; }
+        .sidebar-section { display: none; }
 
         .cron-job {
             background: #21262d;
@@ -124,26 +116,40 @@
 
         .unscheduled-list { flex: 1; overflow-y: auto; padding: 10px; }
 
-        .timeline-main { flex: 1; overflow: auto; padding: 16px; }
-        .swimlanes { min-width: 1000px; }
-        .time-header { display: flex; margin-left: 120px; margin-bottom: 8px; }
-        .time-slot-label { width: 100px; text-align: center; font-size: 11px; color: #8b949e; }
-        .time-slot-label.now { color: #3fb950; font-weight: bold; }
+        .timeline-main { flex: 1; overflow: auto; padding: 0; width: 100%; }
+        .swimlanes { width: 100%; }
+        .time-header { display: flex; margin-left: 140px; margin-bottom: 8px; padding: 0 10px; }
+        .time-slot-label { flex: 1; text-align: center; font-size: 12px; color: #8b949e; padding: 8px; font-weight: 600; }
+        .time-slot-label.now { color: #3fb950; background: rgba(63,185,80,0.15); border-radius: 6px; }
 
-        .swimlane { display: flex; margin-bottom: 4px; }
+        .swimlane { display: flex; margin-bottom: 6px; min-height: 90px; }
         .swimlane-label {
-            width: 120px; padding: 10px; background: #21262d;
-            border-radius: 6px 0 0 6px; font-size: 12px;
-            display: flex; align-items: center; gap: 8px;
+            width: 140px; padding: 12px; background: #21262d;
+            border-radius: 8px 0 0 8px; font-size: 13px; font-weight: 600;
+            display: flex; align-items: center; gap: 10px; flex-shrink: 0;
         }
-        .swimlane-label .dot { width: 10px; height: 10px; border-radius: 50%; }
-        .swimlane-track { flex: 1; display: flex; background: #21262d; border-radius: 0 6px 6px 0; }
+        .swimlane-label .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .swimlane-track { flex: 1; display: flex; background: #21262d; border-radius: 0 8px 8px 0; }
         .time-slot {
-            width: 100px; min-height: 60px; border-left: 1px dashed #30363d; padding: 4px;
+            flex: 1; min-height: 80px; border-left: 1px dashed #30363d; padding: 6px;
+            display: flex; flex-direction: column; gap: 4px;
         }
         .time-slot:first-child { border-left: none; }
         .time-slot.drag-over { background: rgba(56,139,253,0.15); }
         .time-slot.now { background: rgba(63,185,80,0.1); }
+
+        /* Timeline task cards with status colors */
+        .timeline-task {
+            background: #30363d; border-radius: 6px; padding: 8px 10px;
+            font-size: 11px; cursor: pointer; border-left: 4px solid #8b949e;
+        }
+        .timeline-task:hover { background: #3d444d; }
+        .timeline-task.running { border-left-color: #3fb950; background: rgba(63,185,80,0.2); }
+        .timeline-task.waiting { border-left-color: #f0883e; background: rgba(240,136,62,0.15); }
+        .timeline-task.stopped { border-left-color: #da3633; background: rgba(218,54,51,0.15); }
+        .timeline-task.done { border-left-color: #238636; opacity: 0.6; }
+        .timeline-task .task-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .timeline-task .task-time { font-size: 10px; color: #8b949e; }
 
         /* ==================== TASK CARDS ==================== */
         .task-card {
@@ -673,24 +679,26 @@
         }
 
         function renderTimeline() {
-            // Cron jobs
-            const cronHTML = cronJobs.map(job => {
-                const now = new Date();
-                const [h, m] = (job.schedule || '').split(':');
-                const isActive = h && parseInt(h) === now.getHours();
-                return `
-                    <div class="cron-job ${isActive ? 'active' : ''}" onclick="runCronJob('${job.name}')">
-                        <div class="time">${job.schedule}</div>
-                        <div class="name">${job.name}</div>
-                        <div class="bot">${job.bot || 'system'}</div>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('cronJobs').innerHTML = cronHTML || '<div style="color:#8b949e;padding:10px;">Load executor to see jobs</div>';
+            const now = new Date();
+            const currentHour = now.getHours();
+
+            // Map bot names to agent IDs
+            const botToAgent = {
+                'assistant': 'ass', 'bitcoinml': 'bml', 'energyscout': 'ene',
+                'realestate': 'rea', 'analytics': 'ana', 'system': 'ass'
+            };
+
+            // Time slots with actual hours
+            const timeSlots = [];
+            for (let i = 0; i < 12; i++) {
+                const hour = (currentHour + i) % 24;
+                const label = i === 0 ? 'Now' : `${hour}:00`;
+                timeSlots.push({ hour, label, isNow: i === 0 });
+            }
 
             // Time header
-            document.getElementById('time-header').innerHTML = TIME_SLOTS.map((s, i) =>
-                `<div class="time-slot-label ${i === 0 ? 'now' : ''}">${s}</div>`
+            document.getElementById('time-header').innerHTML = timeSlots.map(s =>
+                `<div class="time-slot-label ${s.isNow ? 'now' : ''}">${s.label}</div>`
             ).join('');
 
             // Swimlanes
@@ -701,26 +709,56 @@
                         ${agent.name}
                     </div>
                     <div class="swimlane-track">
-                        ${TIME_SLOTS.map((_, i) => `
-                            <div class="time-slot ${i === 0 ? 'now' : ''}" data-agent="${agent.id}" data-slot="${i}"></div>
+                        ${timeSlots.map((slot, i) => `
+                            <div class="time-slot ${slot.isNow ? 'now' : ''}" data-agent="${agent.id}" data-slot="${i}" data-hour="${slot.hour}"></div>
                         `).join('')}
                     </div>
                 </div>
             `).join('');
 
-            // Scheduled tasks
-            tasks.filter(t => t.scheduled).forEach(t => {
-                const slot = document.querySelector(`.time-slot[data-agent="${t.scheduledAgent}"][data-slot="${t.scheduledSlot}"]`);
-                if (slot) {
-                    slot.innerHTML += `<div class="mini-card ${t.quadrant} ${t.status === 'done' ? 'completed' : ''}"
-                        draggable="true" data-id="${t.id}">${t.text.substring(0, 25)}</div>`;
-                }
+            // Place cron jobs on timeline
+            cronJobs.forEach(job => {
+                if (!job.schedule || !job.schedule.includes(':')) return;
+                const [h] = job.schedule.split(':');
+                const jobHour = parseInt(h);
+                const agentId = botToAgent[job.bot] || 'ass';
+
+                // Find matching slot
+                const slotIndex = timeSlots.findIndex(s => s.hour === jobHour);
+                if (slotIndex === -1) return;
+
+                const slot = document.querySelector(`.time-slot[data-agent="${agentId}"][data-slot="${slotIndex}"]`);
+                if (!slot) return;
+
+                // Determine status
+                let status = 'waiting';
+                if (jobHour < currentHour) status = 'done';
+                else if (jobHour === currentHour) status = 'running';
+
+                slot.innerHTML += `
+                    <div class="timeline-task ${status}" onclick="runCronJob('${job.name}')">
+                        <div class="task-name">${job.name}</div>
+                        <div class="task-time">${job.schedule}</div>
+                    </div>
+                `;
             });
 
-            // Unscheduled
-            const unscheduled = tasks.filter(t => !t.scheduled && t.quadrant === matrixFilter && t.status !== 'done');
-            document.getElementById('unscheduled').innerHTML = unscheduled.map(t => renderCard(t, true)).join('')
-                || '<div style="color:#8b949e;padding:20px;text-align:center;">No tasks</div>';
+            // Place scheduled tasks
+            tasks.filter(t => t.scheduled).forEach(t => {
+                const slot = document.querySelector(`.time-slot[data-agent="${t.scheduledAgent}"][data-slot="${t.scheduledSlot}"]`);
+                if (!slot) return;
+
+                let status = 'waiting';
+                if (t.status === 'executing') status = 'running';
+                else if (t.status === 'done') status = 'done';
+                else if (t.status === 'blocked') status = 'stopped';
+
+                slot.innerHTML += `
+                    <div class="timeline-task ${status}" onclick="openDetailModal('${t.id}')" draggable="true" data-id="${t.id}">
+                        <div class="task-name">${t.text.substring(0, 30)}</div>
+                    </div>
+                `;
+            });
 
             setupDragDrop();
         }

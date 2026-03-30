@@ -1,0 +1,60 @@
+{
+  "project": "memory-prefill-compression",
+  "created": "2026-03-29",
+  "tasks": [
+    {
+      "id": "mpc-001",
+      "text": "Create SQLite router (bridge/memory/router.db)",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "notes": "Tables: tasks, routes, tools, embeddings. Index by task_id, agent, status.",
+      "tags": ["memory", "infrastructure"]
+    },
+    {
+      "id": "mpc-002",
+      "text": "Create compress.py - key generator",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "notes": "Input: full task context. Output: ~100 token compressed key. Format: JSON with route hashes.",
+      "tags": ["memory", "compression"]
+    },
+    {
+      "id": "mpc-003",
+      "text": "Add key field to task structure",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "notes": "Update dashboard task model. Store key in localStorage + SQLite.",
+      "tags": ["memory", "dashboard"]
+    },
+    {
+      "id": "mpc-004",
+      "text": "Modify executor to pass keys instead of full context",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "notes": "Replace full context with key. Add hydrate function for expansion.",
+      "tags": ["memory", "executor"]
+    },
+    {
+      "id": "mpc-005",
+      "text": "Create hydrate.py - key expander",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "notes": "Input: compressed key. Output: minimal context for agent. Query SQLite → load only needed files.",
+      "tags": ["memory", "compression"]
+    },
+    {
+      "id": "mpc-006",
+      "text": "Test with local LLM (Ollama)",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "todo",
+      "notes": "Verify key routing works. Measure token reduction. Compare output quality.",
+      "tags": ["memory", "testing"]
+    }
+  ]
+}

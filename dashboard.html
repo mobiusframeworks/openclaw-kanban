@@ -84,7 +84,7 @@
         .kanban-cards.drag-over { background: rgba(56,139,253,0.1); }
 
         /* ==================== TIMELINE VIEW ==================== */
-        .timeline-view { flex-direction: column; }
+        .timeline-view { flex-direction: row; }
         .timeline-sidebar {
             width: 300px;
             background: #161b22;
@@ -436,9 +436,12 @@
         }
 
         function renderKanban() {
+            const quadrantOrder = { q1: 0, q2: 1, q3: 2, q4: 3 };
             ['todo', 'progress', 'blocked', 'done'].forEach(status => {
                 const container = document.getElementById(`k-${status}`);
-                const statusTasks = tasks.filter(t => t.status === status || (status === 'progress' && t.status === 'executing'));
+                let statusTasks = tasks.filter(t => t.status === status || (status === 'progress' && t.status === 'executing'));
+                // Sort by quadrant priority (Q1 first, then Q2, Q3, Q4)
+                statusTasks.sort((a, b) => (quadrantOrder[a.quadrant] || 9) - (quadrantOrder[b.quadrant] || 9));
                 document.getElementById(`k-count-${status}`).textContent = statusTasks.length;
                 container.innerHTML = statusTasks.map(t => renderCard(t)).join('');
             });

@@ -1,3 +1,2 @@
 streamlit
 requests
-streamlit-elements==0.1.*

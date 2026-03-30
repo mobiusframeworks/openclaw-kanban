@@ -1,22 +1,73 @@
 #!/usr/bin/env python3
 """
-OpenClaw Kanban v6 - Using streamlit-elements for drag-drop
+OpenClaw Kanban v5 - Native Streamlit Columns (Clean Layout)
 """
 
 import streamlit as st
-from streamlit_elements import elements, mui, dashboard, sync
 import requests
 import re
 from datetime import datetime
-import json
 
 st.set_page_config(page_title="OpenClaw Kanban", layout="wide")
+
+# Custom CSS for kanban styling
+st.markdown("""
+<style>
+.kanban-card {
+    background: #2d2d2d;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+    border-left: 4px solid #666;
+    font-size: 14px;
+}
+.kanban-card.bml { border-left-color: #f7931a; }
+.kanban-card.ene { border-left-color: #4CAF50; }
+.kanban-card.rea { border-left-color: #2196F3; }
+.kanban-card.ana { border-left-color: #9C27B0; }
+.kanban-card.ass { border-left-color: #FF5722; }
+.agent-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #444;
+    margin-right: 6px;
+}
+.col-header {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.todo-header { background: #FFE082; color: #333; }
+.progress-header { background: #81D4FA; color: #333; }
+.blocked-header { background: #EF9A9A; color: #333; }
+.done-header { background: #A5D6A7; color: #333; }
+</style>
+""", unsafe_allow_html=True)
 
 GITHUB_REPO = "mobiusframeworks/openclaw-kanban"
 GITHUB_BASE = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main/backlogs"
 
 AGENTS = ["BML CEO", "EnergyScout CEO", "Real Estate CEO", "Analytics", "Assistant"]
-AGENT_COLORS = {"BML CEO": "#f7931a", "EnergyScout CEO": "#4CAF50", "Real Estate CEO": "#2196F3", "Analytics": "#9C27B0", "Assistant": "#FF5722"}
+AGENT_KEYS = {"BML CEO": "bml", "EnergyScout CEO": "ene", "Real Estate CEO": "rea", "Analytics": "ana", "Assistant": "ass"}
+
+BOT_SCHEDULE = {
+    "07:00": "morning-briefing (Assistant)",
+    "08:00": "realestate-leads (RE)",
+    "09:00": "bml-content-pipeline (BML)",
+    "10:00": "es-sprint-check (ES)",
+    "11:00": "realestate-social (RE)",
+    "12:00": "midday-nudge (Assistant)",
+    "14:00": "research-bitcoin (BML)",
+    "15:00": "research-solar (ES)",
+    "17:00": "daily-metrics (Assistant)",
+    "19:00": "evening-content (BML)",
+    "21:00": "nightly-review (Assistant)",
+    "23:00": "nightly-builder (Assistant)",
+}
 
 @st.cache_data(ttl=300)
 def fetch_backlog(agent: str) -> str:
@@ -35,111 +86,99 @@ def fetch_backlog(agent: str) -> str:
 
 def parse_tasks():
     """Parse all backlogs into task lists by status"""
-    tasks = {"todo": [], "progress": [], "blocked": [], "done": []}
+    tasks = {"TODO": [], "IN PROGRESS": [], "BLOCKED": [], "DONE": []}
 
     for agent in AGENTS:
         content = fetch_backlog(agent)
         if not content:
             continue
 
-        current_status = "todo"
-        color = AGENT_COLORS.get(agent, "#666")
+        agent_key = AGENT_KEYS.get(agent, "unk")
+        current_status = "TODO"
 
         for line in content.split('\n'):
             if "**Status:**" in line or "Status:" in line:
                 ll = line.lower()
                 if "complete" in ll or "done" in ll:
-                    current_status = "done"
+                    current_status = "DONE"
                 elif "progress" in ll:
-                    current_status = "progress"
+                    current_status = "IN PROGRESS"
                 elif "blocked" in ll:
-                    current_status = "blocked"
+                    current_status = "BLOCKED"
                 else:
-                    current_status = "todo"
+                    current_status = "TODO"
 
             if line.startswith("### "):
                 task = re.sub(r'^\d+\.\s*', '', line.replace("###", "").strip())
                 if task:
-                    tasks[current_status].append({"text": task[:55], "agent": agent, "color": color})
+                    tasks[current_status].append({"text": task[:60], "agent": agent, "key": agent_key})
 
             if line.strip().startswith("- [x]"):
                 task = line.replace("- [x]", "").strip()
                 if task:
-                    tasks["done"].append({"text": task[:55], "agent": agent, "color": color})
+                    tasks["DONE"].append({"text": task[:60], "agent": agent, "key": agent_key})
             elif line.strip().startswith("- [ ]"):
                 task = line.replace("- [ ]", "").strip()
                 if task:
-                    tasks["todo"].append({"text": task[:55], "agent": agent, "color": color})
+                    tasks["TODO"].append({"text": task[:60], "agent": agent, "key": agent_key})
 
     return tasks
+
+def render_card(task):
+    """Render a single task card"""
+    return f"""<div class="kanban-card {task['key']}">
+        <span class="agent-tag">{task['key'].upper()}</span>
+        {task['text']}
+    </div>"""
 
 # Main UI
 st.title("OpenClaw Kanban")
 
-if st.button("🔄 Refresh"):
-    st.cache_data.clear()
-    st.rerun()
+tab1, tab2 = st.tabs(["Board", "Schedule"])
 
-tasks = parse_tasks()
+with tab1:
+    if st.button("Refresh Data"):
+        st.cache_data.clear()
+        st.rerun()
 
-# Define dashboard layout
-layout = [
-    dashboard.Item("todo", 0, 0, 3, 6),
-    dashboard.Item("progress", 3, 0, 3, 6),
-    dashboard.Item("blocked", 6, 0, 3, 6),
-    dashboard.Item("done", 9, 0, 3, 6),
-]
+    tasks = parse_tasks()
 
-COLUMNS = {
-    "todo": {"title": "📋 TODO", "color": "#FFE082", "tasks": tasks["todo"]},
-    "progress": {"title": "🔄 IN PROGRESS", "color": "#81D4FA", "tasks": tasks["progress"]},
-    "blocked": {"title": "🚫 BLOCKED", "color": "#EF9A9A", "tasks": tasks["blocked"]},
-    "done": {"title": "✅ DONE", "color": "#A5D6A7", "tasks": tasks["done"][:15]},
-}
+    # Create 4 columns for kanban
+    col1, col2, col3, col4 = st.columns(4)
 
-with elements("kanban"):
-    with dashboard.Grid(layout, draggableHandle=".drag-handle"):
-        for col_id, col_data in COLUMNS.items():
-            with mui.Paper(key=col_id, elevation=3, sx={
-                "display": "flex",
-                "flexDirection": "column",
-                "height": "100%",
-                "backgroundColor": "#1e1e1e",
-                "borderRadius": "8px",
-                "overflow": "hidden"
-            }):
-                # Column header
-                mui.Box(
-                    mui.Typography(col_data["title"], variant="h6"),
-                    className="drag-handle",
-                    sx={
-                        "backgroundColor": col_data["color"],
-                        "color": "#333",
-                        "padding": "12px",
-                        "cursor": "grab",
-                        "fontWeight": "bold",
-                        "textAlign": "center"
-                    }
-                )
+    with col1:
+        st.markdown('<div class="col-header todo-header">TODO</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['TODO'])} tasks")
+        for task in tasks["TODO"]:
+            st.markdown(render_card(task), unsafe_allow_html=True)
 
-                # Task cards
-                with mui.Box(sx={"padding": "8px", "overflowY": "auto", "flex": 1}):
-                    for i, task in enumerate(col_data["tasks"]):
-                        mui.Card(
-                            mui.CardContent(
-                                mui.Typography(task["agent"][:3].upper(), variant="caption", sx={"color": task["color"], "fontWeight": "bold"}),
-                                mui.Typography(task["text"], variant="body2", sx={"color": "#fff", "marginTop": "4px"})
-                            ),
-                            sx={
-                                "marginBottom": "8px",
-                                "backgroundColor": "#2d2d2d",
-                                "borderLeft": f"4px solid {task['color']}",
-                                "&:hover": {"backgroundColor": "#3d3d3d"}
-                            }
-                        )
+    with col2:
+        st.markdown('<div class="col-header progress-header">IN PROGRESS</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['IN PROGRESS'])} tasks")
+        for task in tasks["IN PROGRESS"]:
+            st.markdown(render_card(task), unsafe_allow_html=True)
 
-                    if not col_data["tasks"]:
-                        mui.Typography("No tasks", variant="body2", sx={"color": "#666", "textAlign": "center", "padding": "20px"})
+    with col3:
+        st.markdown('<div class="col-header blocked-header">BLOCKED</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['BLOCKED'])} tasks")
+        for task in tasks["BLOCKED"]:
+            st.markdown(render_card(task), unsafe_allow_html=True)
+
+    with col4:
+        st.markdown('<div class="col-header done-header">DONE</div>', unsafe_allow_html=True)
+        st.caption(f"{len(tasks['DONE'])} tasks")
+        for task in tasks["DONE"][:20]:
+            st.markdown(render_card(task), unsafe_allow_html=True)
+        if len(tasks["DONE"]) > 20:
+            st.caption(f"...and {len(tasks['DONE']) - 20} more")
+
+with tab2:
+    st.subheader("Bot Schedule")
+    now_hour = datetime.now().hour
+    for time, job in sorted(BOT_SCHEDULE.items()):
+        hour = int(time.split(":")[0])
+        icon = "🟢" if hour == now_hour else "⚪"
+        st.markdown(f"{icon} **{time}** - {job}")
 
 st.divider()
-st.caption(f"[GitHub](https://github.com/{GITHUB_REPO}) • Drag columns to rearrange")
+st.caption(f"[GitHub](https://github.com/{GITHUB_REPO}) • Edit markdown files to move tasks")

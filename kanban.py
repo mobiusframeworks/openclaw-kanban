@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-OpenClaw Kanban v3 - Drag & Drop Edition
+OpenClaw Kanban v4 - Using streamlit-sortables
 """
 
 import streamlit as st
-from streamlit_kanban_board_goviceversa import kanban_board
+from streamlit_sortables import sort_items
 import requests
 import re
 from datetime import datetime
@@ -46,18 +46,9 @@ def fetch_backlog(agent: str) -> str:
     except:
         return ""
 
-def parse_to_kanban_format():
-    """Parse all backlogs into kanban board format"""
-    stages = [
-        {"id": "todo", "name": "TODO", "color": "#FFE082"},
-        {"id": "in_progress", "name": "IN PROGRESS", "color": "#81D4FA"},
-        {"id": "blocked", "name": "BLOCKED", "color": "#EF9A9A"},
-        {"id": "done", "name": "DONE", "color": "#A5D6A7"},
-    ]
-
-    deals = []
-    stage_map = {"TODO": "todo", "IN PROGRESS": "in_progress", "BLOCKED": "blocked", "DONE": "done"}
-    deal_id = 0
+def parse_tasks():
+    """Parse all backlogs into task lists by status"""
+    tasks = {"TODO": [], "IN PROGRESS": [], "BLOCKED": [], "DONE": []}
 
     for agent in AGENTS:
         content = fetch_backlog(agent)
@@ -80,76 +71,58 @@ def parse_to_kanban_format():
             if line.startswith("### "):
                 task = re.sub(r'^\d+\.\s*', '', line.replace("###", "").strip())
                 if task:
-                    deals.append({
-                        "id": f"deal_{deal_id}",
-                        "stage": stage_map[current_status],
-                        "deal_id": f"T-{deal_id}",
-                        "company_name": task[:40],
-                        "product_type": agent,
-                        "date": datetime.now().strftime("%Y-%m-%d"),
-                        "underwriter": agent[:3],
-                        "source": "OC"
-                    })
-                    deal_id += 1
+                    tasks[current_status].append(f"[{agent[:3]}] {task[:50]}")
 
             if line.strip().startswith("- [x]"):
                 task = line.replace("- [x]", "").strip()
                 if task:
-                    deals.append({
-                        "id": f"deal_{deal_id}",
-                        "stage": "done",
-                        "deal_id": f"T-{deal_id}",
-                        "company_name": task[:40],
-                        "product_type": agent,
-                        "date": datetime.now().strftime("%Y-%m-%d"),
-                        "underwriter": agent[:3],
-                        "source": "OC"
-                    })
-                    deal_id += 1
+                    tasks["DONE"].append(f"[{agent[:3]}] {task[:50]}")
             elif line.strip().startswith("- [ ]"):
                 task = line.replace("- [ ]", "").strip()
                 if task:
-                    deals.append({
-                        "id": f"deal_{deal_id}",
-                        "stage": "todo",
-                        "deal_id": f"T-{deal_id}",
-                        "company_name": task[:40],
-                        "product_type": agent,
-                        "date": datetime.now().strftime("%Y-%m-%d"),
-                        "underwriter": agent[:3],
-                        "source": "OC"
-                    })
-                    deal_id += 1
+                    tasks["TODO"].append(f"[{agent[:3]}] {task[:50]}")
 
-    return stages, deals
+    return tasks
 
 # Main UI
-st.title("🗂️ OpenClaw Kanban")
+st.title("OpenClaw Kanban")
 
-tab1, tab2 = st.tabs(["📋 Board", "⏰ Schedule"])
+tab1, tab2 = st.tabs(["Board", "Schedule"])
 
 with tab1:
-    if st.button("🔄 Refresh"):
-        st.cache_data.clear()
-        st.rerun()
+    col1, col2 = st.columns([1, 4])
+    with col1:
+        if st.button("Refresh"):
+            st.cache_data.clear()
+            st.rerun()
 
-    stages, deals = parse_to_kanban_format()
+    tasks = parse_tasks()
 
-    result = kanban_board(
-        stages=stages,
-        deals=deals,
-        key="kanban",
-        height=700,
-        draggable_stages=["todo", "in_progress", "blocked", "done"],
-        allow_empty_stages=True,
-        show_tooltips=True
+    # Build sortable containers
+    containers = [
+        {"header": "TODO", "items": tasks["TODO"]},
+        {"header": "IN PROGRESS", "items": tasks["IN PROGRESS"]},
+        {"header": "BLOCKED", "items": tasks["BLOCKED"]},
+        {"header": "DONE", "items": tasks["DONE"]},
+    ]
+
+    st.markdown("**Drag tasks between columns:**")
+
+    sorted_items = sort_items(
+        containers,
+        multi_containers=True,
+        direction="horizontal"
     )
 
-    if result:
-        if result.get("moved_deal"):
-            st.success(f"Moved to: {result['moved_deal']['to_stage']}")
-        elif result.get("clicked_deal"):
-            st.info(f"Task: {result['clicked_deal']['company_name']}")
+    # Show counts
+    st.divider()
+    cols = st.columns(4)
+    labels = ["TODO", "IN PROGRESS", "BLOCKED", "DONE"]
+    colors = ["#FFE082", "#81D4FA", "#EF9A9A", "#A5D6A7"]
+
+    for i, (col, label, color) in enumerate(zip(cols, labels, colors)):
+        count = len([c for c in sorted_items if c.get("header") == label][0].get("items", [])) if sorted_items else 0
+        col.markdown(f"<div style='background:{color};padding:8px;border-radius:4px;text-align:center'><b>{label}</b><br>{count} tasks</div>", unsafe_allow_html=True)
 
 with tab2:
     st.subheader("Bot Schedule")
@@ -160,4 +133,4 @@ with tab2:
         st.markdown(f"{icon} **{time}** - {job}")
 
 st.divider()
-st.caption(f"[GitHub](https://github.com/{GITHUB_REPO}) • Drag cards to move")
+st.caption(f"[GitHub](https://github.com/{GITHUB_REPO}) • Drag tasks to reorder")

@@ -60,8 +60,8 @@ A financing company that offers a **better alternative to solar leases** by comb
 - Could offer PPA hybrid ($/kWh until buyout)
 
 #### To-Do List
-- [ ] Research ITC transfer rules for commercial → residential
-- [ ] Model financials: required spread, default risk, breakeven
+- [x] Research ITC transfer rules for commercial → residential (DONE 2026-03-31)
+- [x] Model financials: required spread, default risk, breakeven (DONE 2026-03-31)
 - [ ] Identify regulatory requirements (lending license by state)
 - [ ] Competitive analysis: Sunrun, Mosaic, GoodLeap models
 - [ ] Talk to 3+ local installers about financing pain points
@@ -90,12 +90,12 @@ A financing company that offers a **better alternative to solar leases** by comb
 **Note:** battery.energyscout.org (Next.js) is fine - has SSR, robots.ts, sitemap.ts
 
 ### 2. Add robots.txt to energyscout.org
-**Status:** BACKLOG
+**Status:** DONE (2026-03-31)
 **Priority:** MEDIUM
 **File:** `/workspace/scout/public/robots.txt`
 
 ### 3. Add sitemap.xml to energyscout.org
-**Status:** BACKLOG
+**Status:** DONE (2026-03-31)
 **Priority:** MEDIUM
 **File:** `/workspace/scout/public/sitemap.xml`
 
@@ -104,7 +104,7 @@ A financing company that offers a **better alternative to solar leases** by comb
 ## Content Updates Needed
 
 ### 1. SGIP Waitlist Warning
-**Status:** BACKLOG
+**Status:** DONE (2026-03-31)
 **Priority:** HIGH
 **Added:** 2026-03-29
 
@@ -148,4 +148,20 @@ Review all pages for brand compliance:
 
 ---
 
-*Updated: 2026-03-28*
+---
+
+## Solar Loan + ITC Arbitrage (Business Idea)
+
+### Completed Research
+- [x] ITC transfer rules research (2026-03-31)
+- [x] Financial model: spread, default, breakeven (2026-03-31)
+- [x] Legal research: recapture rules, ownership structures (2026-03-31)
+
+### Next Steps (Requires Human Decision)
+- [ ] **Engage tax attorney** for formal ITC opinion letter ($15-30K)
+- [ ] **Engage licensing attorney** for California CFL application ($10-20K)
+- [ ] Identify regulatory requirements by state
+- [ ] Competitive analysis: Sunrun, Mosaic, GoodLeap models
+- [ ] Talk to 3+ local installers about financing pain points
+
+*Updated: 2026-03-31*

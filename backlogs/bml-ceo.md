@@ -95,19 +95,24 @@
 - Data refresh script
 
 ### 6. BTCautoresearch Integration
-**Status:** BACKLOG
+**Status:** ✅ ANALYSIS COMPLETE (2026-03-31)
 **Priority:** MEDIUM
 **Repo:** https://github.com/CBaquero/BTCautoresearch
+**Cloned to:** workspace/bitcoinml/BTCautoresearch/
+**Analysis:** agents/memory/ceo/briefs/btcautoresearch-analysis.md
 
 **What it does:** Autonomous model discovery - 50.5% improvement over baseline power law using mean-reversion with 180-day decay.
 
-**Our use:** Reference for autonomous experimentation methodology. Uses only time-based features (no external data).
+**Key Findings:**
+- Their RMSE: 0.132 (51% better than baseline 0.267)
+- Core insight: mean-reversion correction with 180-day decay
+- Walk-forward validation (9 splits, 7 horizons) more rigorous than our approach
 
 **Subtasks:**
-- [ ] Clone repo for reference
-- [ ] Analyze their walk-forward validation approach
-- [ ] Compare their R² to ours
-- [ ] Consider adding their mean-reversion correction
+- [x] Clone repo for reference
+- [x] Analyze their walk-forward validation approach
+- [x] Compare their R² to ours (different metrics - RMSE vs R²)
+- [ ] Consider adding their mean-reversion correction (FUTURE: implement in dashboard)
 
 ### 7. Flows vs Power Law Research Report
 **Status:** ✅ COMPLETE (2026-03-28)

@@ -263,8 +263,16 @@
       "text": "6. BTCautoresearch Integration",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:42:49.430492",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:42:49 PM",
+          "content": "Auto-delegated to bml",
+          "type": "started"
+        }
+      ]
     },
     {
       "id": "gh-17748402654240.30005107646020857",
@@ -367,8 +375,16 @@
       "text": "Model financials: required spread, default risk, breakeven",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:42:49.434944",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:42:49 PM",
+          "content": "Auto-delegated to ene",
+          "type": "started"
+        }
+      ]
     },
     {
       "id": "gh-17748402656950.8548135281829877",
@@ -535,8 +551,16 @@
       "text": "Monitor lead flow",
       "agent": "rea",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:42:49.438043",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:42:49 PM",
+          "content": "Auto-delegated to rea",
+          "type": "started"
+        }
+      ]
     },
     {
       "id": "gh-17748402659430.16980564972837697",
@@ -1538,5 +1562,5 @@
       ]
     }
   ],
-  "updated": "2026-03-31T13:01:20.791919"
+  "updated": "2026-03-31T14:01:22.203755"
 }

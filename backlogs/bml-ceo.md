@@ -121,6 +121,42 @@
 
 ---
 
+## SEO Improvements (NEW 2026-03-29)
+
+### 8. Dashboard SEO Fix - Static Key Findings
+**Status:** ✅ COMPLETE (2026-03-31)
+**Priority:** HIGH
+**Description:** Dashboard is client-side rendered - AI crawlers can't see Bitcoin data
+**Fix:** Added static HTML "Key Findings" section above charts:
+- Power law R² (0.9605)
+- Fair value (~$144,000)
+- Current deviation (-54%)
+- Halving cycle day (Day 708)
+
+### 9. Meta Descriptions
+**Status:** ✅ COMPLETE (2026-03-31)
+**Priority:** HIGH
+**Description:** Added meta descriptions to all pages
+**Pages fixed:**
+- [x] Homepage/Dashboard (advanced-dashboard.html)
+- [x] Blog index
+- [x] FAQ (already had)
+- [x] All blog articles (4) - already had
+
+### 10. Open Graph Tags
+**Status:** ✅ COMPLETE (2026-03-31)
+**Priority:** HIGH
+**Description:** Added og:title, og:description, og:image, Twitter cards
+**Pages fixed:**
+- [x] advanced-dashboard.html (main dashboard)
+- [x] blog/index.html
+- [x] All other pages already had OG tags
+
+**Previous SEO Score:** 62/100
+**Estimated New Score:** 80+
+
+---
+
 ## Notes
 
 - Twitter API requires $100/mo Basic tier - using manual queue workflow

@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Command Center v2</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23238636'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='16'>◎</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            min-height: 100vh;
+            font-size: 13px;
+        }
+
+        /* Top Nav */
+        .topnav {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .topnav h1 { font-size: 18px; display: flex; align-items: center; gap: 8px; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .status-dot.online { background: #3fb950; }
+        .status-dot.offline { background: #da3633; }
+
+        .view-tabs { display: flex; gap: 4px; align-items: center; }
+        .view-tabs-group { display: flex; gap: 4px; flex-direction: column; }
+        .view-tab {
+            background: #21262d;
+            border: none;
+            color: #9eaab6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            min-height: 32px;
+            transition: all 0.15s;
+        }
+        .view-tab:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .view-tab.active { background: #238636; color: #fff; }
+        .view-arrow {
+            color: #9eaab6;
+            font-size: 16px;
+            padding: 0 4px;
+            opacity: 0.6;
+        }
+        .view-subtitle {
+            font-size: 11px;
+            color: #9eaab6;
+            margin-left: 8px;
+            font-weight: 400;
+        }
+        .nav-actions button {
+            background: #30363d;
+            border: none;
+            color: #e6edf3;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 8px;
+            font-size: 13px;
+            min-height: 32px;
+            transition: all 0.15s;
+        }
+        .nav-actions button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .nav-actions button:hover { background: #3d444d; }
+        .nav-actions button.primary { background: #238636; }
+        .nav-actions button.danger { background: #da3633; }
+
+        /* Eisenhower Matrix Filter Bar */
+        .matrix-filter-bar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 8px 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-label {
+            color: #9eaab6;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .matrix-filter {
+            background: #21262d;
+            border: 2px solid #30363d;
+            color: #9eaab6;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.15s;
+            min-height: 32px;
+        }
+        .matrix-filter:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .matrix-filter:hover { background: #30363d; color: #e6edf3; }
+        .matrix-filter.active { background: #238636; border-color: #238636; color: #fff; }
+        .matrix-filter.q1 { border-color: #da3633; }
+        .matrix-filter.q1.active { background: #da3633; border-color: #da3633; }
+        .matrix-filter.q2 { border-color: #f0883e; }
+        .matrix-filter.q2.active { background: #f0883e; border-color: #f0883e; }
+        .matrix-filter.q3 { border-color: #3fb950; }
+        .matrix-filter.q3.active { background: #3fb950; border-color: #3fb950; color: #000; }
+        .matrix-filter.q4 { border-color: #9eaab6; }
+        .matrix-filter.q4.active { background: #9eaab6; border-color: #9eaab6; color: #000; }
+
+        /* Agent Filter Bar */
+        .agent-filter-bar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 8px 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .agent-filter {
+            background: #21262d;
+            border: 2px solid #30363d;
+            color: #9eaab6;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.15s;
+            min-height: 32px;
+        }
+        .agent-filter:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .agent-filter:hover { background: #30363d; color: #e6edf3; }
+        .agent-filter.active {
+            background: #238636;
+            border-color: #238636;
+            color: #fff;
+        }
+
+        /* Bot Status Inline */
+        .bot-status-inline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+        .bot-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #9eaab6;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            min-height: 32px;
+            transition: all 0.15s;
+        }
+        .bot-indicator:hover { background: #21262d; }
+        .bot-indicator .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #9eaab6;
+        }
+        .bot-indicator.online .dot { background: #3fb950; }
+        .bot-indicator.busy .dot { background: #f0883e; animation: pulse 1s infinite; }
+
+        /* Running Tasks Dropdown */
+        .running-dropdown {
+            position: relative;
+            margin-left: auto;
+        }
+        .running-dropdown-btn {
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 32px;
+            transition: all 0.15s;
+        }
+        .running-dropdown-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .running-dropdown-btn:hover { background: #30363d; }
+        .running-count-badge {
+            background: #f0883e;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .running-count-badge.zero { background: #9eaab6; }
+        .running-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            min-width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .running-dropdown-content.show { display: block; }
+        .running-task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border-bottom: 1px solid #30363d;
+            font-size: 12px;
+        }
+        .running-task-item:last-child { border-bottom: none; }
+        .running-task-item .agent-tag {
+            background: #30363d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .running-task-item .task-text {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .running-task-item .stop-btn {
+            background: #da3633;
+            border: none;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            min-height: auto;
+        }
+
+        .main-content { height: calc(100vh - 340px); overflow: auto; }
+        .view { display: none; height: 100%; }
+        .view.active { display: flex; }
+
+        /* ==================== KANBAN VIEW ==================== */
+        .kanban-view { padding: 20px; gap: 16px; overflow: auto; }
+        .kanban-column {
+            flex: 1;
+            min-width: 200px;
+            background: #161b22;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+        }
+        .kanban-header {
+            padding: 14px;
+            font-weight: 600;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+        .kanban-header .count { background: rgba(0,0,0,0.3); padding: 2px 10px; border-radius: 10px; font-size: 12px; }
+        .col-todo .kanban-header { background: #e57373; color: #fff; }
+        .col-progress .kanban-header { background: #4dd0e1; color: #000; }
+        .col-blocked .kanban-header {
+            background: linear-gradient(135deg, #a371f7 0%, #f0883e 50%, #da3633 100%);
+            color: #fff;
+            position: relative;
+        }
+        .col-done .kanban-header { background: #4db6ac; color: #000; }
+        .kanban-cards { flex: 1; overflow-y: auto; padding: 12px; min-height: 100px; }
+        .kanban-cards.drag-over { background: rgba(56,139,253,0.1); }
+
+        /* Review Column Sub-sections */
+        .review-section-header {
+            padding: 10px 12px;
+            font-weight: 600;
+            font-size: 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid;
+            background: rgba(255,255,255,0.05);
+        }
+        .review-section-header.ai-review {
+            border-left-color: #a371f7;
+            background: rgba(163,113,247,0.1);
+            color: #a371f7;
+        }
+        .review-section-header.human-review {
+            border-left-color: #f0883e;
+            background: rgba(240,136,62,0.1);
+            color: #f0883e;
+        }
+        .review-section-header.blocked {
+            border-left-color: #da3633;
+            background: rgba(218,54,51,0.1);
+            color: #da3633;
+        }
+
+        /* Cron Summary Card */
+        .cron-summary-card {
+            background: #21262d;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid #8b949e;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .cron-summary-card:hover { background: #30363d; }
+        .cron-summary-card .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .cron-summary-card .summary-badge {
+            background: #238636;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .cron-summary-card .summary-badge.warning {
+            background: #f0883e;
+        }
+        .cron-summary-card .summary-content {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #30363d;
+        }
+        .cron-summary-card.expanded .summary-content { display: block; }
+        .cron-checklist {
+            list-style: none;
+            font-size: 12px;
+        }
+        .cron-checklist li {
+            padding: 4px 0;
+            color: #9eaab6;
+        }
+        .cron-checklist li.passed { color: #3fb950; }
+        .cron-checklist li.failed { color: #da3633; }
+
+        /* Currently Executing Banner */
+        .executing-banner {
+            background: linear-gradient(135deg, rgba(240,136,62,0.2), rgba(163,113,247,0.2));
+            border: 1px solid #f0883e;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .executing-banner .pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #f0883e;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* ==================== TIMELINE VIEW ==================== */
+        .timeline-view { flex-direction: row; padding: 0; height: 100%; overflow: hidden; }
+        .timeline-view.active { height: 100%; }
+
+        /* Collapsible sidebar for ready tasks */
+        .ready-sidebar {
+            width: 280px;
+            background: #161b22;
+            border-right: 1px solid #30363d;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.2s, margin 0.2s;
+            flex-shrink: 0;
+        }
+        .ready-sidebar.collapsed {
+            width: 40px;
+            overflow: hidden;
+        }
+        .ready-sidebar.collapsed .sidebar-content { display: none; }
+        .ready-sidebar.collapsed .sidebar-toggle { writing-mode: vertical-rl; text-orientation: mixed; }
+
+        .sidebar-toggle {
+            padding: 12px;
+            background: #21262d;
+            border: none;
+            color: #e6edf3;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #30363d;
+            min-height: 32px;
+            transition: all 0.15s;
+        }
+        .sidebar-toggle:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .sidebar-toggle:hover { background: #30363d; }
+        .sidebar-content { flex: 1; overflow-y: auto; padding: 10px; }
+
+        .ready-task {
+            background: #21262d;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            cursor: grab;
+            border-left: 4px solid #4dd0e1;
+            transition: all 0.15s;
+            min-height: 32px;
+        }
+        .ready-task:hover { background: #30363d; transform: translateX(2px); }
+        .ready-task.dragging { opacity: 0.5; }
+        .ready-task .task-agent { font-size: 10px; color: #9eaab6; margin-bottom: 4px; }
+        .ready-task .task-text { font-size: 13px; }
+
+        .sidebar-empty {
+            color: #9eaab6;
+            text-align: center;
+            padding: 30px 15px;
+            font-size: 13px;
+        }
+
+        .cron-job {
+            background: #21262d;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            border-left: 3px solid #9eaab6;
+            font-size: 12px;
+            min-height: 32px;
+        }
+        .cron-job:hover { background: #30363d; }
+        .cron-job.active { border-left-color: #3fb950; background: rgba(63,185,80,0.1); }
+        .cron-job .time { font-weight: bold; color: #58a6ff; }
+        .cron-job .name { margin-top: 4px; }
+        .cron-job .bot { font-size: 10px; color: #9eaab6; margin-top: 2px; }
+
+        .matrix-tabs { display: flex; gap: 4px; margin-top: 10px; }
+        .matrix-tab {
+            flex: 1; padding: 6px; border: none; border-radius: 4px;
+            cursor: pointer; font-size: 11px; font-weight: 600; min-height: auto;
+        }
+        .matrix-tab.q1 { background: #da3633; color: #fff; }
+        .matrix-tab.q2 { background: #f0883e; color: #fff; }
+        .matrix-tab.q3 { background: #3fb950; color: #fff; }
+        .matrix-tab.q4 { background: #9eaab6; color: #fff; }
+        .matrix-tab.active { outline: 2px solid #58a6ff; }
+
+        .unscheduled-list { flex: 1; overflow-y: auto; padding: 10px; }
+
+        .timeline-main { flex: 1; overflow-y: auto; overflow-x: auto; padding: 0 10px 20px 10px; width: 100%; min-height: 0; }
+        .swimlanes { width: 100%; min-width: fit-content; }
+        .time-header { display: flex; margin-left: 140px; margin-bottom: 8px; padding: 0 10px; }
+        .time-slot-label { flex: 1; text-align: center; font-size: 12px; color: #9eaab6; padding: 8px; font-weight: 600; }
+        .time-slot-label.now { color: #3fb950; background: rgba(63,185,80,0.15); border-radius: 6px; }
+
+        .swimlane { display: flex; margin-bottom: 6px; min-height: 90px; }
+        .swimlane-label {
+            width: 140px; padding: 12px; background: #21262d;
+            border-radius: 8px 0 0 8px; font-size: 13px; font-weight: 600;
+            display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+        }
+        .swimlane-label .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .swimlane-track { flex: 1; display: flex; background: #21262d; border-radius: 0 8px 8px 0; }
+        .time-slot {
+            flex: 1; min-height: 80px; border-left: 1px dashed #30363d; padding: 6px;
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .time-slot:first-child { border-left: none; }
+        .time-slot.drag-over { background: rgba(56,139,253,0.15); }
+        .time-slot.now { background: rgba(63,185,80,0.1); }
+
+        /* Timeline task cards with status colors */
+        .timeline-task {
+            background: #30363d; border-radius: 6px; padding: 8px 10px;
+            font-size: 11px; cursor: pointer; border-left: 4px solid #9eaab6;
+        }
+        .timeline-task:hover { background: #3d444d; }
+        .timeline-task.running { border-left-color: #3fb950; background: rgba(63,185,80,0.2); }
+        .timeline-task.waiting { border-left-color: #f0883e; background: rgba(240,136,62,0.15); }
+        .timeline-task.stopped { border-left-color: #da3633; background: rgba(218,54,51,0.15); }
+        .timeline-task.done { border-left-color: #238636; opacity: 0.6; }
+        .timeline-task.review { border-left-color: #a371f7; background: rgba(163,113,247,0.2); }
+        .timeline-task.human-review { border-left-color: #f0883e; background: rgba(240,136,62,0.25); }
+        .timeline-task .task-controls { display:flex;gap:4px;margin-top:4px; }
+        .timeline-task .task-controls button { padding:2px 6px;font-size:10px;border:none;border-radius:3px;cursor:pointer; }
+        .timeline-task .task-controls .play-btn { background:#238636;color:#fff; }
+        .timeline-task .task-controls .stop-btn { background:#da3633;color:#fff; }
+        .timeline-task .task-controls .review-btn { background:#a371f7;color:#fff; }
+        .timeline-task .task-controls .human-btn { background:#f0883e;color:#fff; }
+        .timeline-task .task-controls .done-btn { background:#238636;color:#fff; }
+        .task-progress { margin-top:4px; }
+        .progress-bar { height:4px;background:#30363d;border-radius:2px;overflow:hidden; }
+        .progress-fill { height:100%;background:#238636;transition:width 0.3s;border-radius:2px; }
+        .progress-text { font-size:9px;color:#9eaab6;display:flex;justify-content:space-between;margin-top:2px; }
+        .timeline-task .task-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .timeline-task .task-time { font-size: 10px; color: #9eaab6; }
+
+        /* ==================== TASK CARDS ==================== */
+        .task-card {
+            background: #21262d;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: grab;
+            border-left: 4px solid #30363d;
+            position: relative;
+            transition: all 0.15s;
+            min-height: 32px;
+        }
+        .task-card:hover { background: #30363d; }
+        .task-card:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .task-card.dragging { opacity: 0.4; }
+        .task-card.completed { opacity: 0.5; }
+        .task-card.completed .task-text { text-decoration: line-through; }
+        .task-card.executing { border-left-color: #f0883e; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .task-card.bml { border-left-color: #f7931a; }
+        .task-card.ene { border-left-color: #3fb950; }
+        .task-card.rea { border-left-color: #58a6ff; }
+        .task-card.ana { border-left-color: #a371f7; }
+        .task-card.ass { border-left-color: #f78166; }
+
+        .task-badges { display: flex; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+        .badge { font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .badge.agent { background: #30363d; }
+        .badge.q1 { background: #da3633; }
+        .badge.q2 { background: #f0883e; }
+        .badge.q3 { background: #3fb950; }
+        .badge.q4 { background: #9eaab6; }
+        .badge.executing { background: #f0883e; animation: pulse 1s infinite; }
+
+        .task-text { font-size: 13px; line-height: 1.4; }
+        .task-notes { font-size: 11px; color: #9eaab6; margin-top: 6px; font-style: italic; }
+
+        /* Progress trail at bottom of card */
+        .task-progress-trail {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #30363d;
+            font-size: 10px;
+        }
+        .trail-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #8b949e;
+            opacity: 0.3;
+            transition: all 0.15s;
+        }
+        .trail-dot.active { background: #238636; opacity: 1; }
+        .trail-dot.passed { background: #3fb950; opacity: 0.7; }
+
+        .task-actions {
+            display: none;
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            gap: 4px;
+        }
+        .task-card:hover .task-actions { display: flex; }
+        .task-actions button {
+            background: #30363d; border: none; color: #8b949e;
+            width: 32px; height: 32px; border-radius: 4px;
+            cursor: pointer; font-size: 12px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.15s;
+            min-height: 32px;
+        }
+        .task-actions button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .task-actions button:hover { background: #3d444d; color: #fff; }
+        .task-actions button.run { background: #238636; color: #fff; }
+
+        .mini-card {
+            background: #30363d; border-radius: 4px; padding: 6px;
+            font-size: 11px; margin-bottom: 4px; cursor: grab; border-left: 3px solid #9eaab6;
+        }
+        .mini-card.q1 { border-left-color: #da3633; }
+        .mini-card.q2 { border-left-color: #f0883e; }
+        .mini-card.completed { opacity: 0.5; text-decoration: line-through; }
+
+        /* ==================== MODAL ==================== */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background: #161b22; border-radius: 12px; padding: 24px;
+            width: 500px; max-width: 95%; border: 1px solid #30363d; max-height: 90vh; overflow-y: auto;
+        }
+        .modal h3 { margin-bottom: 16px; }
+        .modal input, .modal select, .modal textarea {
+            width: 100%; padding: 10px; margin-bottom: 12px;
+            background: #21262d; border: 1px solid #30363d;
+            border-radius: 6px; color: #e6edf3; font-size: 13px;
+        }
+        .modal input:focus-visible, .modal select:focus-visible, .modal textarea:focus-visible {
+            outline: 2px solid #58a6ff;
+            outline-offset: 2px;
+        }
+        .modal textarea { min-height: 80px; resize: vertical; }
+        .modal-buttons { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+        .modal-buttons button { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; min-height: 32px; }
+        .modal-buttons button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .modal-buttons .cancel { background: #30363d; color: #e6edf3; }
+        .modal-buttons .save { background: #238636; color: #fff; }
+        .modal-buttons .delete { background: #da3633; color: #fff; }
+        .modal-buttons .run { background: #f0883e; color: #fff; }
+        .day-check { display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:#0d1117;border:1px solid #30363d;border-radius:4px;font-size:11px;cursor:pointer; }
+        .day-check:has(input:checked) { background:#238636;border-color:#238636; }
+        .day-check input { margin:0; }
+
+        .outbox-preview {
+            background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+            padding: 12px; margin-top: 12px; max-height: 200px; overflow-y: auto;
+            font-family: monospace; font-size: 12px; white-space: pre-wrap;
+        }
+
+        /* Detail View */
+        .detail-section { margin-bottom: 16px; }
+        .detail-section h4 { font-size: 12px; color: #9eaab6; margin-bottom: 8px; text-transform: uppercase; }
+        .detail-content { background: #21262d; border-radius: 6px; padding: 12px; font-size: 13px; }
+        .detail-status { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .detail-status.done { background: #238636; }
+        .detail-status.progress { background: #3da5d9; }
+        .detail-status.blocked { background: #f0883e; }
+        .detail-status.todo { background: #9eaab6; }
+        .work-log { margin-top: 12px; }
+        .work-log-entry { background: #0d1117; border-left: 3px solid #30363d; padding: 10px; margin-bottom: 8px; border-radius: 0 6px 6px 0; }
+        .work-log-entry.completed { border-left-color: #238636; }
+        .work-log-entry .timestamp { font-size: 11px; color: #9eaab6; }
+        .work-log-entry .content { margin-top: 6px; font-size: 13px; }
+        .artifact-link { display: inline-flex; align-items: center; gap: 6px; background: #30363d; padding: 6px 12px; border-radius: 6px; color: #58a6ff; text-decoration: none; margin-right: 8px; margin-bottom: 8px; font-size: 13px; }
+        .artifact-link:hover { background: #3d444d; }
+
+        @media (max-width: 768px) {
+            .kanban-view { flex-direction: column; padding: 10px; }
+            .kanban-column { min-width: 100%; max-width: 100%; }
+            .timeline-view { flex-direction: column; }
+            .timeline-sidebar { width: 100%; height: 35vh; }
+            .bottom-panel { flex-direction: column; }
+            .status-bar, .chat-panel { width: 100%; }
+        }
+
+        /* Bottom Panel - Status Bar & Chat */
+        .bottom-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #161b22;
+            border-top: 1px solid #30363d;
+            display: flex;
+            height: 40px;
+            z-index: 500;
+            transition: height 0.2s;
+        }
+        .bottom-panel.expanded { height: 60vh; }
+        .bottom-panel.maximized { height: calc(100vh - 50px); }
+        .panel-resize {
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            cursor: ns-resize;
+            background: transparent;
+        }
+        .panel-resize:hover { background: rgba(56,139,253,0.3); }
+        .bottom-panel.expanded .panel-content,
+        .bottom-panel.maximized .panel-content { display: flex; }
+        .panel-content { display: none; width: 100%; height: 100%; }
+
+        .panel-toggle {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 6px 16px;
+            cursor: pointer;
+            color: #9eaab6;
+            font-size: 12px;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .panel-toggle:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .panel-toggle:hover { color: #fff; }
+
+        /* CLI Panel (side panel in chat) */
+        .cli-panel-side {
+            width: 400px;
+            height: 100%;
+            background: #0d1117;
+            border-right: 1px solid #30363d;
+            display: none;
+            flex-direction: column;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .cli-panel-side.show { display: flex; }
+        .cli-panel-side.collapsed { width: 40px; min-width: 40px; }
+        .cli-panel-side.collapsed .cli-output,
+        .cli-panel-side.collapsed .cli-input-row,
+        .cli-panel-side.collapsed .cli-resize-handle { display: none; }
+        .cli-panel-side.collapsed .cli-header span { display: none; }
+        .cli-panel-side.collapsed .cli-header > div { display: none; }
+        .cli-panel-side.fullscreen { width: 100% !important; }
+        .cli-panel-side.fullscreen + .chat-panel { display: none; }
+        .cli-toggle-btn {
+            background: #30363d;
+            border: none;
+            color: #9eaab6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .cli-toggle-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .cli-toggle-btn:hover { background: #484f58; color: #fff; }
+        .cli-resize-handle {
+            position: absolute;
+            right: -4px;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            cursor: ew-resize;
+            background: transparent;
+            z-index: 10;
+        }
+        .cli-resize-handle:hover { background: rgba(56,139,253,0.3); }
+        .cli-resize-handle:active { background: rgba(56,139,253,0.5); }
+
+        .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
+        }
+        .chat-header {
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #9eaab6;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .chat-header select {
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .chat-header select:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            min-height: 0;
+        }
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            max-width: 85%;
+        }
+        .chat-message.user {
+            background: #238636;
+            margin-left: auto;
+        }
+        .chat-message.telegram {
+            background: #0088cc;
+            margin-left: auto;
+            border-left: 3px solid #5bc0f0;
+        }
+        .chat-message.bot {
+            background: #30363d;
+        }
+        .chat-message .sender { font-size: 10px; color: #9eaab6; margin-bottom: 4px; }
+
+        /* Chat Sidebar */
+        .chat-sidebar {
+            width: 120px;
+            background: #0d1117;
+            border-right: 1px solid #30363d;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .chat-sidebar-header {
+            padding: 8px 10px;
+            font-size: 10px;
+            color: #9eaab6;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .chat-session {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            transition: all 0.15s;
+        }
+        .chat-session:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .chat-session:hover { background: #161b22; }
+        .chat-session.active { background: #21262d; border-left-color: #238636; }
+        .session-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .session-name {
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
+        .chat-input-row {
+            display: flex;
+            padding: 12px;
+            gap: 10px;
+            border-top: 1px solid #30363d;
+            background: #0d1117;
+            flex-shrink: 0;
+        }
+        .chat-input-row input {
+            flex: 1;
+            background: #21262d;
+            border: 2px solid #30363d;
+            color: #e6edf3;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .chat-input-row input:focus {
+            border-color: #58a6ff;
+        }
+        .chat-input-row input::placeholder {
+            color: #6e7681;
+        }
+        .chat-input-row button {
+            background: #238636;
+            border: none;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            min-height: 32px;
+            transition: all 0.15s;
+        }
+        .chat-input-row button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .chat-input-row button:hover { background: #2ea043; }
+
+        /* Live CLI Panel */
+        .cli-header {
+            background: #21262d;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #30363d;
+        }
+        .cli-header .agent-name { color: #58a6ff; }
+        .cli-header button {
+            background: #30363d;
+            border: none;
+            color: #9eaab6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .cli-header button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .cli-header button:hover { background: #3d444d; color: #fff; }
+        .cli-output {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 11px;
+            padding: 10px;
+            flex: 1;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            color: #9eaab6;
+            line-height: 1.4;
+            min-height: 0;
+        }
+        .cli-output .thinking { color: #f0883e; }
+        .cli-output .error { color: #da3633; }
+        .cli-output .success { color: #3fb950; }
+        .cli-input-row {
+            display: flex;
+            padding: 8px;
+            gap: 6px;
+            border-top: 1px solid #30363d;
+            background: #161b22;
+        }
+        .cli-input-row input {
+            flex: 1;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+        }
+        .cli-input-row input:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .cli-input-row button {
+            background: #238636;
+            border: none;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .cli-input-row button:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .cli-input-row button:hover { background: #2ea043; }
+
+        /* Terminal Agent Tabs (Vertical Sidebar) */
+        .agent-tab-vertical {
+            border: none;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 700;
+            opacity: 0.5;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .agent-tab-vertical:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        .agent-tab-vertical.active {
+            opacity: 1;
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.4);
+        }
+        .agent-sidebar {
+            width: 48px;
+            background: #161b22;
+            border-right: 1px solid #30363d;
+            display: flex;
+            flex-direction: column;
+            padding: 8px 4px;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        /* Legacy horizontal tabs (hidden) */
+        .agent-tab {
+            display: none;
+        }
+        .terminal-panel-full {
+            background: #0d1117;
+        }
+        .bottom-panel.expanded {
+            height: 350px;
+        }
+        .bottom-panel.expanded .panel-content {
+            display: flex !important;
+        }
+
+        /* Enhanced task card for running tasks */
+        .task-card.executing .execution-status {
+            background: #21262d;
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin-top: 8px;
+            font-size: 11px;
+        }
+        .terminal-preview {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            padding: 8px;
+            margin-top: 8px;
+            max-height: 80px;
+            overflow: hidden;
+            cursor: pointer;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+            font-size: 10px;
+            line-height: 1.4;
+            color: #8b949e;
+            position: relative;
+        }
+        .terminal-preview:hover {
+            border-color: #238636;
+            background: #161b22;
+        }
+        .terminal-preview::after {
+            content: 'Click to expand';
+            position: absolute;
+            bottom: 2px;
+            right: 6px;
+            font-size: 9px;
+            color: #484f58;
+        }
+        .terminal-preview pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .task-card .check-btn {
+            background: #238636;
+            border: none;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            margin-top: 6px;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .task-card .check-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .task-card .check-btn:hover { background: #2ea043; }
+        .task-card .view-cli-btn {
+            background: #30363d;
+            border: none;
+            color: #e6edf3;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            margin-top: 6px;
+            margin-left: 4px;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .task-card .view-cli-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .task-card .view-cli-btn:hover { background: #3d444d; }
+
+        /* Doing column action buttons */
+        .doing-actions {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .doing-actions .execute-btn {
+            background: #238636;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .doing-actions .execute-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .doing-actions .execute-btn:hover { background: #2ea043; }
+        .doing-actions .schedule-btn {
+            background: #1f6feb;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            min-height: auto;
+            transition: all 0.15s;
+        }
+        .doing-actions .schedule-btn:focus-visible { outline: 2px solid #58a6ff; outline-offset: 2px; }
+        .doing-actions .schedule-btn:hover { background: #388bfd; }
+        .doing-actions.scheduled-info {
+            background: rgba(163,113,247,0.15);
+            border: 1px solid #a371f7;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #a371f7;
+        }
+
+        /* Linked Files */
+        .linked-file {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #21262d;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-family: 'SF Mono', monospace;
+            font-size: 12px;
+            transition: all 0.15s;
+        }
+        .linked-file:hover {
+            background: #30363d;
+        }
+        .linked-file button {
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+        .linked-file:hover button {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <h1>
+            <span class="status-dot" id="serverStatus"></span>
+            OpenClaw Command Center
+            <span id="routingBadge" style="font-size:10px;padding:2px 6px;border-radius:4px;margin-left:8px;display:none;"></span>
+        </h1>
+        <div class="view-tabs">
+            <div class="view-tabs-group">
+                <div style="display: flex; gap: 4px; align-items: center;">
+                    <button class="view-tab active" onclick="switchView('kanban')">📋 Board</button>
+                    <span class="view-arrow">→</span>
+                    <button class="view-tab" onclick="switchView('timeline')">📅 Schedule</button>
+                    <span class="view-subtitle">(Prioritize → Schedule)</span>
+                </div>
+            </div>
+            <button class="view-tab" id="clineBtn" onclick="openClineKanban()" style="background:#30363d;" title="Only works on local network">🔗 Cline</button>
+        </div>
+        <div class="nav-actions">
+            <button onclick="syncFromGitHub()">Sync GitHub</button>
+            <button onclick="startExecutor()" id="executorBtn">Start Executor</button>
+            <button onclick="toggleCliPanel()" id="cliToggleBtn" title="Toggle CLI Panel">💻 CLI</button>
+            <button onclick="setExecutorUrl()" title="Configure executor URL">⚙️</button>
+            <button onclick="openAddModal()" class="primary">+ Add Task</button>
+        </div>
+    </div>
+
+    <!-- Eisenhower Matrix Filter + Bot Status -->
+    <div class="matrix-filter-bar">
+        <span class="filter-label">Priority:</span>
+        <button class="matrix-filter active" data-quadrant="all" onclick="filterByQuadrant('all')">All</button>
+        <button class="matrix-filter q1" data-quadrant="q1" onclick="filterByQuadrant('q1')">🔥 Q1</button>
+        <button class="matrix-filter q2" data-quadrant="q2" onclick="filterByQuadrant('q2')">📈 Q2</button>
+        <button class="matrix-filter q3" data-quadrant="q3" onclick="filterByQuadrant('q3')">📤 Q3</button>
+        <button class="matrix-filter q4" data-quadrant="q4" onclick="filterByQuadrant('q4')">📋 Q4</button>
+        <div class="bot-status-inline" id="botStatusInline">
+            <span class="filter-label" style="margin-left:20px;">Bots:</span>
+            <span class="bot-indicator" data-bot="assistant" title="Assistant"><span class="dot"></span>ASS</span>
+            <span class="bot-indicator" data-bot="bitcoinml" title="BML CEO"><span class="dot"></span>BML</span>
+            <span class="bot-indicator" data-bot="energyscout" title="EnergyScout"><span class="dot"></span>ENE</span>
+            <span class="bot-indicator" data-bot="realestate" title="Real Estate"><span class="dot"></span>REA</span>
+        </div>
+    </div>
+
+    <!-- Agent Filter Bar + Running Tasks Dropdown -->
+    <div class="agent-filter-bar" id="agentFilterBar">
+        <span class="filter-label">Agent:</span>
+        <button class="agent-filter active" data-agent="all" onclick="filterByAgent('all')">All</button>
+        <button class="agent-filter" data-agent="bml" onclick="filterByAgent('bml')" style="border-color:#f7931a;">BML</button>
+        <button class="agent-filter" data-agent="ene" onclick="filterByAgent('ene')" style="border-color:#3fb950;">Energy</button>
+        <button class="agent-filter" data-agent="rea" onclick="filterByAgent('rea')" style="border-color:#58a6ff;">Real Estate</button>
+        <button class="agent-filter" data-agent="ana" onclick="filterByAgent('ana')" style="border-color:#a371f7;">Analytics</button>
+        <button class="agent-filter" data-agent="ass" onclick="filterByAgent('ass')" style="border-color:#f78166;">Assistant</button>
+        <div class="running-dropdown" id="runningDropdown">
+            <button class="running-dropdown-btn" onclick="toggleRunningDropdown()">
+                <span class="running-count-badge" id="runningCountBadge">0</span> Running ▼
+            </button>
+            <div class="running-dropdown-content" id="runningDropdownContent"></div>
+        </div>
+        <div class="running-dropdown" id="workersDropdown" style="margin-left:8px;">
+            <button class="running-dropdown-btn" onclick="toggleWorkersDropdown()" style="background:#1f6feb;">
+                <span class="running-count-badge" id="workersCountBadge" style="background:#a371f7;">0</span> Workers ▼
+            </button>
+            <div class="running-dropdown-content" id="workersDropdownContent"></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Kanban View -->
+        <div id="kanban-view" class="view kanban-view active">
+            <div class="kanban-column col-todo" data-status="todo">
+                <div class="kanban-header">Backlog <span class="count" id="k-count-todo">0</span></div>
+                <div class="kanban-cards" id="k-todo"></div>
+            </div>
+            <div class="kanban-column col-progress" data-status="progress">
+                <div class="kanban-header">Doing <span class="count" id="k-count-progress">0</span></div>
+                <div class="kanban-cards" id="k-progress"></div>
+            </div>
+            <div class="kanban-column col-blocked" data-status="blocked">
+                <div class="kanban-header">Review <span class="count" id="k-count-blocked">0</span></div>
+                <div class="kanban-cards" id="k-blocked"></div>
+            </div>
+            <div class="kanban-column col-done" data-status="done">
+                <div class="kanban-header">Done <span class="count" id="k-count-done">0</span></div>
+                <div class="kanban-cards" id="k-done"></div>
+            </div>
+        </div>
+
+        <!-- Timeline View -->
+        <div id="timeline-view" class="view timeline-view">
+            <div class="ready-sidebar" id="readySidebar">
+                <button class="sidebar-toggle" onclick="toggleReadySidebar()">
+                    <span id="sidebarArrow">◀</span>
+                    <span id="sidebarLabel">Ready to Schedule</span>
+                </button>
+                <div class="sidebar-content" id="readyTasks"></div>
+            </div>
+            <div class="timeline-main">
+                <div class="swimlanes">
+                    <div class="time-header" id="time-header"></div>
+                    <div id="swimlanes"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content" style="width:600px;">
+            <h3 id="detail-title">Task Details</h3>
+            <div class="detail-section">
+                <h4>Status & Assignment</h4>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    <select id="detail-status-select" onchange="quickUpdateTask('status', this.value)" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:6px 10px;border-radius:6px;font-size:12px;">
+                        <option value="todo">📋 Backlog</option>
+                        <option value="progress">🔄 Doing</option>
+                        <option value="blocked">⚠️ Review</option>
+                        <option value="done">✅ Done</option>
+                    </select>
+                    <select id="detail-agent-select" onchange="quickUpdateTask('agent', this.value)" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:6px 10px;border-radius:6px;font-size:12px;">
+                        <option value="bml">🟠 BML CEO</option>
+                        <option value="ene">🟢 EnergyScout</option>
+                        <option value="rea">🔵 Real Estate</option>
+                        <option value="ana">🟣 Analytics</option>
+                        <option value="ass">🔴 Assistant</option>
+                    </select>
+                    <select id="detail-quadrant-select" onchange="quickUpdateTask('quadrant', this.value)" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:6px 10px;border-radius:6px;font-size:12px;">
+                        <option value="q1">🔥 Q1 Urgent+Important</option>
+                        <option value="q2">📈 Q2 Important</option>
+                        <option value="q3">⚡ Q3 Urgent</option>
+                        <option value="q4">📋 Q4 Low Priority</option>
+                    </select>
+                    <button onclick="chatAboutTask(document.getElementById('detailModal').dataset.taskId)" style="background:#238636;border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;min-height:32px;">💬 Chat</button>
+                </div>
+            </div>
+            <div class="detail-section">
+                <h4>Description</h4>
+                <div class="detail-content" id="detail-text"></div>
+            </div>
+            <div class="detail-section">
+                <h4>Linked Files</h4>
+                <div id="detail-linked-files" style="margin-bottom:8px;"></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button onclick="linkFileToTask()" style="background:#1f6feb;border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;">📎 Link File</button>
+                    <button onclick="linkFolderToTask()" style="background:#238636;border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;">📁 Link Folder</button>
+                    <button onclick="manualLinkPath()" style="background:#30363d;border:none;color:#e6edf3;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;">✏️ Enter Path</button>
+                </div>
+            </div>
+            <div class="detail-section">
+                <h4>Artifacts & Notes</h4>
+                <div id="detail-artifacts"></div>
+            </div>
+            <div class="detail-section">
+                <h4>Work Log</h4>
+                <div class="work-log" id="detail-worklog"></div>
+            </div>
+            <div class="modal-buttons" style="flex-wrap:wrap;gap:8px;">
+                <button onclick="moveToBacklog()" style="background:#6e7681;border:none;color:#fff;padding:8px 12px;border-radius:6px;cursor:pointer;min-height:32px;" title="Move back to Backlog column">⬅ Back to Backlog</button>
+                <button onclick="archiveTask()" style="background:#1f6feb;border:none;color:#fff;padding:8px 12px;border-radius:6px;cursor:pointer;margin-right:auto;min-height:32px;" title="Save to Obsidian vault and mark done">📦 Save & Complete</button>
+                <button class="delete" onclick="deleteTaskFromDetail()" title="Permanently remove this task">🗑 Delete Forever</button>
+                <button class="cancel" onclick="closeDetailModal()">Close</button>
+                <button class="save" onclick="openEditFromDetail()">✏️ Edit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3 id="modal-title">Edit Task</h3>
+            <input type="hidden" id="edit-id">
+            <input type="text" id="edit-text" placeholder="Task description">
+            <div style="display:flex;gap:10px;">
+                <select id="edit-agent" style="flex:1;">
+                    <option value="bml">BML CEO</option>
+                    <option value="ene">EnergyScout</option>
+                    <option value="rea">Real Estate</option>
+                    <option value="ana">Analytics</option>
+                    <option value="ass">Assistant</option>
+                </select>
+                <select id="edit-quadrant" style="flex:1;">
+                    <option value="q1">Q1 - Urgent+Important</option>
+                    <option value="q2">Q2 - Important</option>
+                    <option value="q3">Q3 - Urgent</option>
+                    <option value="q4">Q4 - Low Priority</option>
+                </select>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:10px;">
+                <select id="edit-agent-type" style="flex:1;" title="Agent specialization">
+                    <option value="general">🤖 General - Versatile</option>
+                    <option value="code">💻 Code - Programming</option>
+                    <option value="research">🔬 Research - Analysis</option>
+                    <option value="fast">⚡ Fast - Quick tasks</option>
+                </select>
+                <label style="display:flex;align-items:center;gap:6px;padding:6px 12px;background:#21262d;border-radius:6px;cursor:pointer;">
+                    <input type="checkbox" id="edit-parallel" style="margin:0;">
+                    <span style="font-size:12px;">🔀 Parallel</span>
+                </label>
+            </div>
+            <select id="edit-status">
+                <option value="todo">Backlog</option>
+                <option value="progress">Doing</option>
+                <option value="executing">Executing...</option>
+                <option value="ai-review">AI Review (Purple)</option>
+                <option value="human-review">Human Review (Orange)</option>
+                <option value="done">Done (Archived)</option>
+            </select>
+            <textarea id="edit-notes" placeholder="Notes (results, blockers, etc.)"></textarea>
+            <div class="outbox-preview" id="outbox-preview" style="display:none;"></div>
+
+            <!-- Recurring Schedule Section -->
+            <div class="schedule-section" style="margin-top:12px;padding:12px;background:#21262d;border-radius:6px;border:1px solid #30363d;">
+                <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;">
+                    <input type="checkbox" id="edit-recurring" onchange="toggleScheduleOptions()">
+                    <span style="font-weight:600;">Make Recurring (Cron Job)</span>
+                </label>
+                <div id="schedule-options" style="display:none;">
+                    <div style="display:flex;gap:10px;margin-bottom:10px;">
+                        <div style="flex:1;">
+                            <label style="font-size:11px;color:#9eaab6;">Time</label>
+                            <input type="time" id="edit-schedule-time" value="09:00" style="width:100%;background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:6px;border-radius:4px;">
+                        </div>
+                        <div style="flex:1;">
+                            <label style="font-size:11px;color:#9eaab6;">Timeout (sec)</label>
+                            <input type="number" id="edit-schedule-timeout" value="300" min="60" max="3600" style="width:100%;background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:6px;border-radius:4px;">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#9eaab6;">Days (leave unchecked for daily)</label>
+                        <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;">
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="monday"> Mon</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="tuesday"> Tue</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="wednesday"> Wed</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="thursday"> Thu</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="friday"> Fri</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="saturday"> Sat</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="sunday"> Sun</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="delete" id="delete-btn" onclick="deleteTask()">Delete</button>
+                <button class="run" id="run-btn" onclick="executeTask()">▶ Execute</button>
+                <button class="cancel" onclick="closeModal()">Cancel</button>
+                <button class="save" onclick="saveTask()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cline Kanban Modal -->
+    <div class="modal" id="clineModal">
+        <div class="modal-content" style="width:90%;max-width:1200px;height:80vh;padding:0;overflow:hidden;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#21262d;border-bottom:1px solid #30363d;">
+                <span style="font-weight:600;">Cline Kanban - ~/Vaults/openclaw</span>
+                <div>
+                    <a href="http://127.0.0.1:3484/openclaw" target="_blank" style="color:#58a6ff;text-decoration:none;margin-right:16px;font-size:13px;">Open in New Tab ↗</a>
+                    <button onclick="closeClineModal()" style="background:#30363d;border:none;color:#e6edf3;padding:6px 12px;border-radius:4px;cursor:pointer;min-height:32px;">Close</button>
+                </div>
+            </div>
+            <iframe id="clineFrame" src="" style="width:100%;height:calc(100% - 50px);border:none;background:#0d1117;"></iframe>
+        </div>
+    </div>
+
+    <!-- Bottom Panel: Full Width Terminal -->
+    <div class="bottom-panel" id="bottomPanel">
+        <div class="panel-resize" onmousedown="startResize(event)"></div>
+        <button class="panel-toggle" onclick="togglePanel()">▼ Terminal</button>
+        <button onclick="expandPanel()" id="expandBtn" style="position:absolute;top:-30px;right:100px;background:#161b22;border:1px solid #30363d;border-bottom:none;border-radius:8px 8px 0 0;padding:6px 12px;cursor:pointer;color:#9eaab6;font-size:12px;min-height:auto;">⤢ Expand</button>
+        <button onclick="maximizePanel()" id="maximizeBtn" style="position:absolute;top:-30px;right:20px;background:#161b22;border:1px solid #30363d;border-bottom:none;border-radius:8px 8px 0 0;padding:6px 12px;cursor:pointer;color:#9eaab6;font-size:12px;min-height:auto;">⛶ Max</button>
+        <div class="panel-content" style="display:flex;width:100%;height:100%;">
+            <!-- Agent Sidebar (Cursor-style) -->
+            <div class="agent-sidebar" id="agentSidebar" style="width:48px;background:#161b22;border-right:1px solid #30363d;display:flex;flex-direction:column;padding:8px 4px;gap:4px;flex-shrink:0;">
+                <button class="agent-tab-vertical active" data-agent="assistant" onclick="switchTerminalAgent('assistant')" style="background:#f78166;width:40px;height:40px;border:none;border-radius:6px;cursor:pointer;font-size:10px;font-weight:700;color:#fff;opacity:0.6;transition:all 0.15s;" title="Assistant">ASS</button>
+                <button class="agent-tab-vertical" data-agent="bitcoinml" onclick="switchTerminalAgent('bitcoinml')" style="background:#f7931a;width:40px;height:40px;border:none;border-radius:6px;cursor:pointer;font-size:10px;font-weight:700;color:#fff;opacity:0.6;transition:all 0.15s;" title="Bitcoin ML">BML</button>
+                <button class="agent-tab-vertical" data-agent="energyscout" onclick="switchTerminalAgent('energyscout')" style="background:#3fb950;width:40px;height:40px;border:none;border-radius:6px;cursor:pointer;font-size:10px;font-weight:700;color:#fff;opacity:0.6;transition:all 0.15s;" title="EnergyScout">ENE</button>
+                <button class="agent-tab-vertical" data-agent="realestate" onclick="switchTerminalAgent('realestate')" style="background:#58a6ff;width:40px;height:40px;border:none;border-radius:6px;cursor:pointer;font-size:10px;font-weight:700;color:#fff;opacity:0.6;transition:all 0.15s;" title="Real Estate">REA</button>
+                <button class="agent-tab-vertical" data-agent="analytics" onclick="switchTerminalAgent('analytics')" style="background:#a371f7;width:40px;height:40px;border:none;border-radius:6px;cursor:pointer;font-size:10px;font-weight:700;color:#fff;opacity:0.6;transition:all 0.15s;" title="Analytics">ANA</button>
+            </div>
+            <!-- Terminal Main Area -->
+            <div class="terminal-panel-full" id="cliPanel" style="flex:1;display:flex;flex-direction:column;background:#0d1117;">
+                <!-- Path Bar with Copy -->
+                <div class="path-bar" style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:#161b22;border-bottom:1px solid #30363d;font-family:'SF Mono',monospace;font-size:11px;">
+                    <span style="color:#9eaab6;">tmux:</span>
+                    <span style="color:#58a6ff;" id="cliAgent">claude-assistant</span>
+                    <span style="color:#30363d;margin:0 4px;">|</span>
+                    <span style="color:#9eaab6;">cwd:</span>
+                    <span style="color:#3fb950;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="cliPath">/Users/macmini/Vaults/openclaw</span>
+                    <button onclick="copyPath()" title="Copy path for cowork mode" style="background:#30363d;border:none;color:#9eaab6;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;font-family:'SF Mono',monospace;">copy</button>
+                    <select id="cliRepoSelect" onchange="updatePath()" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:2px 6px;border-radius:3px;font-size:10px;font-family:'SF Mono',monospace;">
+                        <option value="/Users/macmini/Vaults/openclaw">openclaw</option>
+                        <option value="/Users/macmini/bitcoinml">bitcoinml</option>
+                        <option value="/Users/macmini/energyscout">energyscout</option>
+                        <option value="/Users/macmini/realestate">realestate</option>
+                    </select>
+                    <div style="display:flex;gap:4px;margin-left:8px;">
+                        <button onclick="startClaudeSession()" id="startClaudeBtn" title="Start Claude session" style="background:#238636;border:none;color:#fff;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;">▶ Start</button>
+                        <button onclick="sendCliKey('C-c')" title="Ctrl+C (interrupt)" style="background:#da3633;border:none;color:#fff;padding:2px 6px;border-radius:3px;cursor:pointer;font-size:10px;">^C</button>
+                        <button onclick="refreshCli()" title="Refresh" style="background:#30363d;border:none;color:#e6edf3;padding:2px 6px;border-radius:3px;cursor:pointer;font-size:10px;">↻</button>
+                    </div>
+                </div>
+                <!-- Terminal Output -->
+                <div class="cli-output" id="cliOutput" style="flex:1;overflow-y:auto;padding:12px;font-family:'SF Mono','Monaco','Inconsolata','Fira Mono',monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;background:#0d1117;color:#e6edf3;">Connecting to tmux session...</div>
+                <!-- Terminal Input (no box, inline prompt) -->
+                <div class="terminal-input-line" style="display:flex;align-items:center;padding:0 12px 12px 12px;background:#0d1117;font-family:'SF Mono','Monaco',monospace;font-size:13px;">
+                    <span style="color:#3fb950;margin-right:8px;">❯</span>
+                    <input type="text" id="cliInput" placeholder="" style="flex:1;background:transparent;border:none;color:#e6edf3;font-family:'SF Mono','Monaco',monospace;font-size:13px;outline:none;caret-color:#3fb950;" onkeydown="handleTerminalKeydown(event)">
+                </div>
+            </div>
+            <!-- Hidden Chat Panel (keeping for potential future use) -->
+            <div class="chat-panel" style="display:none;">
+                <div class="chat-header">
+                    <span>CHAT WITH BOT</span>
+                    <select id="chatBot">
+                        <option value="assistant">Assistant</option>
+                        <option value="bitcoinml">BML CEO</option>
+                        <option value="energyscout">EnergyScout</option>
+                        <option value="realestate">Real Estate</option>
+                    </select>
+                    <button onclick="clearChat()" style="margin-left:auto;background:#30363d;border:none;color:#9eaab6;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:11px;min-height:auto;">Clear</button>
+                </div>
+                <div style="display:flex;flex:1;overflow:hidden;">
+                    <!-- Chat Sidebar -->
+                    <div class="chat-sidebar" id="chatSidebar">
+                        <div class="chat-sidebar-header">Sessions</div>
+                        <div class="chat-session active" data-bot="assistant" onclick="switchChatBot('assistant')">
+                            <span class="session-icon" style="background:#f78166;">A</span>
+                            <span class="session-name">Assistant</span>
+                        </div>
+                        <div class="chat-session" data-bot="bitcoinml" onclick="switchChatBot('bitcoinml')">
+                            <span class="session-icon" style="background:#f7931a;">B</span>
+                            <span class="session-name">BML CEO</span>
+                        </div>
+                        <div class="chat-session" data-bot="energyscout" onclick="switchChatBot('energyscout')">
+                            <span class="session-icon" style="background:#3fb950;">E</span>
+                            <span class="session-name">EnergyScout</span>
+                        </div>
+                        <div class="chat-session" data-bot="realestate" onclick="switchChatBot('realestate')">
+                            <span class="session-icon" style="background:#58a6ff;">R</span>
+                            <span class="session-name">Real Estate</span>
+                        </div>
+                    </div>
+                    <!-- Chat Messages -->
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chatMessages"></div>
+                    </div>
+                </div>
+                <div class="chat-input-row">
+                    <input type="text" id="chatInput" placeholder="Type a message... (/clear to reset, /cli for output)" onkeypress="if(event.key==='Enter')sendChat()">
+                    <button onclick="sendChat()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard_v2_core.js"></script>
+</body>
+</html>

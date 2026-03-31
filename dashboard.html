@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenClaw Command Center</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23238636'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='16'>◎</text></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -29,7 +30,7 @@
         .status-dot.online { background: #3fb950; }
         .status-dot.offline { background: #da3633; }
 
-        .view-tabs { display: flex; gap: 4px; }
+        .view-tabs { display: flex; gap: 4px; align-items: center; }
         .view-tab {
             background: #21262d;
             border: none;
@@ -40,6 +41,12 @@
             font-size: 13px;
         }
         .view-tab.active { background: #238636; color: #fff; }
+        .view-arrow {
+            color: #8b949e;
+            font-size: 16px;
+            padding: 0 4px;
+            opacity: 0.6;
+        }
         .nav-actions button {
             background: #30363d;
             border: none;
@@ -53,15 +60,183 @@
         .nav-actions button.primary { background: #238636; }
         .nav-actions button.danger { background: #da3633; }
 
-        .main-content { height: calc(100vh - 56px); overflow: hidden; }
+        /* Eisenhower Matrix Filter Bar */
+        .matrix-filter-bar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 8px 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-label {
+            color: #8b949e;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .matrix-filter {
+            background: #21262d;
+            border: 2px solid #30363d;
+            color: #8b949e;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.15s;
+        }
+        .matrix-filter:hover { background: #30363d; color: #e6edf3; }
+        .matrix-filter.active { background: #238636; border-color: #238636; color: #fff; }
+        .matrix-filter.q1 { border-color: #da3633; }
+        .matrix-filter.q1.active { background: #da3633; border-color: #da3633; }
+        .matrix-filter.q2 { border-color: #f0883e; }
+        .matrix-filter.q2.active { background: #f0883e; border-color: #f0883e; }
+        .matrix-filter.q3 { border-color: #3fb950; }
+        .matrix-filter.q3.active { background: #3fb950; border-color: #3fb950; color: #000; }
+        .matrix-filter.q4 { border-color: #8b949e; }
+        .matrix-filter.q4.active { background: #8b949e; border-color: #8b949e; color: #000; }
+
+        /* Agent Filter Bar */
+        .agent-filter-bar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 8px 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .agent-filter {
+            background: #21262d;
+            border: 2px solid #30363d;
+            color: #8b949e;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.15s;
+        }
+        .agent-filter:hover { background: #30363d; color: #e6edf3; }
+        .agent-filter.active {
+            background: #238636;
+            border-color: #238636;
+            color: #fff;
+        }
+
+        /* Inline Bot Status */
+        .bot-status-inline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+        .bot-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #8b949e;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .bot-indicator:hover { background: #21262d; }
+        .bot-indicator .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #8b949e;
+        }
+        .bot-indicator.online .dot { background: #3fb950; }
+        .bot-indicator.busy .dot { background: #f0883e; animation: pulse 1s infinite; }
+
+        /* Running Tasks Dropdown */
+        .running-dropdown {
+            position: relative;
+            margin-left: auto;
+        }
+        .running-dropdown-btn {
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .running-dropdown-btn:hover { background: #30363d; }
+        .running-count-badge {
+            background: #f0883e;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .running-count-badge.zero { background: #8b949e; }
+        .running-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            min-width: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        .running-dropdown-content.show { display: block; }
+        .running-task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border-bottom: 1px solid #30363d;
+            font-size: 12px;
+        }
+        .running-task-item:last-child { border-bottom: none; }
+        .running-task-item .agent-tag {
+            background: #30363d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .running-task-item .task-text {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .running-task-item .stop-btn {
+            background: #da3633;
+            border: none;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .main-content { height: calc(100vh - 340px); overflow: auto; }
         .view { display: none; height: 100%; }
         .view.active { display: flex; }
 
         /* ==================== KANBAN VIEW ==================== */
-        .kanban-view { padding: 20px; gap: 16px; overflow-x: auto; }
+        .kanban-view { padding: 20px; gap: 16px; overflow: auto; }
         .kanban-column {
-            min-width: 300px;
-            max-width: 320px;
+            flex: 1;
+            min-width: 200px;
             background: #161b22;
             border-radius: 12px;
             display: flex;
@@ -84,7 +259,8 @@
         .kanban-cards.drag-over { background: rgba(56,139,253,0.1); }
 
         /* ==================== TIMELINE VIEW ==================== */
-        .timeline-view { flex-direction: row; padding: 0; }
+        .timeline-view { flex-direction: row; padding: 0; height: 100%; overflow: hidden; }
+        .timeline-view.active { height: 100%; }
 
         /* Collapsible sidebar for ready tasks */
         .ready-sidebar {
@@ -168,8 +344,8 @@
 
         .unscheduled-list { flex: 1; overflow-y: auto; padding: 10px; }
 
-        .timeline-main { flex: 1; overflow: auto; padding: 0; width: 100%; }
-        .swimlanes { width: 100%; }
+        .timeline-main { flex: 1; overflow-y: auto; overflow-x: auto; padding: 0 10px 20px 10px; width: 100%; min-height: 0; }
+        .swimlanes { width: 100%; min-width: fit-content; }
         .time-header { display: flex; margin-left: 140px; margin-bottom: 8px; padding: 0 10px; }
         .time-slot-label { flex: 1; text-align: center; font-size: 12px; color: #8b949e; padding: 8px; font-weight: 600; }
         .time-slot-label.now { color: #3fb950; background: rgba(63,185,80,0.15); border-radius: 6px; }
@@ -200,6 +376,19 @@
         .timeline-task.waiting { border-left-color: #f0883e; background: rgba(240,136,62,0.15); }
         .timeline-task.stopped { border-left-color: #da3633; background: rgba(218,54,51,0.15); }
         .timeline-task.done { border-left-color: #238636; opacity: 0.6; }
+        .timeline-task.review { border-left-color: #a371f7; background: rgba(163,113,247,0.2); }
+        .timeline-task.human-review { border-left-color: #f0883e; background: rgba(240,136,62,0.25); }
+        .timeline-task .task-controls { display:flex;gap:4px;margin-top:4px; }
+        .timeline-task .task-controls button { padding:2px 6px;font-size:10px;border:none;border-radius:3px;cursor:pointer; }
+        .timeline-task .task-controls .play-btn { background:#238636;color:#fff; }
+        .timeline-task .task-controls .stop-btn { background:#da3633;color:#fff; }
+        .timeline-task .task-controls .review-btn { background:#a371f7;color:#fff; }
+        .timeline-task .task-controls .human-btn { background:#f0883e;color:#fff; }
+        .timeline-task .task-controls .done-btn { background:#238636;color:#fff; }
+        .task-progress { margin-top:4px; }
+        .progress-bar { height:4px;background:#30363d;border-radius:2px;overflow:hidden; }
+        .progress-fill { height:100%;background:#238636;transition:width 0.3s;border-radius:2px; }
+        .progress-text { font-size:9px;color:#8b949e;display:flex;justify-content:space-between;margin-top:2px; }
         .timeline-task .task-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .timeline-task .task-time { font-size: 10px; color: #8b949e; }
 
@@ -289,6 +478,9 @@
         .modal-buttons .save { background: #238636; color: #fff; }
         .modal-buttons .delete { background: #da3633; color: #fff; }
         .modal-buttons .run { background: #f0883e; color: #fff; }
+        .day-check { display:inline-flex;align-items:center;gap:4px;padding:4px 8px;background:#0d1117;border:1px solid #30363d;border-radius:4px;font-size:11px;cursor:pointer; }
+        .day-check:has(input:checked) { background:#238636;border-color:#238636; }
+        .day-check input { margin:0; }
 
         .outbox-preview {
             background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
@@ -331,11 +523,23 @@
             background: #161b22;
             border-top: 1px solid #30363d;
             display: flex;
-            height: 200px;
+            height: 280px;
             z-index: 500;
             transition: height 0.2s;
         }
         .bottom-panel.collapsed { height: 40px; }
+        .bottom-panel.expanded { height: 60vh; }
+        .bottom-panel.maximized { height: calc(100vh - 50px); }
+        .panel-resize {
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            cursor: ns-resize;
+            background: transparent;
+        }
+        .panel-resize:hover { background: rgba(56,139,253,0.3); }
         .bottom-panel.collapsed .panel-content { display: none; }
 
         .panel-toggle {
@@ -354,53 +558,55 @@
         }
         .panel-toggle:hover { color: #fff; }
 
-        .status-bar {
-            width: 40%;
+        /* CLI Panel (side panel in chat) */
+        .cli-panel-side {
+            width: 400px;
+            height: 100%;
+            background: #0d1117;
             border-right: 1px solid #30363d;
-            display: flex;
+            display: none;
             flex-direction: column;
+            flex-shrink: 0;
+            position: relative;
         }
-        .status-header {
-            padding: 10px 14px;
-            font-weight: 600;
-            font-size: 12px;
-            color: #8b949e;
-            border-bottom: 1px solid #30363d;
-            display: flex;
-            justify-content: space-between;
-        }
-        .running-tasks {
-            flex: 1;
-            overflow-y: auto;
-            padding: 8px;
-        }
-        .running-task {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #21262d;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-bottom: 6px;
-            font-size: 13px;
-        }
-        .running-task .agent { color: #58a6ff; font-weight: 600; margin-right: 8px; }
-        .running-task .text { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .running-task .stop-btn {
-            background: #da3633;
+        .cli-panel-side.show { display: flex; }
+        .cli-panel-side.collapsed { width: 40px; min-width: 40px; }
+        .cli-panel-side.collapsed .cli-output,
+        .cli-panel-side.collapsed .cli-input-row,
+        .cli-panel-side.collapsed .cli-resize-handle { display: none; }
+        .cli-panel-side.collapsed .cli-header span { display: none; }
+        .cli-panel-side.collapsed .cli-header > div { display: none; }
+        .cli-panel-side.fullscreen { width: 100% !important; }
+        .cli-panel-side.fullscreen + .chat-panel { display: none; }
+        .cli-toggle-btn {
+            background: #30363d;
             border: none;
-            color: #fff;
-            padding: 4px 10px;
+            color: #8b949e;
+            padding: 4px 8px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 11px;
         }
-        .running-task .stop-btn:hover { background: #f85149; }
+        .cli-toggle-btn:hover { background: #484f58; color: #fff; }
+        .cli-resize-handle {
+            position: absolute;
+            right: -4px;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            cursor: ew-resize;
+            background: transparent;
+            z-index: 10;
+        }
+        .cli-resize-handle:hover { background: rgba(56,139,253,0.3); }
+        .cli-resize-handle:active { background: rgba(56,139,253,0.5); }
 
         .chat-panel {
             flex: 1;
             display: flex;
             flex-direction: column;
+            height: 100%;
+            min-height: 0;
         }
         .chat-header {
             padding: 10px 14px;
@@ -424,6 +630,7 @@
             flex: 1;
             overflow-y: auto;
             padding: 10px;
+            min-height: 0;
         }
         .chat-message {
             margin-bottom: 10px;
@@ -436,34 +643,233 @@
             background: #238636;
             margin-left: auto;
         }
+        .chat-message.telegram {
+            background: #0088cc;
+            margin-left: auto;
+            border-left: 3px solid #5bc0f0;
+        }
         .chat-message.bot {
             background: #30363d;
         }
         .chat-message .sender { font-size: 10px; color: #8b949e; margin-bottom: 4px; }
+
+        /* Chat Sidebar */
+        .chat-sidebar {
+            width: 120px;
+            background: #0d1117;
+            border-right: 1px solid #30363d;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .chat-sidebar-header {
+            padding: 8px 10px;
+            font-size: 10px;
+            color: #8b949e;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .chat-session {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+        .chat-session:hover { background: #161b22; }
+        .chat-session.active { background: #21262d; border-left-color: #238636; }
+        .session-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .session-name {
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
         .chat-input-row {
             display: flex;
-            padding: 10px;
-            gap: 8px;
+            padding: 12px;
+            gap: 10px;
             border-top: 1px solid #30363d;
+            background: #0d1117;
+            flex-shrink: 0;
         }
         .chat-input-row input {
             flex: 1;
             background: #21262d;
-            border: 1px solid #30363d;
+            border: 2px solid #30363d;
             color: #e6edf3;
-            padding: 10px 14px;
-            border-radius: 6px;
+            padding: 12px 16px;
+            border-radius: 8px;
             font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .chat-input-row input:focus {
+            border-color: #58a6ff;
+        }
+        .chat-input-row input::placeholder {
+            color: #6e7681;
         }
         .chat-input-row button {
             background: #238636;
             border: none;
             color: #fff;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
         }
         .chat-input-row button:hover { background: #2ea043; }
+
+        /* Live CLI Panel (removed - now in .cli-panel-side) */
+        .cli-header {
+            background: #21262d;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #30363d;
+        }
+        .cli-header .agent-name { color: #58a6ff; }
+        .cli-header button {
+            background: #30363d;
+            border: none;
+            color: #8b949e;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .cli-header button:hover { background: #3d444d; color: #fff; }
+        .cli-output {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 11px;
+            padding: 10px;
+            flex: 1;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            color: #8b949e;
+            line-height: 1.4;
+            min-height: 0;
+        }
+        .cli-output .thinking { color: #f0883e; }
+        .cli-output .error { color: #da3633; }
+        .cli-output .success { color: #3fb950; }
+        .cli-input-row {
+            display: flex;
+            padding: 8px;
+            gap: 6px;
+            border-top: 1px solid #30363d;
+            background: #161b22;
+        }
+        .cli-input-row input {
+            flex: 1;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+        }
+        .cli-input-row button {
+            background: #238636;
+            border: none;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .cli-input-row button:hover { background: #2ea043; }
+
+        /* Enhanced task card for running tasks */
+        .task-card.executing .execution-status {
+            background: #21262d;
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin-top: 8px;
+            font-size: 11px;
+        }
+        .task-card .check-btn {
+            background: #238636;
+            border: none;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            margin-top: 6px;
+        }
+        .task-card .check-btn:hover { background: #2ea043; }
+        .task-card .view-cli-btn {
+            background: #30363d;
+            border: none;
+            color: #e6edf3;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            margin-top: 6px;
+            margin-left: 4px;
+        }
+
+        /* Doing column action buttons */
+        .doing-actions {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .doing-actions .execute-btn {
+            background: #238636;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .doing-actions .execute-btn:hover { background: #2ea043; }
+        .doing-actions .schedule-btn {
+            background: #1f6feb;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .doing-actions .schedule-btn:hover { background: #388bfd; }
+        .doing-actions.scheduled-info {
+            background: rgba(163,113,247,0.15);
+            border: 1px solid #a371f7;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #a371f7;
+        }
     </style>
 </head>
 <body>
@@ -473,13 +879,51 @@
             OpenClaw Command Center
         </h1>
         <div class="view-tabs">
-            <button class="view-tab active" onclick="switchView('kanban')">Kanban</button>
-            <button class="view-tab" onclick="switchView('timeline')">Timeline</button>
+            <button class="view-tab active" onclick="switchView('kanban')">📋 Kanban</button>
+            <span class="view-arrow">→</span>
+            <button class="view-tab" onclick="switchView('timeline')">📅 Timeline</button>
+            <button class="view-tab" id="clineBtn" onclick="openClineKanban()" style="background:#30363d;" title="Only works on local network">🔗 Cline</button>
         </div>
         <div class="nav-actions">
             <button onclick="syncFromGitHub()">Sync GitHub</button>
             <button onclick="startExecutor()" id="executorBtn">Start Executor</button>
+            <button onclick="toggleCliPanel()" id="cliToggleBtn" title="Toggle CLI Panel">💻 CLI</button>
+            <button onclick="setExecutorUrl()" title="Configure executor URL">⚙️</button>
             <button onclick="openAddModal()" class="primary">+ Add Task</button>
+        </div>
+    </div>
+
+    <!-- Eisenhower Matrix Filter + Bot Status -->
+    <div class="matrix-filter-bar">
+        <span class="filter-label">Priority:</span>
+        <button class="matrix-filter active" data-quadrant="all" onclick="filterByQuadrant('all')">All</button>
+        <button class="matrix-filter q1" data-quadrant="q1" onclick="filterByQuadrant('q1')">🔥 Q1</button>
+        <button class="matrix-filter q2" data-quadrant="q2" onclick="filterByQuadrant('q2')">📈 Q2</button>
+        <button class="matrix-filter q3" data-quadrant="q3" onclick="filterByQuadrant('q3')">⚡ Q3</button>
+        <button class="matrix-filter q4" data-quadrant="q4" onclick="filterByQuadrant('q4')">📋 Q4</button>
+        <div class="bot-status-inline" id="botStatusInline">
+            <span class="filter-label" style="margin-left:20px;">Bots:</span>
+            <span class="bot-indicator" data-bot="assistant" title="Assistant"><span class="dot"></span>ASS</span>
+            <span class="bot-indicator" data-bot="bitcoinml" title="BML CEO"><span class="dot"></span>BML</span>
+            <span class="bot-indicator" data-bot="energyscout" title="EnergyScout"><span class="dot"></span>ENE</span>
+            <span class="bot-indicator" data-bot="realestate" title="Real Estate"><span class="dot"></span>REA</span>
+        </div>
+    </div>
+
+    <!-- Agent Filter Bar + Running Tasks Dropdown -->
+    <div class="agent-filter-bar" id="agentFilterBar">
+        <span class="filter-label">Agent:</span>
+        <button class="agent-filter active" data-agent="all" onclick="filterByAgent('all')">All</button>
+        <button class="agent-filter" data-agent="bml" onclick="filterByAgent('bml')" style="border-color:#f7931a;">BML</button>
+        <button class="agent-filter" data-agent="ene" onclick="filterByAgent('ene')" style="border-color:#3fb950;">Energy</button>
+        <button class="agent-filter" data-agent="rea" onclick="filterByAgent('rea')" style="border-color:#58a6ff;">Real Estate</button>
+        <button class="agent-filter" data-agent="ana" onclick="filterByAgent('ana')" style="border-color:#a371f7;">Analytics</button>
+        <button class="agent-filter" data-agent="ass" onclick="filterByAgent('ass')" style="border-color:#f78166;">Assistant</button>
+        <div class="running-dropdown" id="runningDropdown">
+            <button class="running-dropdown-btn" onclick="toggleRunningDropdown()">
+                <span class="running-count-badge" id="runningCountBadge">0</span> Running ▼
+            </button>
+            <div class="running-dropdown-content" id="runningDropdownContent"></div>
         </div>
     </div>
 
@@ -520,6 +964,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Detail Modal -->
@@ -527,9 +972,29 @@
         <div class="modal-content" style="width:600px;">
             <h3 id="detail-title">Task Details</h3>
             <div class="detail-section">
-                <h4>Status</h4>
-                <span class="detail-status" id="detail-status">Done</span>
-                <span id="detail-agent" style="margin-left:10px;"></span>
+                <h4>Status & Assignment</h4>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    <select id="detail-status-select" onchange="quickUpdateTask('status', this.value)" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:6px 10px;border-radius:6px;font-size:12px;">
+                        <option value="todo">📋 Backlog</option>
+                        <option value="progress">🔄 Doing</option>
+                        <option value="blocked">⚠️ Review</option>
+                        <option value="done">✅ Done</option>
+                    </select>
+                    <select id="detail-agent-select" onchange="quickUpdateTask('agent', this.value)" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:6px 10px;border-radius:6px;font-size:12px;">
+                        <option value="bml">🟠 BML CEO</option>
+                        <option value="ene">🟢 EnergyScout</option>
+                        <option value="rea">🔵 Real Estate</option>
+                        <option value="ana">🟣 Analytics</option>
+                        <option value="ass">🔴 Assistant</option>
+                    </select>
+                    <select id="detail-quadrant-select" onchange="quickUpdateTask('quadrant', this.value)" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:6px 10px;border-radius:6px;font-size:12px;">
+                        <option value="q1">🔥 Q1 Urgent+Important</option>
+                        <option value="q2">📈 Q2 Important</option>
+                        <option value="q3">⚡ Q3 Urgent</option>
+                        <option value="q4">📋 Q4 Low Priority</option>
+                    </select>
+                    <button onclick="chatAboutTask(document.getElementById('detailModal').dataset.taskId)" style="background:#238636;border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;">💬 Chat</button>
+                </div>
             </div>
             <div class="detail-section">
                 <h4>Description</h4>
@@ -543,9 +1008,12 @@
                 <h4>Work Log</h4>
                 <div class="work-log" id="detail-worklog"></div>
             </div>
-            <div class="modal-buttons">
+            <div class="modal-buttons" style="flex-wrap:wrap;gap:8px;">
+                <button onclick="moveToBacklog()" style="background:#6e7681;border:none;color:#fff;padding:8px 12px;border-radius:6px;cursor:pointer;" title="Move back to Backlog column">⬅ Back to Backlog</button>
+                <button onclick="archiveTask()" style="background:#1f6feb;border:none;color:#fff;padding:8px 12px;border-radius:6px;cursor:pointer;margin-right:auto;" title="Save to Obsidian vault and mark done">📦 Save & Complete</button>
+                <button class="delete" onclick="deleteTaskFromDetail()" title="Permanently remove this task">🗑 Delete Forever</button>
                 <button class="cancel" onclick="closeDetailModal()">Close</button>
-                <button class="save" onclick="openEditFromDetail()">Edit</button>
+                <button class="save" onclick="openEditFromDetail()">✏️ Edit</button>
             </div>
         </div>
     </div>
@@ -574,12 +1042,46 @@
             <select id="edit-status">
                 <option value="todo">Backlog</option>
                 <option value="progress">Doing</option>
-                <option value="blocked">Review</option>
                 <option value="executing">Executing...</option>
-                <option value="done">Done</option>
+                <option value="ai-review">AI Review (Purple)</option>
+                <option value="human-review">Human Review (Orange)</option>
+                <option value="done">Done (Archived)</option>
             </select>
             <textarea id="edit-notes" placeholder="Notes (results, blockers, etc.)"></textarea>
             <div class="outbox-preview" id="outbox-preview" style="display:none;"></div>
+
+            <!-- Recurring Schedule Section -->
+            <div class="schedule-section" style="margin-top:12px;padding:12px;background:#21262d;border-radius:6px;border:1px solid #30363d;">
+                <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;">
+                    <input type="checkbox" id="edit-recurring" onchange="toggleScheduleOptions()">
+                    <span style="font-weight:600;">Make Recurring (Cron Job)</span>
+                </label>
+                <div id="schedule-options" style="display:none;">
+                    <div style="display:flex;gap:10px;margin-bottom:10px;">
+                        <div style="flex:1;">
+                            <label style="font-size:11px;color:#8b949e;">Time</label>
+                            <input type="time" id="edit-schedule-time" value="09:00" style="width:100%;background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:6px;border-radius:4px;">
+                        </div>
+                        <div style="flex:1;">
+                            <label style="font-size:11px;color:#8b949e;">Timeout (sec)</label>
+                            <input type="number" id="edit-schedule-timeout" value="300" min="60" max="3600" style="width:100%;background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:6px;border-radius:4px;">
+                        </div>
+                    </div>
+                    <div>
+                        <label style="font-size:11px;color:#8b949e;">Days (leave unchecked for daily)</label>
+                        <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;">
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="monday"> Mon</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="tuesday"> Tue</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="wednesday"> Wed</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="thursday"> Thu</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="friday"> Fri</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="saturday"> Sat</label>
+                            <label class="day-check"><input type="checkbox" name="schedule-day" value="sunday"> Sun</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal-buttons">
                 <button class="delete" id="delete-btn" onclick="deleteTask()">Delete</button>
                 <button class="run" id="run-btn" onclick="executeTask()">▶ Execute</button>
@@ -589,17 +1091,57 @@
         </div>
     </div>
 
-    <!-- Bottom Panel: Status Bar + Chat -->
-    <div class="bottom-panel" id="bottomPanel">
-        <button class="panel-toggle" onclick="togglePanel()">▼ Status & Chat</button>
-        <div class="panel-content" style="display:flex;width:100%;height:100%;">
-            <div class="status-bar">
-                <div class="status-header">
-                    <span>RUNNING TASKS</span>
-                    <span id="running-count">0</span>
+    <!-- Cline Kanban Modal -->
+    <div class="modal" id="clineModal">
+        <div class="modal-content" style="width:90%;max-width:1200px;height:80vh;padding:0;overflow:hidden;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#21262d;border-bottom:1px solid #30363d;">
+                <span style="font-weight:600;">Cline Kanban - ~/Vaults/openclaw</span>
+                <div>
+                    <a href="http://127.0.0.1:3484/openclaw" target="_blank" style="color:#58a6ff;text-decoration:none;margin-right:16px;font-size:13px;">Open in New Tab ↗</a>
+                    <button onclick="closeClineModal()" style="background:#30363d;border:none;color:#e6edf3;padding:6px 12px;border-radius:4px;cursor:pointer;">Close</button>
                 </div>
-                <div class="running-tasks" id="runningTasks">
-                    <div style="color:#8b949e;text-align:center;padding:20px;">No tasks running</div>
+            </div>
+            <iframe id="clineFrame" src="" style="width:100%;height:calc(100% - 50px);border:none;background:#0d1117;"></iframe>
+        </div>
+    </div>
+
+    <!-- Bottom Panel: Full Width Chat -->
+    <div class="bottom-panel" id="bottomPanel">
+        <div class="panel-resize" onmousedown="startResize(event)"></div>
+        <button class="panel-toggle" onclick="togglePanel()">▼ Chat</button>
+        <button onclick="expandPanel()" id="expandBtn" style="position:absolute;top:-30px;right:100px;background:#161b22;border:1px solid #30363d;border-bottom:none;border-radius:8px 8px 0 0;padding:6px 12px;cursor:pointer;color:#8b949e;font-size:12px;">⤢ Expand</button>
+        <button onclick="maximizePanel()" id="maximizeBtn" style="position:absolute;top:-30px;right:20px;background:#161b22;border:1px solid #30363d;border-bottom:none;border-radius:8px 8px 0 0;padding:6px 12px;cursor:pointer;color:#8b949e;font-size:12px;">⛶ Max</button>
+        <div class="panel-content" style="display:flex;width:100%;height:100%;">
+            <!-- Live CLI Panel (slides in from left) -->
+            <div class="cli-panel-side" id="cliPanel">
+                <div class="cli-resize-handle" onmousedown="startCliResize(event)"></div>
+                <div class="cli-header">
+                    <button class="cli-toggle-btn" onclick="toggleCliCollapse()" id="cliCollapseBtn" title="Collapse/Expand CLI">◀</button>
+                    <span>CLI: <span class="agent-name" id="cliAgent">assistant</span></span>
+                    <div>
+                        <button onclick="startClaudeSession()" id="startClaudeBtn" title="Start Claude (dangerous mode)" style="background:#238636;">▶ Start</button>
+                        <button onclick="toggleCliFullscreen()" id="cliFullscreenBtn" title="Fullscreen CLI">⛶</button>
+                        <button onclick="sendCliKey('BTab')" title="Shift+Tab">⇧Tab</button>
+                        <button onclick="sendCliKey('Enter')" title="Enter">↵</button>
+                        <button onclick="sendCliKey('Escape')" title="Escape">Esc</button>
+                        <button onclick="refreshCli()">↻</button>
+                        <button onclick="closeCli()">✕</button>
+                    </div>
+                </div>
+                <div class="cli-toolbar" style="padding:6px 10px;background:#161b22;border-bottom:1px solid #30363d;display:flex;gap:8px;align-items:center;font-size:11px;">
+                    <label style="color:#8b949e;">Repo:</label>
+                    <select id="cliRepoSelect" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:4px 8px;border-radius:4px;font-size:11px;flex:1;">
+                        <option value="">Default</option>
+                        <option value="/Users/macmini/Vaults/openclaw">openclaw</option>
+                        <option value="/Users/macmini/bitcoinml">bitcoinml</option>
+                        <option value="/Users/macmini/energyscout">energyscout</option>
+                        <option value="/Users/macmini/realestate">realestate</option>
+                    </select>
+                </div>
+                <div class="cli-output" id="cliOutput">Loading...</div>
+                <div class="cli-input-row">
+                    <input type="text" id="cliInput" placeholder="Type command..." onkeypress="if(event.key==='Enter')sendCliCommand()">
+                    <button onclick="sendCliCommand()">Send</button>
                 </div>
             </div>
             <div class="chat-panel">
@@ -611,10 +1153,36 @@
                         <option value="energyscout">EnergyScout</option>
                         <option value="realestate">Real Estate</option>
                     </select>
+                    <button onclick="clearChat()" style="margin-left:auto;background:#30363d;border:none;color:#8b949e;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:11px;">Clear</button>
                 </div>
-                <div class="chat-messages" id="chatMessages"></div>
+                <div style="display:flex;flex:1;overflow:hidden;">
+                    <!-- Chat Sidebar -->
+                    <div class="chat-sidebar" id="chatSidebar">
+                        <div class="chat-sidebar-header">Sessions</div>
+                        <div class="chat-session active" data-bot="assistant" onclick="switchChatBot('assistant')">
+                            <span class="session-icon" style="background:#f78166;">A</span>
+                            <span class="session-name">Assistant</span>
+                        </div>
+                        <div class="chat-session" data-bot="bitcoinml" onclick="switchChatBot('bitcoinml')">
+                            <span class="session-icon" style="background:#f7931a;">B</span>
+                            <span class="session-name">BML CEO</span>
+                        </div>
+                        <div class="chat-session" data-bot="energyscout" onclick="switchChatBot('energyscout')">
+                            <span class="session-icon" style="background:#3fb950;">E</span>
+                            <span class="session-name">EnergyScout</span>
+                        </div>
+                        <div class="chat-session" data-bot="realestate" onclick="switchChatBot('realestate')">
+                            <span class="session-icon" style="background:#58a6ff;">R</span>
+                            <span class="session-name">Real Estate</span>
+                        </div>
+                    </div>
+                    <!-- Chat Messages -->
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chatMessages"></div>
+                    </div>
+                </div>
                 <div class="chat-input-row">
-                    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter')sendChat()">
+                    <input type="text" id="chatInput" placeholder="Type a message... (/clear to reset, /cli for output)" onkeypress="if(event.key==='Enter')sendChat()">
                     <button onclick="sendChat()">Send</button>
                 </div>
             </div>
@@ -622,7 +1190,22 @@
     </div>
 
     <script>
-        const EXECUTOR_URL = 'http://localhost:8765';
+        // Detect if running remotely or on mobile
+        const isLocal = ['localhost', '127.0.0.1', ''].includes(location.hostname) || location.protocol === 'file:';
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        // Executor URL - check localStorage for custom URL (for Vercel/remote deployment)
+        const savedExecutorUrl = localStorage.getItem('executor-url');
+        const executorHost = (location.hostname && location.hostname !== '') ? location.hostname : 'localhost';
+        let EXECUTOR_URL = savedExecutorUrl || (isLocal ? 'http://localhost:8765' : `http://${executorHost}:8765`);
+
+        function setExecutorUrl() {
+            const url = prompt('Enter executor URL (e.g., https://your-tunnel.ngrok.io):', EXECUTOR_URL);
+            if (url) {
+                localStorage.setItem('executor-url', url);
+                EXECUTOR_URL = url;
+                location.reload();
+            }
+        }
         const AGENTS = [
             { id: 'bml', name: 'BML CEO', color: '#f7931a' },
             { id: 'ene', name: 'EnergyScout', color: '#3fb950' },
@@ -634,17 +1217,132 @@
 
         let tasks = JSON.parse(localStorage.getItem('dashboard-tasks') || '[]');
         let cronJobs = [];
+        let cronJobStatus = {};  // Track completed/failed jobs from cron.log
         let currentView = 'kanban';
         let matrixFilter = 'q1';
         let draggedId = null;
         let executorOnline = false;
+        let agentFilter = localStorage.getItem('agent-filter') || 'all';
+        let quadrantFilter = localStorage.getItem('quadrant-filter') || 'all';
+
+        // Quadrant filter function - filters by Eisenhower Matrix
+        function filterByQuadrant(quadrant) {
+            quadrantFilter = quadrant;
+            localStorage.setItem('quadrant-filter', quadrant);
+
+            // Update filter buttons
+            document.querySelectorAll('.matrix-filter').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.quadrant === quadrant);
+            });
+
+            renderAll();
+        }
+
+        // Agent filter function - filters kanban + switches chat bot
+        function filterByAgent(agent) {
+            agentFilter = agent;
+            localStorage.setItem('agent-filter', agent);
+
+            // Update filter buttons
+            document.querySelectorAll('.agent-filter').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.agent === agent);
+            });
+
+            // Switch chat to selected bot (if not 'all')
+            if (agent !== 'all') {
+                const chatBotMap = { bml: 'bitcoinml', ene: 'energyscout', rea: 'realestate', ana: 'assistant', ass: 'assistant' };
+                document.getElementById('chatBot').value = chatBotMap[agent] || 'assistant';
+                renderChat();
+            }
+
+            renderAll();
+        }
+
+        // Initialize filters on load
+        function initAgentFilter() {
+            const savedAgent = localStorage.getItem('agent-filter') || 'all';
+            const savedQuadrant = localStorage.getItem('quadrant-filter') || 'all';
+            agentFilter = savedAgent;
+            quadrantFilter = savedQuadrant;
+            document.querySelectorAll('.agent-filter').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.agent === savedAgent);
+            });
+            document.querySelectorAll('.matrix-filter').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.quadrant === savedQuadrant);
+            });
+        }
 
         async function init() {
+            initAgentFilter();
+            updateMainHeight();  // Set proper height for bottom panel
             await checkExecutor();
             await loadCronJobs();
+            autoMovePastCronJobs();  // Auto-create tasks from past cron jobs
+            await loadLinkedBots();
+            await loadAgentActivity();
+            await loadDailyBrief();
             renderAll();
             setInterval(checkExecutor, 10000);
             setInterval(pollTaskStatus, 15000);
+            setInterval(loadLinkedBots, 10000);  // Refresh linked bots every 10s
+            setInterval(loadAgentActivity, 5000);  // Refresh agent activity every 5s
+            setInterval(async () => {
+                await loadCronJobs();
+                autoMovePastCronJobs();
+                if (currentView === 'timeline') renderTimeline();
+            }, 60000);  // Refresh cron job status every minute
+        }
+
+        async function loadDailyBrief() {
+            // Auto-load today's status on startup
+            if (!executorOnline) return;
+
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/daily-brief`);
+                const brief = await resp.json();
+
+                // Add assistant outbox to chat
+                if (brief.bots?.assistant?.outbox) {
+                    chatHistory.push({
+                        bot: 'assistant',
+                        type: 'bot',
+                        content: '📋 **Daily Brief**\n\n' + brief.bots.assistant.outbox,
+                        timestamp: new Date().toISOString()
+                    });
+                }
+
+                // Add backlog summary
+                if (brief.backlog?.length > 0) {
+                    chatHistory.push({
+                        bot: 'assistant',
+                        type: 'bot',
+                        content: '📝 **Top TODOs:**\n' + brief.backlog.slice(0, 5).join('\n'),
+                        timestamp: new Date().toISOString()
+                    });
+                }
+
+                // Add bot status
+                const botStatus = Object.entries(brief.bots || {})
+                    .map(([name, data]) => `${name}: ${data.tmux ? '🟢' : '⚫'}`)
+                    .join(' | ');
+                if (botStatus) {
+                    chatHistory.push({
+                        bot: 'assistant',
+                        type: 'bot',
+                        content: '🤖 **Bot Status:** ' + botStatus,
+                        timestamp: new Date().toISOString()
+                    });
+                }
+
+                localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+                document.getElementById('chatBot').value = 'assistant';
+                renderChat();
+
+                // Expand panel to show brief
+                if (panelCollapsed) togglePanel();
+            } catch (e) {
+                console.log('Could not load daily brief:', e);
+            }
         }
 
         async function checkExecutor() {
@@ -664,7 +1362,79 @@
                 const resp = await fetch(`${EXECUTOR_URL}/jobs`);
                 const data = await resp.json();
                 cronJobs = data.jobs || [];
-            } catch { cronJobs = []; }
+
+                // Also load job completion status
+                const statusResp = await fetch(`${EXECUTOR_URL}/job-status`);
+                const statusData = await statusResp.json();
+                cronJobStatus = statusData.jobs || {};
+            } catch { cronJobs = []; cronJobStatus = {}; }
+        }
+
+        // Auto-move past cron jobs to review section
+        function autoMovePastCronJobs() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const today = now.toISOString().split('T')[0];
+
+            const botToAgent = {
+                'assistant': 'ass', 'bitcoinml': 'bml', 'energyscout': 'ene',
+                'realestate': 'rea', 'analytics': 'ana', 'system': 'ass'
+            };
+
+            cronJobs.forEach(job => {
+                if (!job.schedule || !job.schedule.includes(':')) return;
+                const [h] = job.schedule.split(':');
+                const jobHour = parseInt(h);
+
+                // Only process jobs that should have run already today
+                if (jobHour >= currentHour) return;
+
+                // Create a unique ID for today's run of this job
+                const cronTaskId = `cron-${job.name}-${today}`;
+
+                // Check if we already have a task for this job today
+                if (tasks.find(t => t.id === cronTaskId)) return;
+
+                // Get status from cron log
+                const jobStatus = cronJobStatus[job.name];
+                let status = 'ai-review';
+                let notes = '';
+
+                if (jobStatus?.completed) {
+                    notes = `✓ Cron job completed at ${jobStatus.time}`;
+                } else if (jobStatus?.failed) {
+                    notes = `✗ Cron job FAILED at ${jobStatus.time}`;
+                    status = 'blocked';  // Failed jobs need attention
+                } else {
+                    notes = `? Cron job did not run (no log entry found)`;
+                    status = 'blocked';  // Missing jobs need attention
+                }
+
+                // Create task in review/blocked status
+                const newTask = {
+                    id: cronTaskId,
+                    text: `[CRON] ${job.name}`,
+                    agent: botToAgent[job.bot] || 'ass',
+                    quadrant: 'q3',  // Urgent but delegated (automated)
+                    status: status,
+                    notes: notes,
+                    scheduled: true,
+                    scheduledSlot: 0,
+                    scheduledAgent: botToAgent[job.bot] || 'ass',
+                    created: new Date().toISOString(),
+                    cronJob: true,
+                    cronJobName: job.name,
+                    workLog: [{
+                        timestamp: new Date().toLocaleString(),
+                        content: notes,
+                        type: jobStatus?.completed ? 'completed' : 'warning'
+                    }]
+                };
+
+                tasks.push(newTask);
+            });
+
+            save();
         }
 
         async function pollTaskStatus() {
@@ -712,9 +1482,35 @@
             const quadrantOrder = { q1: 0, q2: 1, q3: 2, q4: 3 };
             ['todo', 'progress', 'blocked', 'done'].forEach(status => {
                 const container = document.getElementById(`k-${status}`);
-                let statusTasks = tasks.filter(t => t.status === status || (status === 'progress' && t.status === 'executing'));
+                let statusTasks = tasks.filter(t => {
+                    if (status === 'progress') return t.status === 'progress' || t.status === 'executing';
+                    if (status === 'blocked') return t.status === 'blocked' || t.status === 'ai-review' || t.status === 'human-review';
+                    return t.status === status;
+                });
+
+                // Filter by quadrant (Eisenhower Matrix)
+                if (quadrantFilter !== 'all') {
+                    statusTasks = statusTasks.filter(t => t.quadrant === quadrantFilter);
+                }
+
+                // Filter by agent if not 'all'
+                if (agentFilter !== 'all') {
+                    statusTasks = statusTasks.filter(t => t.agent === agentFilter);
+                }
+
                 // Sort by quadrant priority (Q1 first, then Q2, Q3, Q4)
-                statusTasks.sort((a, b) => (quadrantOrder[a.quadrant] || 9) - (quadrantOrder[b.quadrant] || 9));
+                // For "progress" column, put executing (running) tasks first
+                if (status === 'progress') {
+                    statusTasks.sort((a, b) => {
+                        // Executing tasks always come first
+                        if (a.status === 'executing' && b.status !== 'executing') return -1;
+                        if (b.status === 'executing' && a.status !== 'executing') return 1;
+                        // Then sort by quadrant
+                        return (quadrantOrder[a.quadrant] || 9) - (quadrantOrder[b.quadrant] || 9);
+                    });
+                } else {
+                    statusTasks.sort((a, b) => (quadrantOrder[a.quadrant] || 9) - (quadrantOrder[b.quadrant] || 9));
+                }
                 document.getElementById(`k-count-${status}`).textContent = statusTasks.length;
                 container.innerHTML = statusTasks.map(t => renderCard(t)).join('');
             });
@@ -732,13 +1528,18 @@
         }
 
         function renderReadyTasks() {
-            // Show tasks in "Doing" (progress) status that aren't scheduled
-            const readyTasks = tasks.filter(t => t.status === 'progress' && !t.scheduled);
+            // Show tasks in "Doing" (progress) OR "Backlog" (todo) that aren't scheduled
+            let readyTasks = tasks.filter(t => (t.status === 'progress' || t.status === 'todo') && !t.scheduled);
+
+            // Filter by agent if not 'all'
+            if (agentFilter !== 'all') {
+                readyTasks = readyTasks.filter(t => t.agent === agentFilter);
+            }
 
             if (readyTasks.length === 0) {
                 document.getElementById('readyTasks').innerHTML = `
                     <div class="sidebar-empty">
-                        No tasks in "Doing" column.<br><br>
+                        No tasks in Backlog or Doing${agentFilter !== 'all' ? ' for ' + agentFilter.toUpperCase() : ''}.<br><br>
                         Move tasks to Doing in Kanban view, then schedule them here.
                     </div>
                 `;
@@ -814,32 +1615,87 @@
                 const slot = document.querySelector(`.time-slot[data-agent="${agentId}"][data-slot="${slotIndex}"]`);
                 if (!slot) return;
 
-                // Determine status
+                // Determine status from actual cron results
                 let status = 'waiting';
-                if (jobHour < currentHour) status = 'done';
-                else if (jobHour === currentHour) status = 'running';
+                let statusNote = '';
+                const jobStatus = cronJobStatus[job.name];
+
+                if (jobHour < currentHour) {
+                    // Past job - check if it ran
+                    if (jobStatus?.completed) {
+                        status = 'done';
+                        statusNote = '✓ Completed';
+                    } else if (jobStatus?.failed) {
+                        status = 'stopped';
+                        statusNote = '✗ Failed';
+                    } else {
+                        status = 'review';
+                        statusNote = '? Not run';
+                    }
+                } else if (jobHour === currentHour) {
+                    status = 'running';
+                    statusNote = '● Running';
+                }
 
                 slot.innerHTML += `
-                    <div class="timeline-task ${status}" onclick="runCronJob('${job.name}')">
+                    <div class="timeline-task ${status}" onclick="runCronJob('${job.name}')" title="${statusNote}">
                         <div class="task-name">${job.name}</div>
-                        <div class="task-time">${job.schedule}</div>
+                        <div class="task-time">${job.schedule} ${statusNote}</div>
                     </div>
                 `;
             });
 
-            // Place scheduled tasks
-            tasks.filter(t => t.scheduled).forEach(t => {
+            // Place scheduled tasks (filter by agent if not 'all')
+            tasks.filter(t => t.scheduled && (agentFilter === 'all' || t.agent === agentFilter)).forEach(t => {
                 const slot = document.querySelector(`.time-slot[data-agent="${t.scheduledAgent}"][data-slot="${t.scheduledSlot}"]`);
                 if (!slot) return;
 
                 let status = 'waiting';
                 if (t.status === 'executing') status = 'running';
                 else if (t.status === 'done') status = 'done';
-                else if (t.status === 'blocked') status = 'stopped';
+                else if (t.status === 'ai-review') status = 'review';
+                else if (t.status === 'human-review') status = 'human-review';
+
+                const playBtn = status !== 'running' && status !== 'done' ? `<button class="play-btn" onclick="event.stopPropagation();playTask('${t.id}')" title="Execute">▶ Run</button>` : '';
+                const stopBtn = status === 'running' ? `<button class="stop-btn" onclick="event.stopPropagation();stopTask('${t.id}')" title="Stop">⏹ Stop</button>` : '';
+                const aiReviewBtn = status === 'running' ? `<button class="review-btn" onclick="event.stopPropagation();aiReviewTask('${t.id}')" title="Send to AI Review">AI Review</button>` : '';
+                const humanBtn = status === 'review' ? `<button class="human-btn" onclick="event.stopPropagation();humanReviewTask('${t.id}')" title="Send to Human Review">Human Review</button>` : '';
+                const doneBtn = (status === 'human-review' || status === 'review') ? `<button class="done-btn" onclick="event.stopPropagation();completeTask('${t.id}')" title="Approve & Archive">✓ Done</button>` : '';
+
+                const progress = status === 'running' ? getTaskProgress(t) : null;
+                const progressHtml = progress ? `
+                    <div class="task-progress">
+                        <div class="progress-bar"><div class="progress-fill" style="width:${progress.percent}%"></div></div>
+                        <div class="progress-text"><span>${progress.percent}%</span><span>${progress.eta}</span></div>
+                    </div>` : '';
 
                 slot.innerHTML += `
                     <div class="timeline-task ${status}" onclick="openDetailModal('${t.id}')" draggable="true" data-id="${t.id}">
                         <div class="task-name">${t.text.substring(0, 30)}</div>
+                        ${progressHtml}
+                        <div class="task-controls">${playBtn}${stopBtn}${aiReviewBtn}${humanBtn}${doneBtn}</div>
+                    </div>
+                `;
+            });
+
+            // Place executing tasks in "Now" slot (even if not scheduled, filter by agent)
+            tasks.filter(t => t.status === 'executing' && !t.scheduled && (agentFilter === 'all' || t.agent === agentFilter)).forEach(t => {
+                const agentId = t.agent || 'ass';
+                const slot = document.querySelector(`.time-slot[data-agent="${agentId}"][data-slot="0"]`);
+                if (!slot) return;
+
+                const progress = getTaskProgress(t);
+                slot.innerHTML += `
+                    <div class="timeline-task running" onclick="openDetailModal('${t.id}')" data-id="${t.id}">
+                        <div class="task-name">${t.text.substring(0, 30)}</div>
+                        <div class="task-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width:${progress.percent}%"></div></div>
+                            <div class="progress-text"><span>${progress.percent}%</span><span>${progress.eta}</span></div>
+                        </div>
+                        <div class="task-controls">
+                            <button class="stop-btn" onclick="event.stopPropagation();stopTask('${t.id}')" title="Stop">⏹ Stop</button>
+                            <button class="review-btn" onclick="event.stopPropagation();aiReviewTask('${t.id}')" title="Send to AI Review">AI Review</button>
+                        </div>
                     </div>
                 `;
             });
@@ -852,8 +1708,53 @@
         function renderCard(t, mini = false) {
             const executingClass = t.status === 'executing' ? 'executing' : '';
             const completedClass = t.status === 'done' ? 'completed' : '';
+
+            // Enhanced execution status for running tasks
+            let executionDetails = '';
+            if (t.status === 'executing') {
+                const agentActivity = agentActivityCache[t.agent] || {};
+                const statusText = agentActivity.status || 'working';
+                const statusEmoji = { thinking: '💭', working: '⚡', error: '❌', completed: '✅', idle: '💤' }[statusText] || '⚡';
+
+                executionDetails = `
+                    <div class="execution-status">
+                        <span>${statusEmoji} ${statusText.charAt(0).toUpperCase() + statusText.slice(1)}</span>
+                        <span style="color:#8b949e;margin-left:8px;">Started ${t.executionStart || 'recently'}</span>
+                    </div>
+                    <div style="margin-top:6px;" onclick="event.stopPropagation()">
+                        <button class="check-btn" onclick="crossAgentCheck('${t.id}', '${t.agent}')">👁 Check Status</button>
+                        <button class="view-cli-btn" onclick="showCli('${t.agent}')">📺 View CLI</button>
+                    </div>
+                `;
+            }
+
+            // Quick actions for "Doing" tasks (progress status)
+            let doingActions = '';
+            if (t.status === 'progress') {
+                if (t.schedule && t.schedule.time) {
+                    const days = t.schedule.days?.length ? t.schedule.days.map(d => d.substring(0,3)).join(', ') : 'Daily';
+                    doingActions = `
+                        <div class="doing-actions scheduled-info">
+                            <span>📅 Scheduled: ${t.schedule.time} (${days})</span>
+                        </div>
+                    `;
+                } else {
+                    doingActions = `
+                        <div class="doing-actions" onclick="event.stopPropagation()">
+                            <button class="execute-btn" onclick="quickExecute('${t.id}')" title="Execute now">▶ Run</button>
+                            <button class="schedule-btn" onclick="goToTimelineWithTask('${t.id}')" title="Schedule on Timeline">📅 Schedule</button>
+                        </div>
+                    `;
+                }
+            }
+
+            // Build tooltip text with notes and work log for hover
+            const tooltipNotes = t.notes ? t.notes.substring(0, 200) : '';
+            const lastLog = t.workLog?.length ? t.workLog[t.workLog.length - 1].content.substring(0, 100) : '';
+            const tooltipText = [tooltipNotes, lastLog ? 'Last: ' + lastLog : ''].filter(Boolean).join(' | ') || 'Click for details';
+
             return `
-                <div class="task-card ${t.agent} ${executingClass} ${completedClass}" draggable="true" data-id="${t.id}" onclick="openDetailModal('${t.id}')">
+                <div class="task-card ${t.agent} ${executingClass} ${completedClass}" draggable="true" data-id="${t.id}" onclick="openDetailModal('${t.id}')" title="${tooltipText.replace(/"/g, '&quot;')}">
                     <div class="task-actions" onclick="event.stopPropagation()">
                         ${executorOnline ? `<button class="run" onclick="quickExecute('${t.id}')" title="Execute">▶</button>` : ''}
                         <button onclick="toggleComplete('${t.id}')" title="Toggle complete">✓</button>
@@ -867,8 +1768,72 @@
                     </div>
                     <div class="task-text">${t.text}</div>
                     ${t.notes ? `<div class="task-notes">${t.notes.substring(0, 80)}</div>` : ''}
+                    ${doingActions}
+                    ${executionDetails}
+                    ${renderReviewActions(t)}
                 </div>
             `;
+        }
+
+        // Render review-specific actions for ai-review, human-review, and blocked tasks
+        function renderReviewActions(t) {
+            if (t.status !== 'ai-review' && t.status !== 'human-review' && t.status !== 'blocked') return '';
+
+            const statusLabel = t.status === 'ai-review' ? '🤖 AI Review' :
+                               t.status === 'human-review' ? '👤 Human Review' : '⚠️ Blocked';
+            const isComplete = t.workLog?.some(w => w.type === 'completed');
+            const statusBadge = isComplete ?
+                '<span style="color:#3fb950;">✓ Complete</span>' :
+                '<span style="color:#f0883e;">⏳ Pending</span>';
+
+            return `
+                <div class="review-section" style="margin-top:8px;padding-top:8px;border-top:1px solid #30363d;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                        <span style="font-size:11px;color:#8b949e;">${statusLabel}</span>
+                        ${statusBadge}
+                    </div>
+                    <div class="review-actions" onclick="event.stopPropagation()" style="display:flex;gap:4px;flex-wrap:wrap;">
+                        <button onclick="moveTaskTo('${t.id}','todo')" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:10px;">📋 Backlog</button>
+                        <button onclick="moveTaskTo('${t.id}','progress')" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:10px;">▶ Run Again</button>
+                        <button onclick="completeTask('${t.id}')" style="background:#238636;border:none;color:#fff;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:10px;">✓ Done</button>
+                        <button onclick="addQuickNote('${t.id}')" style="background:#21262d;border:1px solid #30363d;color:#e6edf3;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:10px;">📝 Note</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Move task to a specific status
+        function moveTaskTo(id, newStatus) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            task.status = newStatus;
+            task.scheduled = false;
+            addWorkLog(id, 'Moved to ' + newStatus, 'move');
+            save(); renderAll();
+        }
+
+        // Add a quick note via prompt
+        function addQuickNote(id) {
+            const note = prompt('Add note:');
+            if (!note) return;
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            task.notes = (task.notes ? task.notes + '\n' : '') + note;
+            addWorkLog(id, 'Note: ' + note, 'note');
+            save(); renderAll();
+        }
+
+        // Go to timeline with a specific task selected
+        function goToTimelineWithTask(taskId) {
+            switchView('timeline');
+            // Highlight the task in ready sidebar
+            setTimeout(() => {
+                const taskEl = document.querySelector(`.ready-task[data-id="${taskId}"]`);
+                if (taskEl) {
+                    taskEl.style.background = '#238636';
+                    setTimeout(() => taskEl.style.background = '', 2000);
+                }
+            }, 100);
         }
 
         function setupDragDrop() {
@@ -931,8 +1896,13 @@
             }
 
             task.status = 'executing';
+            task.startedAt = new Date().toISOString();
+            task.estimatedMinutes = task.estimatedMinutes || 5; // Default 5 min
             addWorkLog(task.id, `Started execution via ${task.agent}`, 'started');
             save(); renderAll();
+
+            // Start progress update timer
+            startProgressTimer(task.id);
 
             try {
                 const resp = await fetch(`${EXECUTOR_URL}/execute`, {
@@ -950,6 +1920,149 @@
                 addWorkLog(task.id, 'Execution failed: ' + e.message, 'error');
                 save(); renderAll();
             }
+        }
+
+        const progressTimers = {};
+
+        function startProgressTimer(taskId) {
+            if (progressTimers[taskId]) clearInterval(progressTimers[taskId]);
+            progressTimers[taskId] = setInterval(() => {
+                const task = tasks.find(t => t.id === taskId);
+                if (!task || task.status !== 'executing') {
+                    clearInterval(progressTimers[taskId]);
+                    delete progressTimers[taskId];
+                    return;
+                }
+                // Just re-render to update progress
+                if (currentView === 'timeline') renderTimeline();
+            }, 5000); // Update every 5 seconds
+        }
+
+        function getTaskProgress(task) {
+            if (!task.startedAt) return { percent: 0, eta: 'Starting...' };
+
+            const started = new Date(task.startedAt).getTime();
+            const now = Date.now();
+            const elapsed = now - started;
+            const estimatedMs = (task.estimatedMinutes || 5) * 60 * 1000;
+
+            let percent = Math.min(95, Math.round((elapsed / estimatedMs) * 100));
+            const remaining = Math.max(0, estimatedMs - elapsed);
+
+            let eta;
+            if (remaining <= 0) {
+                eta = 'Almost done...';
+                percent = 95;
+            } else if (remaining < 60000) {
+                eta = `${Math.round(remaining/1000)}s left`;
+            } else {
+                eta = `${Math.round(remaining/60000)}m left`;
+            }
+
+            return { percent, eta };
+        }
+
+        function playTask(id) {
+            quickExecute(id);
+        }
+
+        function stopTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            task.status = 'todo';
+            addWorkLog(task.id, 'Task stopped by user', 'stopped');
+            save(); renderAll();
+        }
+
+        function aiReviewTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            task.status = 'ai-review';
+            addWorkLog(task.id, 'Sent to AI for review', 'ai-review');
+            save(); renderAll();
+        }
+
+        async function humanReviewTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            task.status = 'human-review';
+            addWorkLog(task.id, 'AI approved, awaiting human review', 'human-review');
+
+            // Create review file in Obsidian for human review
+            if (executorOnline) {
+                try {
+                    const date = new Date().toISOString().split('T')[0];
+                    const filename = `agents/memory/assistant/reviews/${date}-${task.id}.md`;
+                    const agentMap = { bml: 'bitcoinml', ene: 'energyscout', rea: 'realestate', ana: 'analytics', ass: 'assistant' };
+                    const agentName = agentMap[task.agent] || task.agent;
+
+                    const content = `# Review: ${task.text}
+
+## Task Details
+- **Agent:** ${agentName}
+- **Status:** Awaiting Human Review
+- **Started:** ${task.startedAt || 'N/A'}
+- **Duration:** ${task.startedAt ? Math.round((Date.now() - new Date(task.startedAt).getTime()) / 60000) + ' minutes' : 'N/A'}
+
+## AI Summary
+The task has been processed by the ${agentName} agent. Based on the work log and outputs, the following was accomplished:
+
+${task.workLog?.map(w => '- ' + w.message).join('\n') || '- No detailed log available'}
+
+## Objective Assessment
+**Did it achieve the intended objective?**
+- Review the outbox at: [[bridge/bots/${agentName}/outbox]]
+- Check agent memory at: [[agents/memory/${agentName === 'assistant' ? 'assistant' : agentName.includes('ceo') ? 'ceo' : agentName + '-ceo'}]]
+
+## Links to Work
+- Agent Outbox: \`bridge/bots/${agentName}/outbox.md\`
+- Agent Inbox: \`bridge/bots/${agentName}/inbox.md\`
+- Task ID: ${task.id}
+
+## Notes
+${task.notes || 'No notes'}
+
+## Human Decision
+- [ ] Approve and archive
+- [ ] Request changes
+- [ ] Reject
+
+---
+*Generated: ${new Date().toISOString()}*
+`;
+                    await fetch(`${EXECUTOR_URL}/save-to-vault`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filename, content })
+                    });
+                    task.reviewFile = filename;
+                } catch (e) { console.error('Review file failed:', e); }
+            }
+
+            save(); renderAll();
+        }
+
+        async function completeTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            task.status = 'done';
+            task.completedAt = new Date().toISOString();
+            addWorkLog(task.id, 'Human approved - archived', 'completed');
+
+            // Archive to Obsidian vault for training data
+            if (executorOnline) {
+                try {
+                    const filename = `agents/memory/assistant/completed/${task.id}.md`;
+                    const content = `# ${task.text}\n\n**Agent:** ${task.agent}\n**Completed:** ${task.completedAt}\n\n## Work Log\n${task.workLog?.map(w => `- ${w.timestamp}: ${w.message}`).join('\n') || 'No log'}\n\n## Notes\n${task.notes || 'None'}`;
+                    await fetch(`${EXECUTOR_URL}/save-to-vault`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ filename, content })
+                    });
+                } catch (e) { console.error('Archive failed:', e); }
+            }
+
+            save(); renderAll();
         }
 
         async function runCronJob(jobName) {
@@ -976,17 +2089,55 @@
             const task = tasks.find(t => t.id === id);
             if (!task) return;
 
+            // Select agent in chat bar
+            const agentMap = { bml: 'bitcoinml', ene: 'energyscout', rea: 'realestate', ana: 'assistant', ass: 'assistant' };
+            const chatBot = agentMap[task.agent] || 'assistant';
+            document.getElementById('chatBot').value = chatBot;
+            updateChatSidebar();
+
+            // Post task info to chat
+            const taskInfo = `📋 **Task:** ${task.text}
+**Status:** ${task.status.toUpperCase()} | **Agent:** ${task.agent.toUpperCase()} | **Priority:** Q${task.quadrant?.charAt(1) || '2'}
+
+💬 Add any notes or updates for this task:`;
+
+            chatHistory.push({
+                bot: chatBot,
+                type: 'bot',
+                content: taskInfo,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+            renderChat();
+
+            // Expand bottom panel if collapsed
+            if (panelCollapsed) togglePanel();
+
+            // Set modal values
             document.getElementById('detail-title').textContent = task.text;
-            document.getElementById('detail-status').textContent = task.status.toUpperCase();
-            document.getElementById('detail-status').className = 'detail-status ' + task.status;
-            document.getElementById('detail-agent').innerHTML = `<span class="badge agent">${task.agent.toUpperCase()}</span>`;
+            document.getElementById('detail-status-select').value = task.status === 'executing' ? 'progress' : task.status;
+            document.getElementById('detail-agent-select').value = task.agent;
+            document.getElementById('detail-quadrant-select').value = task.quadrant || 'q2';
             document.getElementById('detail-text').textContent = task.text;
 
-            // Artifacts
+            // Tags
+            const tags = task.tags || [];
+            const tagsHTML = `
+                <div style="margin-bottom:8px;">
+                    ${tags.map(t => `<span style="background:#30363d;padding:3px 8px;border-radius:4px;font-size:11px;margin-right:4px;">#${t}</span>`).join('')}
+                    <button onclick="addTagPrompt('${task.id}')" style="background:transparent;border:1px dashed #30363d;color:#8b949e;padding:3px 8px;border-radius:4px;cursor:pointer;font-size:11px;">+ tag</button>
+                </div>
+            `;
+
+            // Artifacts with corrected Obsidian link
             const artifacts = task.artifacts || [];
-            document.getElementById('detail-artifacts').innerHTML = artifacts.length
-                ? artifacts.map(a => `<a href="${a.url}" target="_blank" class="artifact-link">📎 ${a.name}</a>`).join('')
-                : '<span style="color:#8b949e;">No artifacts yet</span>';
+            const obsidianFile = `bridge/kanban/tasks/${task.id}`;
+            const obsidianPath = `obsidian://open?vault=openclaw&file=${encodeURIComponent(obsidianFile)}`;
+            document.getElementById('detail-artifacts').innerHTML = tagsHTML + `
+                <a href="${obsidianPath}" class="artifact-link">📓 Open in Obsidian</a>
+                <button onclick="saveToObsidian('${task.id}')" class="artifact-link" style="cursor:pointer;border:none;">💾 Save to Vault</button>
+                ${artifacts.map(a => `<a href="${a.url}" target="_blank" class="artifact-link">📎 ${a.name}</a>`).join('')}
+            `;
 
             // Work log
             const workLog = task.workLog || [];
@@ -1002,6 +2153,141 @@
 
             document.getElementById('detailModal').classList.add('show');
             document.getElementById('detailModal').dataset.taskId = id;
+
+            // Focus chat input for quick note entry
+            setTimeout(() => document.getElementById('chatInput').focus(), 100);
+        }
+
+        // Quick update task from detail modal
+        function quickUpdateTask(field, value) {
+            const taskId = document.getElementById('detailModal').dataset.taskId;
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            task[field] = value;
+            addWorkLog(taskId, `Changed ${field} to ${value}`, 'update');
+            save();
+            renderAll();
+        }
+
+        // Move task back to backlog
+        function moveToBacklog() {
+            const taskId = document.getElementById('detailModal').dataset.taskId;
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            task.status = 'todo';
+            task.scheduled = false;
+            delete task.startedAt;
+            addWorkLog(taskId, 'Moved back to Backlog', 'backlog');
+            save();
+            closeDetailModal();
+            renderAll();
+        }
+
+        // Delete task from detail modal
+        function deleteTaskFromDetail() {
+            const taskId = document.getElementById('detailModal').dataset.taskId;
+            if (confirm('Delete this task permanently?')) {
+                tasks = tasks.filter(t => t.id !== taskId);
+                save();
+                closeDetailModal();
+                renderAll();
+            }
+        }
+
+        // Archive task (move to done with archived tag)
+        function archiveTask() {
+            const taskId = document.getElementById('detailModal').dataset.taskId;
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+
+            task.status = 'done';
+            if (!task.tags) task.tags = [];
+            task.tags.push('archived');
+            addWorkLog(taskId, 'Task archived', 'archive');
+            save();
+            closeDetailModal();
+            renderAll();
+        }
+
+        function chatAboutTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            closeDetailModal();
+            document.getElementById('chatInput').value = `About task "${task.text}": `;
+            document.getElementById('chatInput').focus();
+        }
+
+        function addTagPrompt(id) {
+            const tag = prompt('Enter tag name:');
+            if (!tag) return;
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+            if (!task.tags) task.tags = [];
+            task.tags.push(tag.toLowerCase().replace(/[^a-z0-9-]/g, ''));
+            addWorkLog(id, `Added tag: #${tag}`, 'tag');
+            save();
+            openDetailModal(id);
+        }
+
+        async function saveToObsidian(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+
+            // Generate markdown
+            const md = `---
+id: ${task.id}
+agent: ${task.agent}
+status: ${task.status}
+quadrant: ${task.quadrant}
+tags: [${(task.tags || []).join(', ')}]
+created: ${task.created || new Date().toISOString()}
+updated: ${new Date().toISOString()}
+---
+
+# ${task.text}
+
+## Status
+**${task.status.toUpperCase()}** | Agent: ${task.agent.toUpperCase()} | Priority: Q${task.quadrant.charAt(1)}
+
+## Notes
+${task.notes || 'No notes yet.'}
+
+## Work Log
+${(task.workLog || []).map(log => `- **${log.timestamp}** [${log.type || 'note'}]: ${log.content}`).join('\n') || 'No work logged.'}
+
+## Artifacts
+${(task.artifacts || []).map(a => `- [${a.name}](${a.url})`).join('\n') || 'No artifacts.'}
+`;
+
+            // Save via executor's dedicated endpoint
+            if (executorOnline) {
+                try {
+                    const resp = await fetch(`${EXECUTOR_URL}/save-to-vault`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            filename: `bridge/kanban/tasks/${task.id}.md`,
+                            content: md
+                        })
+                    });
+                    const data = await resp.json();
+                    if (data.success) {
+                        addWorkLog(id, 'Saved to Obsidian vault', 'save');
+                        alert('Task saved to Obsidian!');
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                } catch (e) {
+                    alert('Error saving: ' + e.message);
+                }
+            } else {
+                // Copy to clipboard as fallback
+                navigator.clipboard.writeText(md);
+                alert('Markdown copied to clipboard. Paste into Obsidian.');
+            }
+            save();
         }
 
         function closeDetailModal() {
@@ -1061,6 +2347,23 @@
             document.getElementById('delete-btn').style.display = 'block';
             document.getElementById('run-btn').style.display = executorOnline ? 'block' : 'none';
 
+            // Load recurring settings
+            const isRecurring = task.recurring || false;
+            document.getElementById('edit-recurring').checked = isRecurring;
+            document.getElementById('schedule-options').style.display = isRecurring ? 'block' : 'none';
+            if (task.schedule) {
+                document.getElementById('edit-schedule-time').value = task.schedule.time || '09:00';
+                document.getElementById('edit-schedule-timeout').value = task.schedule.timeout || 300;
+                // Reset day checkboxes
+                document.querySelectorAll('input[name="schedule-day"]').forEach(cb => {
+                    cb.checked = task.schedule.days?.includes(cb.value) || false;
+                });
+            } else {
+                document.getElementById('edit-schedule-time').value = '09:00';
+                document.getElementById('edit-schedule-timeout').value = 300;
+                document.querySelectorAll('input[name="schedule-day"]').forEach(cb => cb.checked = false);
+            }
+
             // Load outbox preview
             if (executorOnline) {
                 try {
@@ -1086,28 +2389,102 @@
             if (id) { await quickExecute(id); closeModal(); }
         }
 
-        function saveTask() {
+        function toggleScheduleOptions() {
+            const enabled = document.getElementById('edit-recurring').checked;
+            document.getElementById('schedule-options').style.display = enabled ? 'block' : 'none';
+        }
+
+        async function saveCronJob(task) {
+            const time = document.getElementById('edit-schedule-time').value || '09:00';
+            const timeout = parseInt(document.getElementById('edit-schedule-timeout').value) || 300;
+            const dayCheckboxes = document.querySelectorAll('input[name="schedule-day"]:checked');
+            const days = Array.from(dayCheckboxes).map(cb => cb.value);
+
+            const agentMap = { bml: 'bitcoinml', ene: 'energyscout', rea: 'realestate', ana: 'analytics', ass: 'assistant' };
+            const job = {
+                name: `task-${task.id}`,
+                schedule: time,
+                bot: agentMap[task.agent] || 'assistant',
+                description: task.text.substring(0, 80),
+                prompt: task.text + (task.notes ? `\n\nNotes: ${task.notes}` : ''),
+                timeout: timeout
+            };
+
+            // Add weekday if specific days selected
+            if (days.length > 0 && days.length < 7) {
+                job.weekdays = days;
+            }
+
+            try {
+                await fetch(`${EXECUTOR_URL}/save-cron-job`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ job })
+                });
+                task.cronJob = job.name;
+                task.schedule = { time, days, timeout };
+            } catch (e) {
+                console.error('Failed to save cron job:', e);
+            }
+        }
+
+        async function deleteCronJob(jobName) {
+            try {
+                await fetch(`${EXECUTOR_URL}/delete-cron-job`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: jobName })
+                });
+            } catch (e) {
+                console.error('Failed to delete cron job:', e);
+            }
+        }
+
+        async function saveTask() {
             const id = document.getElementById('edit-id').value;
             const text = document.getElementById('edit-text').value.trim();
             if (!text) return;
 
+            const isRecurring = document.getElementById('edit-recurring').checked;
+            let task;
+
             if (id) {
-                const task = tasks.find(t => t.id === id);
+                task = tasks.find(t => t.id === id);
                 if (task) {
                     task.text = text;
                     task.agent = document.getElementById('edit-agent').value;
                     task.quadrant = document.getElementById('edit-quadrant').value;
                     task.status = document.getElementById('edit-status').value;
                     task.notes = document.getElementById('edit-notes').value;
+                    task.recurring = isRecurring;
+
+                    // Handle cron job
+                    if (isRecurring) {
+                        await saveCronJob(task);
+                    } else if (task.cronJob) {
+                        await deleteCronJob(task.cronJob);
+                        delete task.cronJob;
+                        delete task.schedule;
+                    }
                 }
             } else {
-                tasks.push({
+                task = {
                     id: 'task-' + Date.now(),
                     text, agent: document.getElementById('edit-agent').value,
                     quadrant: document.getElementById('edit-quadrant').value,
                     status: document.getElementById('edit-status').value,
-                    notes: '', scheduled: false
-                });
+                    notes: '', scheduled: false,
+                    recurring: isRecurring,
+                    created: new Date().toISOString(),
+                    tags: [],
+                    workLog: [],
+                    artifacts: []
+                };
+                tasks.push(task);
+
+                if (isRecurring) {
+                    await saveCronJob(task);
+                }
             }
             closeModal(); save(); renderAll();
         }
@@ -1155,7 +2532,15 @@
                             else if (ll.includes('email') || ll.includes('call')) q = 'q3';
                             else if (ll.includes('maybe') || ll.includes('optional')) q = 'q4';
 
-                            tasks.push({ id: 'gh-' + Date.now() + Math.random(), text, agent, quadrant: q, status, scheduled: false, notes: '' });
+                            tasks.push({
+                                id: 'gh-' + Date.now() + Math.random(),
+                                text, agent, quadrant: q, status,
+                                scheduled: false, notes: '',
+                                created: new Date().toISOString(),
+                                tags: [],
+                                workLog: [{ timestamp: new Date().toLocaleString(), content: 'Imported from GitHub', type: 'import' }],
+                                artifacts: []
+                            });
                         }
                     });
                 } catch {}
@@ -1168,28 +2553,468 @@
         let panelCollapsed = false;
         let chatHistory = JSON.parse(localStorage.getItem('chat-history') || '[]');
 
+        let panelExpanded = false;
+        let panelMaximized = false;
+        let cliCollapsed = false;
+
         function togglePanel() {
             panelCollapsed = !panelCollapsed;
-            document.getElementById('bottomPanel').classList.toggle('collapsed', panelCollapsed);
+            panelExpanded = false;
+            panelMaximized = false;
+            const panel = document.getElementById('bottomPanel');
+            panel.classList.remove('expanded', 'maximized');
+            panel.classList.toggle('collapsed', panelCollapsed);
             document.querySelector('.panel-toggle').textContent = panelCollapsed ? '▲ Status & Chat' : '▼ Status & Chat';
-            // Adjust main content height
-            document.querySelector('.main-content').style.height = panelCollapsed ? 'calc(100vh - 96px)' : 'calc(100vh - 256px)';
+            updateMainHeight();
+        }
+
+        function expandPanel() {
+            panelExpanded = !panelExpanded;
+            panelCollapsed = false;
+            panelMaximized = false;
+            const panel = document.getElementById('bottomPanel');
+            panel.classList.remove('collapsed', 'maximized');
+            panel.classList.toggle('expanded', panelExpanded);
+            document.getElementById('expandBtn').textContent = panelExpanded ? '⤡ Normal' : '⤢ Expand';
+            updateMainHeight();
+        }
+
+        function maximizePanel() {
+            panelMaximized = !panelMaximized;
+            panelCollapsed = false;
+            panelExpanded = false;
+            const panel = document.getElementById('bottomPanel');
+            panel.classList.remove('collapsed', 'expanded');
+            panel.classList.toggle('maximized', panelMaximized);
+            document.getElementById('maximizeBtn').textContent = panelMaximized ? '⤡ Restore' : '⛶ Max';
+            document.getElementById('expandBtn').textContent = '⤢ Expand';
+            updateMainHeight();
+        }
+
+        let cliFullscreen = false;
+        let cliPanelVisible = false;
+
+        function toggleCliPanel() {
+            const cliPanel = document.getElementById('cliPanel');
+            cliPanelVisible = !cliPanelVisible;
+            cliPanel.classList.toggle('show', cliPanelVisible);
+            document.getElementById('cliToggleBtn').style.background = cliPanelVisible ? '#238636' : '';
+            // If showing and collapsed, expand it
+            if (cliPanelVisible && cliCollapsed) {
+                cliCollapsed = false;
+                cliPanel.classList.remove('collapsed');
+                document.getElementById('cliCollapseBtn').textContent = '◀';
+            }
+        }
+
+        function toggleCliCollapse() {
+            const cliPanel = document.getElementById('cliPanel');
+            if (cliFullscreen) {
+                // Exit fullscreen first
+                cliFullscreen = false;
+                cliPanel.classList.remove('fullscreen');
+                document.getElementById('cliFullscreenBtn').textContent = '⛶';
+            }
+            cliCollapsed = !cliCollapsed;
+            cliPanel.classList.toggle('collapsed', cliCollapsed);
+            document.getElementById('cliCollapseBtn').textContent = cliCollapsed ? '▶' : '◀';
+        }
+
+        function toggleCliFullscreen() {
+            const cliPanel = document.getElementById('cliPanel');
+            if (cliCollapsed) {
+                // Exit collapsed first
+                cliCollapsed = false;
+                cliPanel.classList.remove('collapsed');
+                document.getElementById('cliCollapseBtn').textContent = '◀';
+            }
+            cliFullscreen = !cliFullscreen;
+            cliPanel.classList.toggle('fullscreen', cliFullscreen);
+            document.getElementById('cliFullscreenBtn').textContent = cliFullscreen ? '⤡' : '⛶';
+        }
+
+        function startCliResize(e) {
+            e.preventDefault();
+            const cliPanel = document.getElementById('cliPanel');
+            const startX = e.clientX;
+            const startWidth = cliPanel.offsetWidth;
+
+            // Remove transitions during resize
+            cliPanel.style.transition = 'none';
+
+            function onMove(e) {
+                const newWidth = Math.max(200, Math.min(window.innerWidth - 200, startWidth + (e.clientX - startX)));
+                cliPanel.style.width = newWidth + 'px';
+                cliPanel.classList.remove('collapsed', 'fullscreen');
+                cliCollapsed = false;
+                cliFullscreen = false;
+                document.getElementById('cliCollapseBtn').textContent = '◀';
+                document.getElementById('cliFullscreenBtn').textContent = '⛶';
+            }
+
+            function onUp() {
+                cliPanel.style.transition = '';
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('mouseup', onUp);
+            }
+
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onUp);
+        }
+
+        function updateMainHeight() {
+            const panel = document.getElementById('bottomPanel');
+            const height = panel.offsetHeight;
+            document.querySelector('.main-content').style.height = `calc(100vh - ${height + 56}px)`;
+        }
+
+        // Update height on window resize
+        window.addEventListener('resize', updateMainHeight);
+
+        function startResize(e) {
+            e.preventDefault();
+            const panel = document.getElementById('bottomPanel');
+            const startY = e.clientY;
+            const startHeight = panel.offsetHeight;
+
+            function onMove(e) {
+                const newHeight = Math.max(100, Math.min(window.innerHeight - 100, startHeight - (e.clientY - startY)));
+                panel.style.height = newHeight + 'px';
+                panel.classList.remove('collapsed', 'expanded', 'maximized');
+                panelExpanded = false;
+                panelMaximized = false;
+                document.getElementById('expandBtn').textContent = '⤢ Expand';
+                document.getElementById('maximizeBtn').textContent = '⛶ Max';
+                updateMainHeight();
+            }
+
+            function onUp() {
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('mouseup', onUp);
+            }
+
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onUp);
+        }
+
+        let linkedSessions = [];
+        let agentActivityCache = {};
+        let currentCliAgent = null;
+        let cliRefreshInterval = null;
+
+        // Load agent activity for enhanced Doing view
+        async function loadAgentActivity() {
+            if (!executorOnline) return;
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/agent-activity`);
+                const data = await resp.json();
+                agentActivityCache = data.agents || {};
+            } catch (e) {
+                console.log('Could not load agent activity:', e);
+            }
+        }
+
+        // Cross-agent status check
+        async function crossAgentCheck(taskId, targetAgent) {
+            if (!executorOnline) {
+                alert('Executor offline');
+                return;
+            }
+
+            // Find an idle agent to do the checking
+            const idleAgents = Object.entries(agentActivityCache)
+                .filter(([name, info]) => info.status === 'idle' && name !== targetAgent)
+                .map(([name]) => name);
+
+            const checker = idleAgents[0] || 'assistant';
+
+            // Show in chat immediately
+            chatHistory.push({
+                bot: checker,
+                type: 'bot',
+                content: `👁 Checking on ${targetAgent.toUpperCase()}...`,
+                timestamp: new Date().toISOString()
+            });
+            document.getElementById('chatBot').value = checker;
+            renderChat();
+
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/check-agent`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ checker, target: targetAgent, task_id: taskId })
+                });
+                const data = await resp.json();
+
+                if (data.success) {
+                    chatHistory.push({
+                        bot: checker,
+                        type: 'bot',
+                        content: `📊 **Status of ${targetAgent.toUpperCase()}:**\n${data.target_running ? '🟢 Running' : '⚫ Not running'}\n\n${data.summary.substring(0, 400)}`,
+                        timestamp: new Date().toISOString()
+                    });
+                }
+            } catch (e) {
+                chatHistory.push({
+                    bot: checker,
+                    type: 'bot',
+                    content: `❌ Error checking: ${e.message}`,
+                    timestamp: new Date().toISOString()
+                });
+            }
+
+            localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+            renderChat();
+        }
+
+        // CLI Panel Functions
+        function showCli(agent) {
+            currentCliAgent = agent;
+            document.getElementById('cliAgent').textContent = agent;
+            document.getElementById('cliPanel').classList.add('show');
+            cliPanelVisible = true;
+            document.getElementById('cliToggleBtn').style.background = '#238636';
+            refreshCli();
+
+            // Start auto-refresh every 2 seconds
+            if (cliRefreshInterval) clearInterval(cliRefreshInterval);
+            cliRefreshInterval = setInterval(refreshCli, 2000);
+
+            // Expand panel if collapsed
+            if (panelCollapsed) togglePanel();
+        }
+
+        function closeCli() {
+            document.getElementById('cliPanel').classList.remove('show');
+            cliPanelVisible = false;
+            document.getElementById('cliToggleBtn').style.background = '';
+            if (cliRefreshInterval) {
+                clearInterval(cliRefreshInterval);
+                cliRefreshInterval = null;
+            }
+        }
+
+        async function startClaudeSession() {
+            if (!currentCliAgent) {
+                alert('Select an agent first');
+                return;
+            }
+            const repo = document.getElementById('cliRepoSelect').value;
+            const btn = document.getElementById('startClaudeBtn');
+            btn.textContent = '...';
+            btn.disabled = true;
+
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/start-claude`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bot: currentCliAgent, repo: repo })
+                });
+                const data = await resp.json();
+
+                if (data.success) {
+                    btn.textContent = data.already_running ? '● Running' : '✓ Started';
+                    btn.style.background = '#238636';
+                    // Start refreshing CLI output
+                    refreshCli();
+                    if (!cliRefreshInterval) {
+                        cliRefreshInterval = setInterval(refreshCli, 2000);
+                    }
+                } else {
+                    btn.textContent = '✗ Error';
+                    btn.style.background = '#da3633';
+                    console.error('Start Claude failed:', data.error);
+                }
+            } catch (e) {
+                btn.textContent = '✗ Error';
+                btn.style.background = '#da3633';
+                console.error('Start Claude error:', e);
+            }
+
+            setTimeout(() => {
+                btn.textContent = '▶ Start';
+                btn.disabled = false;
+            }, 3000);
+        }
+
+        async function refreshCli() {
+            if (!currentCliAgent || !executorOnline) return;
+
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/tmux-output?bot=${currentCliAgent}&lines=30`);
+                const data = await resp.json();
+
+                let output = data.output || 'No output';
+                // Color-code certain patterns
+                output = output
+                    .replace(/(thinking|processing|waiting)/gi, '<span class="thinking">$1</span>')
+                    .replace(/(error|failed|exception)/gi, '<span class="error">$1</span>')
+                    .replace(/(done|completed|success)/gi, '<span class="success">$1</span>');
+
+                const cliOutput = document.getElementById('cliOutput');
+
+                // Only auto-scroll if user is already near the bottom
+                const wasAtBottom = cliOutput.scrollHeight - cliOutput.scrollTop - cliOutput.clientHeight < 50;
+
+                cliOutput.innerHTML = output;
+
+                // Auto-scroll to bottom only if user wasn't scrolled up
+                if (wasAtBottom) {
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
+                }
+            } catch (e) {
+                document.getElementById('cliOutput').textContent = 'Error loading CLI output: ' + e.message;
+            }
+        }
+
+        // Send command/text to tmux
+        async function sendCliCommand() {
+            if (!currentCliAgent || !executorOnline) return;
+            const input = document.getElementById('cliInput');
+            const cmd = input.value;
+            if (!cmd) return;
+
+            try {
+                // Send the command text then Enter
+                await fetch(`${EXECUTOR_URL}/tmux-send`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bot: currentCliAgent, keys: cmd })
+                });
+                await fetch(`${EXECUTOR_URL}/tmux-send`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bot: currentCliAgent, keys: 'Enter' })
+                });
+                input.value = '';
+                setTimeout(refreshCli, 500);
+            } catch (e) {
+                console.error('Failed to send command:', e);
+            }
+        }
+
+        // Send special keys (Shift+Tab, Enter, Escape, etc.)
+        async function sendCliKey(key) {
+            if (!currentCliAgent || !executorOnline) return;
+
+            try {
+                await fetch(`${EXECUTOR_URL}/tmux-send`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bot: currentCliAgent, keys: key })
+                });
+                setTimeout(refreshCli, 300);
+            } catch (e) {
+                console.error('Failed to send key:', e);
+            }
+        }
+
+        // Refresh CLI output in chat (chat mirrors CLI)
+        async function refreshCliInChat(bot) {
+            if (!executorOnline) return;
+            const agentMap = { assistant: 'assistant', bitcoinml: 'bitcoinml', energyscout: 'energyscout', realestate: 'realestate' };
+            const botName = agentMap[bot] || bot;
+
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/tmux-output?bot=${botName}&lines=40`);
+                const data = await resp.json();
+                if (data.output) {
+                    chatHistory.push({
+                        bot,
+                        type: 'bot',
+                        content: '```\n' + data.output.substring(0, 1500) + '\n```',
+                        timestamp: new Date().toISOString(),
+                        source: 'cli'
+                    });
+                    localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+                    renderChat();
+                }
+            } catch (e) {
+                console.error('Failed to get CLI output:', e);
+            }
+        }
+
+        async function loadLinkedBots() {
+            if (!executorOnline) return;
+
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/status`);
+                const data = await resp.json();
+                linkedSessions = data.sessions || [];
+                updateBotStatusIndicators(data.bots);
+            } catch (e) {
+                console.log('Error loading bots:', e);
+            }
+        }
+
+        function updateBotStatusIndicators(bots) {
+            // Update inline bot indicators
+            document.querySelectorAll('.bot-indicator').forEach(el => {
+                const botName = el.dataset.bot;
+                const botData = bots?.[botName];
+                el.classList.remove('online', 'busy');
+                if (botData?.tmux) {
+                    el.classList.add('online');
+                    // Check if busy (has executing tasks)
+                    const hasBusyTask = tasks.some(t => t.status === 'executing' &&
+                        (t.agent === botName ||
+                         (botName === 'assistant' && t.agent === 'ass') ||
+                         (botName === 'bitcoinml' && t.agent === 'bml') ||
+                         (botName === 'energyscout' && t.agent === 'ene') ||
+                         (botName === 'realestate' && t.agent === 'rea')));
+                    if (hasBusyTask) el.classList.add('busy');
+                }
+            });
+        }
+
+        // Running tasks dropdown
+        function toggleRunningDropdown() {
+            document.getElementById('runningDropdownContent').classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.running-dropdown')) {
+                document.getElementById('runningDropdownContent')?.classList.remove('show');
+            }
+        });
+
+        function selectBot(name) {
+            // Map bot names to chat dropdown values
+            const botMap = {
+                'assistant': 'assistant',
+                'bitcoinml': 'bitcoinml',
+                'energyscout': 'energyscout',
+                'realestate': 'realestate',
+                'analytics': 'assistant'
+            };
+            document.getElementById('chatBot').value = botMap[name] || 'assistant';
+            renderChat();
+        }
+
+        function sendToBot(name) {
+            selectBot(name);
+            document.getElementById('chatInput').focus();
         }
 
         function renderRunningTasks() {
             const running = tasks.filter(t => t.status === 'executing');
-            document.getElementById('running-count').textContent = running.length;
+            const badge = document.getElementById('runningCountBadge');
+            const dropdown = document.getElementById('runningDropdownContent');
+
+            badge.textContent = running.length;
+            badge.classList.toggle('zero', running.length === 0);
 
             if (running.length === 0) {
-                document.getElementById('runningTasks').innerHTML = '<div style="color:#8b949e;text-align:center;padding:20px;">No tasks running</div>';
+                dropdown.innerHTML = '<div style="color:#8b949e;text-align:center;padding:15px;font-size:12px;">No tasks running</div>';
                 return;
             }
 
-            document.getElementById('runningTasks').innerHTML = running.map(t => `
-                <div class="running-task">
-                    <span class="agent">${t.agent.toUpperCase()}</span>
-                    <span class="text">${t.text}</span>
-                    <button class="stop-btn" onclick="stopTask('${t.id}')">Stop</button>
+            dropdown.innerHTML = running.map(t => `
+                <div class="running-task-item">
+                    <span class="agent-tag">${t.agent.toUpperCase()}</span>
+                    <span class="task-text">${t.text}</span>
+                    <button class="stop-btn" onclick="event.stopPropagation();stopTask('${t.id}')">Stop</button>
                 </div>
             `).join('');
         }
@@ -1210,17 +3035,23 @@
             const bot = document.getElementById('chatBot').value;
             const botHistory = chatHistory.filter(m => m.bot === bot).slice(-20);
 
-            document.getElementById('chatMessages').innerHTML = botHistory.map(m => `
-                <div class="chat-message ${m.type}">
-                    <div class="sender">${m.type === 'user' ? 'You' : m.bot.toUpperCase()}</div>
-                    ${m.content}
-                </div>
-            `).join('') || '<div style="color:#8b949e;text-align:center;padding:20px;">No messages yet</div>';
+            document.getElementById('chatMessages').innerHTML = botHistory.map(m => {
+                const senderLabel = m.source === 'telegram' ? '📱 Telegram' : (m.type === 'user' ? 'You' : m.bot.toUpperCase());
+                const msgClass = m.source === 'telegram' ? 'user telegram' : m.type;
+                return `
+                    <div class="chat-message ${msgClass}">
+                        <div class="sender">${senderLabel}</div>
+                        ${m.content}
+                    </div>
+                `;
+            }).join('') || '<div style="color:#8b949e;text-align:center;padding:20px;">No messages yet</div>';
 
             // Scroll to bottom
             const msgs = document.getElementById('chatMessages');
             msgs.scrollTop = msgs.scrollHeight;
         }
+
+        let currentTaskId = null; // Track task being viewed
 
         async function sendChat() {
             const input = document.getElementById('chatInput');
@@ -1228,6 +3059,42 @@
             if (!message) return;
 
             const bot = document.getElementById('chatBot').value;
+
+            // Handle /clear command
+            if (message === '/clear') {
+                chatHistory = chatHistory.filter(m => m.bot !== bot);
+                localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+                input.value = '';
+                renderChat();
+                return;
+            }
+
+            // Handle /cli command - show CLI output in chat
+            if (message === '/cli') {
+                input.value = '';
+                await refreshCliInChat(bot);
+                return;
+            }
+
+            // If detail modal is open, save as note to that task
+            const modalTaskId = document.getElementById('detailModal').dataset.taskId;
+            if (modalTaskId && document.getElementById('detailModal').classList.contains('show')) {
+                const task = tasks.find(t => t.id === modalTaskId);
+                if (task) {
+                    // Add to work log
+                    addWorkLog(modalTaskId, message, 'note');
+                    // Update notes
+                    task.notes = (task.notes ? task.notes + '\n' : '') + `[${new Date().toLocaleTimeString()}] ${message}`;
+                    save();
+
+                    chatHistory.push({ bot, type: 'user', content: message, timestamp: new Date().toISOString() });
+                    chatHistory.push({ bot, type: 'bot', content: '✅ Note saved to task.', timestamp: new Date().toISOString() });
+                    localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+                    input.value = '';
+                    renderChat();
+                    return;
+                }
+            }
 
             // Add to history
             chatHistory.push({ bot, type: 'user', content: message, timestamp: new Date().toISOString() });
@@ -1242,6 +3109,11 @@
                 return;
             }
 
+            // Immediately show "thinking..." response
+            chatHistory.push({ bot, type: 'bot', content: '💭 Thinking...', timestamp: new Date().toISOString(), pending: true });
+            localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+            renderChat();
+
             // Send to bot inbox via executor
             try {
                 const resp = await fetch(`${EXECUTOR_URL}/execute`, {
@@ -1254,13 +3126,18 @@
                     })
                 });
                 const data = await resp.json();
+
+                // Remove "thinking..." message
+                chatHistory = chatHistory.filter(m => !m.pending);
+
                 if (data.success) {
-                    chatHistory.push({ bot, type: 'bot', content: `Message sent to ${bot} inbox. Check outbox for response.`, timestamp: new Date().toISOString() });
+                    chatHistory.push({ bot, type: 'bot', content: `📤 Message sent to ${bot}. Waiting for response...`, timestamp: new Date().toISOString() });
                 } else {
-                    chatHistory.push({ bot, type: 'bot', content: 'Error: ' + (data.error || 'Unknown'), timestamp: new Date().toISOString() });
+                    chatHistory.push({ bot, type: 'bot', content: '❌ Error: ' + (data.error || 'Unknown'), timestamp: new Date().toISOString() });
                 }
             } catch (e) {
-                chatHistory.push({ bot, type: 'bot', content: 'Error: ' + e.message, timestamp: new Date().toISOString() });
+                chatHistory = chatHistory.filter(m => !m.pending);
+                chatHistory.push({ bot, type: 'bot', content: '❌ Error: ' + e.message, timestamp: new Date().toISOString() });
             }
 
             localStorage.setItem('chat-history', JSON.stringify(chatHistory));
@@ -1272,7 +3149,7 @@
                     const resp = await fetch(`${EXECUTOR_URL}/outbox?bot=${bot}`);
                     const data = await resp.json();
                     if (data.content && data.content.trim()) {
-                        chatHistory.push({ bot, type: 'bot', content: data.content.substring(0, 500), timestamp: new Date().toISOString() });
+                        chatHistory.push({ bot, type: 'bot', content: '💬 ' + data.content.substring(0, 500), timestamp: new Date().toISOString() });
                         localStorage.setItem('chat-history', JSON.stringify(chatHistory));
                         renderChat();
                     }
@@ -1281,7 +3158,67 @@
         }
 
         // Update bot selector to refresh chat
-        document.getElementById('chatBot').addEventListener('change', renderChat);
+        document.getElementById('chatBot').addEventListener('change', () => {
+            updateChatSidebar();
+            renderChat();
+        });
+
+        function switchChatBot(bot) {
+            document.getElementById('chatBot').value = bot;
+            updateChatSidebar();
+            renderChat();
+        }
+
+        function updateChatSidebar() {
+            const bot = document.getElementById('chatBot').value;
+            document.querySelectorAll('.chat-session').forEach(el => {
+                el.classList.toggle('active', el.dataset.bot === bot);
+            });
+        }
+
+        function clearChat() {
+            const bot = document.getElementById('chatBot').value;
+            chatHistory = chatHistory.filter(m => m.bot !== bot);
+            localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+            renderChat();
+        }
+
+        // Continuous message polling - only show actual bot responses, not raw inbox
+        let lastOutboxContent = {};
+
+        async function pollMessages() {
+            if (!executorOnline) return;
+            const bot = document.getElementById('chatBot').value;
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/outbox?bot=${bot}`);
+                const data = await resp.json();
+
+                // Only show outbox content if it looks like a real response (not task instructions)
+                if (data.content && data.content.trim()) {
+                    const content = data.content.trim();
+                    // Skip if it's task instructions or raw backlog
+                    if (content.includes('Execute this task') || content.includes('- [ ]') || content.includes('Top TODOs')) {
+                        return;
+                    }
+                    if (lastOutboxContent[bot] !== content) {
+                        lastOutboxContent[bot] = content;
+                        chatHistory.push({
+                            bot,
+                            type: 'bot',
+                            content: content.substring(0, 800),
+                            timestamp: new Date().toISOString()
+                        });
+                        localStorage.setItem('chat-history', JSON.stringify(chatHistory));
+                        renderChat();
+                    }
+                }
+            } catch {}
+        }
+
+        // Start message polling (every 3 seconds)
+        setInterval(pollMessages, 3000);
+        // Also poll immediately on load
+        setTimeout(pollMessages, 1000);
 
         // Override renderAll to also update panel
         const originalRenderAll = renderAll;
@@ -1291,10 +3228,147 @@
         };
 
         // Adjust main content for panel
-        document.querySelector('.main-content').style.height = 'calc(100vh - 256px)';
+        updateMainHeight();
 
         // Initial chat render
         setTimeout(renderChat, 100);
+
+        // ==================== CLINE KANBAN MODAL ====================
+        function openClineKanban() {
+            // Cline runs on Mac Mini - use its IP, not 127.0.0.1
+            const port = localStorage.getItem('kanban-port') || '3484';
+            const clineHost = isLocal ? '127.0.0.1' : executorHost;
+            document.getElementById('clineFrame').src = `http://${clineHost}:${port}/openclaw`;
+            document.getElementById('clineModal').classList.add('show');
+        }
+
+        function closeClineModal() {
+            document.getElementById('clineModal').classList.remove('show');
+            document.getElementById('clineFrame').src = '';
+        }
+
+        // Mobile: collapse bottom panel by default
+        if (isMobile) {
+            panelCollapsed = true;
+            document.getElementById('bottomPanel')?.classList.add('collapsed');
+        }
+
+        // Legacy functions kept for compatibility
+        let kanbanConnected = false;
+        async function connectKanban() {
+            const port = '3484';
+            const url = `http://localhost:${port}`;
+
+            // First check if it's actually running
+            try {
+                const check = await fetch(url, { mode: 'no-cors', cache: 'no-cache' });
+                // If we get here without error, it might be running
+            } catch (e) {
+                // Connection failed - try to launch it
+                document.getElementById('kanbanStatus').textContent = 'Not running, launching...';
+                document.getElementById('kanbanStatus').style.color = '#f0883e';
+                await launchKanban();
+                return;
+            }
+
+            // Replace placeholder with iframe - use /openclaw path
+            document.getElementById('kanbanFrame').innerHTML = `
+                <iframe src="http://127.0.0.1:${port}/openclaw" style="width:100%;height:100%;border:none;background:#0d1117;"
+                    onerror="handleIframeError()"></iframe>
+            `;
+
+            document.getElementById('kanbanStatus').textContent = `Connected to 127.0.0.1:${port}`;
+            document.getElementById('kanbanStatus').style.color = '#3fb950';
+            kanbanConnected = true;
+
+            // Save port preference
+            localStorage.setItem('kanban-port', port);
+        }
+
+        async function launchKanban() {
+            document.getElementById('kanbanStatus').textContent = 'Launching npx kanban...';
+            document.getElementById('kanbanStatus').style.color = '#f0883e';
+
+            if (!executorOnline) {
+                document.getElementById('kanbanFrame').innerHTML = `
+                    <div style="text-align:center;color:#8b949e;padding:40px;">
+                        <h3>Executor Offline</h3>
+                        <p>Start executor first:</p>
+                        <code style="background:#21262d;padding:8px 16px;border-radius:6px;display:inline-block;margin:10px 0;">
+                            cd ~/Vaults/openclaw/bridge/kanban && python3 executor.py
+                        </code>
+                        <p style="margin-top:20px;">Then run npx kanban:</p>
+                        <code style="background:#21262d;padding:8px 16px;border-radius:6px;display:inline-block;">
+                            npx kanban
+                        </code>
+                    </div>
+                `;
+                return;
+            }
+
+            // Try to launch via executor
+            try {
+                const resp = await fetch(`${EXECUTOR_URL}/launch-npx-kanban`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+                const data = await resp.json();
+                if (data.success) {
+                    document.getElementById('kanbanStatus').textContent = 'Launching... (connecting in 4s)';
+                    // Wait for npx kanban to start, then connect
+                    setTimeout(() => {
+                        const port = document.getElementById('kanbanPort').value || '3484';
+                        document.getElementById('kanbanFrame').innerHTML = `
+                            <iframe src="http://127.0.0.1:${port}/openclaw" style="width:100%;height:100%;border:none;background:#0d1117;"></iframe>
+                        `;
+                        document.getElementById('kanbanStatus').textContent = `Connected to 127.0.0.1:${port}`;
+                        document.getElementById('kanbanStatus').style.color = '#3fb950';
+                        kanbanConnected = true;
+                    }, 4000);
+                } else {
+                    showKanbanError(data.error || 'Launch failed');
+                }
+            } catch (e) {
+                showKanbanError(e.message);
+            }
+        }
+
+        function showKanbanError(msg) {
+            document.getElementById('kanbanStatus').textContent = 'Error: ' + msg;
+            document.getElementById('kanbanStatus').style.color = '#da3633';
+            document.getElementById('kanbanFrame').innerHTML = `
+                <div style="text-align:center;color:#8b949e;padding:40px;">
+                    <h3>Could not launch npx kanban</h3>
+                    <p>Run manually in terminal:</p>
+                    <code style="background:#21262d;padding:8px 16px;border-radius:6px;display:inline-block;">
+                        npx kanban
+                    </code>
+                    <p style="margin-top:20px;color:#da3633;">${msg}</p>
+                </div>
+            `;
+        }
+
+        // Auto-launch on view switch
+        function initIdeKanban() {
+            const savedPort = localStorage.getItem('kanban-port');
+            if (savedPort) {
+                document.getElementById('kanbanPort').value = savedPort;
+            }
+            // Auto-launch if not connected
+            if (!kanbanConnected && executorOnline) {
+                launchKanban();
+            }
+        }
+
+        // Override renderAll to include IDE view
+        const baseRenderAll = renderAll;
+        renderAll = function() {
+            baseRenderAll();
+            if (currentView === 'ide') {
+                initIdeKanban();
+            }
+        };
 
         init();
     </script>

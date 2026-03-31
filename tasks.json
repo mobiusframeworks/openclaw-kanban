@@ -1,0 +1,1542 @@
+{
+  "tasks": [
+    {
+      "id": "gh-17748402654240.17463672242170347",
+      "text": "1. Power Law Blog Post - Add Disclaimers",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": true,
+      "scheduledAgent": "bml",
+      "scheduledSlot": 0,
+      "workLog": [
+        {
+          "timestamp": "3/29/2026, 8:37:55 PM",
+          "content": "Started execution via bml",
+          "type": "started"
+        },
+        {
+          "timestamp": "3/29/2026, 8:37:55 PM",
+          "content": "Task sent to bml inbox",
+          "type": "progress"
+        },
+        {
+          "timestamp": "3/30/2026, 12:24:15 PM",
+          "content": "Task stopped by user",
+          "type": "stopped"
+        },
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to bml",
+          "type": "started"
+        }
+      ],
+      "updated": "2026-03-31T13:00:45.888631"
+    },
+    {
+      "id": "gh-17748402654240.04440781857466969",
+      "text": "2. TradingView Interactive Charts",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false,
+      "updated": "2026-03-31T11:58:00.617251",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:22:34 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:24:48 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:40 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:45:37 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:57:45 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:58:00 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402654240.8562488539421408",
+      "text": "3. Medium & Substack Setup",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.888954",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to bml",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402654240.07668712166443448",
+      "text": "4. Power Law Bands Visualization",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false,
+      "updated": "2026-03-31T11:22:14.367878",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:22:14 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402654240.8343234815831149",
+      "text": "Launch tweet thread (manual post, 2026-03-27)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.1364990925044881",
+      "text": "Power law blog post draft",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.025800494829215315",
+      "text": "Council approval for blog (with revisions)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.5001110231276819",
+      "text": "Council approval for TradingView charts",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.5849554406794598",
+      "text": "Council approval for Medium/Substack",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.795986208340029",
+      "text": "Power law blog post disclaimers + published (2026-03-28)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.9967708323067779",
+      "text": "Power law bands visualization (already in dashboard)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.6004648914524212",
+      "text": "200 MA statistical analysis blog post (2026-03-29)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.9083002125962062",
+      "text": "200 MA Twitter thread (6 tweets) drafted (2026-03-29)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.45155332437004936",
+      "text": "Flows vs Power Law research report (2026-03-28)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.5396691564681462",
+      "text": "Retail vs institutional ownership research (2026-03-29)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.6383419553251553",
+      "text": "5. Supply-Demand Calculator + ML Factor Scoring",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.7872274293382812",
+      "text": "Update X10 data to current (last: Jan 2026)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.4813468850410083",
+      "text": "Set up BGeometrics API (free tier: bitcoin-data.com/api/scalar.html)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.23840480023227384",
+      "text": "Add whale wallet count column (needs API)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.09859610648881922",
+      "text": "Add exchange balance column (needs API)",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.03021890087396184",
+      "text": "Calculate ETF daily flows from holdings diff",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.9323337077199921",
+      "text": "Run ML factor importance with flow features",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.6027020566869178",
+      "text": "Test: do flows shorten halving cycles?",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.0482479775048279",
+      "text": "6. BTCautoresearch Integration",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.30005107646020857",
+      "text": "Clone repo for reference",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.0835457932907282",
+      "text": "Analyze their walk-forward validation approach",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.9225415197024703",
+      "text": "Compare their R\u00b2 to ours",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.5400380247612766",
+      "text": "Consider adding their mean-reversion correction",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402654240.7252715730150389",
+      "text": "7. Flows vs Power Law Research Report",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.9450434206502563",
+      "text": "1. ITC Tax Credit Display",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.894666",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to ene",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402656950.20034766434599616",
+      "text": "2. NEM 3.0 Bill Coverage Accuracy",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.7813586608765267",
+      "text": "3. Zip Code Search Bug",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.9292012708597691",
+      "text": "Solar Loan + ITC Arbitrage Model",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.5567018275995496",
+      "text": "Research ITC transfer rules for commercial \u2192 residential",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.894673",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to ene",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402656950.9359507323417173",
+      "text": "Model financials: required spread, default risk, breakeven",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.8548135281829877",
+      "text": "Identify regulatory requirements (lending license by state)",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.36973744001352615",
+      "text": "Competitive analysis: Sunrun, Mosaic, GoodLeap models",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.179910314407149",
+      "text": "Talk to 3+ local installers about financing pain points",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.8837986072013827",
+      "text": "Draft term sheet structure (rates, terms, buyout formula)",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.9570034438288412",
+      "text": "Explore bank partnerships for loan sales",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.3248657880305469",
+      "text": "Legal review: can commercial entity claim ITC then transfer system?",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.8522080834996039",
+      "text": "Build financial calculator/underwriting model",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.6614821114766962",
+      "text": "Identify pilot market (CA? TX? FL?)",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.9899066305698515",
+      "text": "SMUD FAQ page restored",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.3099535721215223",
+      "text": "Misleading copy fixed",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.9566443697396145",
+      "text": "PG&E battery rebate page",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.15011304098849598",
+      "text": "SCE battery rebate page",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.519459536087764",
+      "text": "SDG&E battery rebate page",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.3795093267357835",
+      "text": "3CE battery rebate page",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.4590512031423518",
+      "text": "MCE battery rebate page",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402656950.5878993840111228",
+      "text": "EBCE battery rebate page",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.49222795617723536",
+      "text": "Monterey Terrace Gilroy",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.897591",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to rea",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402659430.8311342067344044",
+      "text": "Continue Facebook/social outreach",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.897598",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to rea",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402659430.9692652972279795",
+      "text": "Monitor lead flow",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.16980564972837697",
+      "text": "Update listing copy if needed",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.028941979889910097",
+      "text": "GA4 tracking installed",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.504657070033154",
+      "text": "GEO audit completed (report generated)",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.5044115759798585",
+      "text": "Campaign launched",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.10055052033207545",
+      "text": "Expand to additional properties",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.5099284434367192",
+      "text": "SEO content pages for each unit",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402659430.08152260442494697",
+      "text": "Lead automation",
+      "agent": "rea",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402661810.767886845281434",
+      "text": "**Google Ads MCP Setup** - Account 941-733-0691",
+      "agent": "ana",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.901479",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to ana",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402663210.5509899698523011",
+      "text": "1. Vehicle Transition - Sell Tesla, Get Tacoma",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "startedAt": "2026-03-30T20:11:20.664Z",
+      "estimatedMinutes": 5,
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 12:25:49 PM",
+          "content": "Started execution via ass",
+          "type": "started"
+        },
+        {
+          "timestamp": "3/30/2026, 12:25:49 PM",
+          "content": "Task sent to ass inbox",
+          "type": "progress"
+        },
+        {
+          "timestamp": "3/30/2026, 1:10:59 PM",
+          "content": "Started execution via ass",
+          "type": "started"
+        },
+        {
+          "timestamp": "3/30/2026, 1:10:59 PM",
+          "content": "Task sent to ass inbox",
+          "type": "progress"
+        },
+        {
+          "timestamp": "3/30/2026, 1:11:20 PM",
+          "content": "Started execution via ass",
+          "type": "started"
+        },
+        {
+          "timestamp": "3/30/2026, 1:11:20 PM",
+          "content": "Task sent to ass inbox",
+          "type": "progress"
+        },
+        {
+          "timestamp": "03/31/2026, 11:07:06 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:11:45 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:12:12 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        }
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.5509899698523011.md",
+      "updated": "2026-03-31T11:12:12.535441"
+    },
+    {
+      "id": "gh-17748402663210.4350003268939351",
+      "text": "List Tesla Model Y 2024 for sale",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.3630898431426094",
+      "text": "Use car-valuation dashboard to price it",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.903082",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:07:06 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:11:45 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:12:12 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to ass",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402663210.4160037409424261",
+      "text": "Research Tacoma + camper setups",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.4523214556967602",
+      "text": "Compare: Tacoma vs Sprinter vs other options",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.8992758893184065",
+      "text": "Calculate payback period",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.6056173568975511",
+      "text": "Research insurance for nomad/camper lifestyle",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.614031184287342",
+      "text": "2. Hermes Local LLM Agent",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T13:00:45.903077",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 1:00:45 PM",
+          "content": "Auto-delegated to ass",
+          "type": "started"
+        }
+      ]
+    },
+    {
+      "id": "gh-17748402663210.30286377079943705",
+      "text": "hermes.py created at ~/hermes/",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.057557507699313004",
+      "text": "venv + dependencies installed",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.8462430283118945",
+      "text": "Obsidian indexed (304 docs)",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.6889513631036026",
+      "text": "Search working",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.07183805403504973",
+      "text": "Download Qwen 3B model",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.4892587349550729",
+      "text": "Test chat functionality",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.9198815230601803",
+      "text": "Set up auto-research cron jobs",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.6400502601741113",
+      "text": "Integrate BTCautoresearch methodology",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.14672786902342072",
+      "text": "Connect to Obsidian for knowledge storage",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.0859059750645721",
+      "text": "3. Disk Space Maintenance",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.31022743927158325",
+      "text": "Google Ads MCP (waiting on credentials)",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "gh-17748402663210.6816803863703469",
+      "text": "BML blog publish (waiting on approval)",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "done",
+      "scheduled": false
+    },
+    {
+      "id": "cron-morning-briefing-2026-03-30",
+      "text": "[CRON] morning-briefing",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "done",
+      "notes": "\u2713 Cron job completed at 2026-03-30 07:00:46",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-30T19:23:10.412Z",
+      "cronJob": true,
+      "cronJobName": "morning-briefing",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 12:23:10 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 07:00:46",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-bml-content-pipeline-2026-03-30",
+      "text": "[CRON] bml-content-pipeline",
+      "agent": "bml",
+      "quadrant": "q3",
+      "status": "done",
+      "notes": "\u2713 Cron job completed at 2026-03-30 09:00:59",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "bml",
+      "created": "2026-03-30T19:23:10.422Z",
+      "cronJob": true,
+      "cronJobName": "bml-content-pipeline",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 12:23:10 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 09:00:59",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-es-sprint-check-2026-03-30",
+      "text": "[CRON] es-sprint-check",
+      "agent": "ene",
+      "quadrant": "q3",
+      "status": "done",
+      "notes": "\u2713 Cron job completed at 2026-03-30 10:00:29",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ene",
+      "created": "2026-03-30T19:23:10.422Z",
+      "cronJob": true,
+      "cronJobName": "es-sprint-check",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 12:23:10 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 10:00:29",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-realestate-leads-2026-03-30",
+      "text": "[CRON] realestate-leads",
+      "agent": "rea",
+      "quadrant": "q3",
+      "status": "done",
+      "notes": "\u2713 Cron job completed at 2026-03-30 08:00:53",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "rea",
+      "created": "2026-03-30T19:23:10.422Z",
+      "cronJob": true,
+      "cronJobName": "realestate-leads",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 12:23:10 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 08:00:53",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-realestate-social-2026-03-30",
+      "text": "[CRON] realestate-social",
+      "agent": "rea",
+      "quadrant": "q3",
+      "status": "done",
+      "notes": "\u2713 Cron job completed at 2026-03-30 11:00:30",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "rea",
+      "created": "2026-03-30T19:23:10.422Z",
+      "cronJob": true,
+      "cronJobName": "realestate-social",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 12:23:10 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 11:00:30",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-analytics-daily-insights-2026-03-30",
+      "text": "[CRON] analytics-daily-insights",
+      "agent": "ana",
+      "quadrant": "q3",
+      "status": "progress",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ana",
+      "created": "2026-03-30T19:23:10.422Z",
+      "cronJob": true,
+      "cronJobName": "analytics-daily-insights",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 12:23:10 PM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        },
+        {
+          "timestamp": "3/30/2026, 12:24:52 PM",
+          "content": "Moved to progress",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "task-1774899022615",
+      "text": "Test task from API",
+      "agent": "bml",
+      "status": "todo",
+      "quadrant": "q2",
+      "notes": "",
+      "tags": [],
+      "created": "2026-03-30T12:30:22.615560",
+      "delegatedBy": "assistant",
+      "scheduled": false,
+      "scheduledSlot": 4,
+      "vaultPath": "bridge/kanban/tasks/task-1774899022615.md",
+      "updated": "2026-03-31T11:12:12.539409",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:07:06 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:11:45 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:12:12 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "cron-midday-nudge-2026-03-30",
+      "text": "[CRON] midday-nudge",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "done",
+      "notes": "\u2713 Cron job completed at 2026-03-30 12:00:30",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-30T20:00:41.936Z",
+      "cronJob": true,
+      "cronJobName": "midday-nudge",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 1:00:41 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 12:00:30",
+          "type": "completed"
+        },
+        {
+          "timestamp": "3/30/2026, 1:10:38 PM",
+          "content": "AI approved, awaiting human review",
+          "type": "human-review"
+        }
+      ],
+      "reviewFile": "agents/memory/assistant/reviews/2026-03-30-cron-midday-nudge-2026-03-30.md",
+      "vaultPath": "bridge/kanban/tasks/cron-midday-nudge-2026-03-30.md"
+    },
+    {
+      "id": "cron-session-compression-2026-03-30",
+      "text": "[CRON] session-compression",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "progress",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": false,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-30T21:00:13.144Z",
+      "cronJob": true,
+      "cronJobName": "session-compression",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 2:00:13 PM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        }
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-session-compression-2026-03-30.md"
+    },
+    {
+      "id": "cron-research-bitcoin-2026-03-30",
+      "text": "[CRON] research-bitcoin",
+      "agent": "bml",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 14:00:24",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "bml",
+      "created": "2026-03-30T22:00:11.569Z",
+      "cronJob": true,
+      "cronJobName": "research-bitcoin",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 3:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 14:00:24",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-truck-search-daily-2026-03-30",
+      "text": "[CRON] truck-search-daily",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "blocked",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-30T22:37:41.476Z",
+      "cronJob": true,
+      "cronJobName": "truck-search-daily",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 3:37:41 PM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        }
+      ]
+    },
+    {
+      "id": "cron-research-solar-2026-03-30",
+      "text": "[CRON] research-solar",
+      "agent": "ene",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 15:00:28",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ene",
+      "created": "2026-03-30T23:00:11.630Z",
+      "cronJob": true,
+      "cronJobName": "research-solar",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 4:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 15:00:28",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "test-link-001",
+      "text": "Test file linking feature",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "created": "2026-03-30T16:21:18.865967",
+      "linkedFiles": [
+        {
+          "path": "/Users/macmini/Vaults/openclaw/bridge/kanban/executor.py",
+          "type": "file",
+          "linkedAt": "2026-03-30T16:21:18.865972"
+        },
+        {
+          "path": "/Users/macmini/Vaults/openclaw/bridge/kanban",
+          "type": "folder",
+          "linkedAt": "2026-03-30T16:21:18.865974"
+        }
+      ],
+      "vaultPath": "bridge/kanban/tasks/test-link-001.md",
+      "updated": "2026-03-31T11:12:12.539918",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:07:06 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:11:45 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:12:12 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "cron-morning-briefing-2026-03-31",
+      "text": "[CRON] morning-briefing",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 07:00:46",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "morning-briefing",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 07:00:46",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-bml-content-pipeline-2026-03-31",
+      "text": "[CRON] bml-content-pipeline",
+      "agent": "bml",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 09:00:59",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "bml",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "bml-content-pipeline",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 09:00:59",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-es-sprint-check-2026-03-31",
+      "text": "[CRON] es-sprint-check",
+      "agent": "ene",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 10:00:29",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ene",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "es-sprint-check",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 10:00:29",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-midday-nudge-2026-03-31",
+      "text": "[CRON] midday-nudge",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 12:00:30",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "midday-nudge",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 12:00:30",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-research-bitcoin-2026-03-31",
+      "text": "[CRON] research-bitcoin",
+      "agent": "bml",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 14:00:24",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "bml",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "research-bitcoin",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 14:00:24",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-research-solar-2026-03-31",
+      "text": "[CRON] research-solar",
+      "agent": "ene",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 15:00:28",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ene",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "research-solar",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 15:00:28",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-realestate-leads-2026-03-31",
+      "text": "[CRON] realestate-leads",
+      "agent": "rea",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 08:00:53",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "rea",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "realestate-leads",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 08:00:53",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-realestate-social-2026-03-31",
+      "text": "[CRON] realestate-social",
+      "agent": "rea",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 11:00:30",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "rea",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "realestate-social",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 11:00:30",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-analytics-daily-insights-2026-03-31",
+      "text": "[CRON] analytics-daily-insights",
+      "agent": "ana",
+      "quadrant": "q3",
+      "status": "blocked",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ana",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "analytics-daily-insights",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        }
+      ]
+    },
+    {
+      "id": "cron-analytics-weekly-seo-2026-03-31",
+      "text": "[CRON] analytics-weekly-seo",
+      "agent": "ana",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 16:00:32",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ana",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "analytics-weekly-seo",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 16:00:32",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-session-compression-2026-03-31",
+      "text": "[CRON] session-compression",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "blocked",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "session-compression",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        }
+      ]
+    },
+    {
+      "id": "cron-truck-search-daily-2026-03-31",
+      "text": "[CRON] truck-search-daily",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "blocked",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T00:00:11.640Z",
+      "cronJob": true,
+      "cronJobName": "truck-search-daily",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 5:00:11 PM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        }
+      ]
+    },
+    {
+      "id": "cron-daily-metrics-2026-03-31",
+      "text": "[CRON] daily-metrics",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 17:00:38",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T01:00:11.706Z",
+      "cronJob": true,
+      "cronJobName": "daily-metrics",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 6:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 17:00:38",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-evening-content-2026-03-31",
+      "text": "[CRON] evening-content",
+      "agent": "bml",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 19:00:53",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "bml",
+      "created": "2026-03-31T03:00:11.697Z",
+      "cronJob": true,
+      "cronJobName": "evening-content",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 8:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 19:00:53",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-nightly-review-2026-03-31",
+      "text": "[CRON] nightly-review",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "ai-review",
+      "notes": "\u2713 Cron job completed at 2026-03-30 21:00:07",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T05:00:11.672Z",
+      "cronJob": true,
+      "cronJobName": "nightly-review",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 10:00:11 PM",
+          "content": "\u2713 Cron job completed at 2026-03-30 21:00:07",
+          "type": "completed"
+        }
+      ]
+    },
+    {
+      "id": "cron-session-compression-night-2026-03-31",
+      "text": "[CRON] session-compression-night",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "blocked",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T06:00:11.719Z",
+      "cronJob": true,
+      "cronJobName": "session-compression-night",
+      "workLog": [
+        {
+          "timestamp": "3/30/2026, 11:00:11 PM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        }
+      ]
+    },
+    {
+      "id": "task-1774950648017",
+      "text": "Fix Cloudflare nameservers for bitcoinmachinelearning.com - update at domain registrar to enable cline.bitcoinmachinelearning.com",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [
+        "infrastructure"
+      ],
+      "created": "2026-03-31T02:50:48.017000",
+      "vaultPath": "bridge/kanban/tasks/task-1774950648017.md"
+    },
+    {
+      "id": "cron-social-bml-morning-2026-03-31",
+      "text": "[CRON] social-bml-morning",
+      "agent": "ass",
+      "quadrant": "q3",
+      "status": "blocked",
+      "notes": "? Cron job did not run (no log entry found)",
+      "scheduled": true,
+      "scheduledSlot": 0,
+      "scheduledAgent": "ass",
+      "created": "2026-03-31T17:00:12.449Z",
+      "cronJob": true,
+      "cronJobName": "social-bml-morning",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 10:00:12 AM",
+          "content": "? Cron job did not run (no log entry found)",
+          "type": "warning"
+        }
+      ]
+    }
+  ],
+  "updated": "2026-03-31T13:01:20.791919"
+}

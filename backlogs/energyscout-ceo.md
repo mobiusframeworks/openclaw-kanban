@@ -73,6 +73,68 @@ A financing company that offers a **better alternative to solar leases** by comb
 
 ---
 
+## SEO / AI Visibility (energyscout.org)
+
+### 1. Fix SPA Invisibility for AI Crawlers
+**Status:** BACKLOG
+**Priority:** HIGH
+**Added:** 2026-03-29
+
+**Problem:** energyscout.org is Vite React SPA - AI crawlers see empty `<div id="root"></div>`
+
+**Options:**
+- [ ] Option A: Migrate to Next.js (big effort, best long-term)
+- [ ] Option B: Add Vite prerendering plugin (`vite-plugin-ssr` or `prerender-spa-plugin`)
+- [ ] Option C: Use a prerender service (prerender.io)
+
+**Note:** battery.energyscout.org (Next.js) is fine - has SSR, robots.ts, sitemap.ts
+
+### 2. Add robots.txt to energyscout.org
+**Status:** BACKLOG
+**Priority:** MEDIUM
+**File:** `/workspace/scout/public/robots.txt`
+
+### 3. Add sitemap.xml to energyscout.org
+**Status:** BACKLOG
+**Priority:** MEDIUM
+**File:** `/workspace/scout/public/sitemap.xml`
+
+---
+
+## Content Updates Needed
+
+### 1. SGIP Waitlist Warning
+**Status:** BACKLOG
+**Priority:** HIGH
+**Added:** 2026-03-29
+
+Add banner to all utility pages: SGIP is waitlisted statewide as of Dec 31, 2025.
+
+### 2. Add RSSE AB 209 Info
+**Status:** BACKLOG
+**Priority:** MEDIUM
+
+Add info about new $280M low-income program ($1,100/kWh storage) to utility pages.
+
+### 3. Create OCPA Battery Rebate Page
+**Status:** BACKLOG
+**Priority:** LOW
+
+Orange County Power Authority - deadline May 15, 2026.
+
+### 4. Brand Tone Audit
+**Status:** BACKLOG
+**Priority:** MEDIUM
+**Added:** 2026-03-29
+
+Review all pages for brand compliance:
+- Transparent, not clickbait
+- Authoritative, cite sources
+- Informative, not salesy
+- Honest about limitations
+
+---
+
 ## Approved Tasks (from Sprint 2)
 
 - [x] SMUD FAQ page restored

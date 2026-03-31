@@ -1,12 +1,18 @@
 # Analytics Agent Backlog
 
-## Scheduled - Tomorrow (2026-03-29)
+## Pending
 
-- [ ] **Google Ads MCP Setup** - Account 941-733-0691
-  - Ping Alex to set up MCP integration
-  - Needed for: Campaign performance, spend/budget, CTR, lead conversions
-  - *Added: 2026-03-28*
+- [ ] **Google Ads MCP - Complete OAuth Flow**
+  - Server code: Done (`bridge/mcp/google-ads/`)
+  - Library: Installed
+  - Credentials in Keychain: developer_token ✓, client_id ✓, client_secret ✓
+  - **Missing:** refresh_token (needs browser OAuth)
+  - Run: `python mcp/google-ads/get_refresh_token.py`
+  - Account: 941-733-0691
+  - *Updated: 2026-03-29*
 
-## Pending Integrations
+## Completed
 
-(none - moved to scheduled)
+- [x] GA4 Integration - Working (`~/dbt data basew/`)
+- [x] BML GA4 tracking fix - Deployed 2026-03-29
+- [x] Weekly SEO audit - Reports sent to CEOs

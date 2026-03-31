@@ -33,6 +33,7 @@ OPENCLAW_API = "http://localhost:8765"
 KANBAN_CLI = "/opt/homebrew/bin/kanban"
 SYNC_STATE_FILE = Path(__file__).parent / "sync_state.json"
 LOG_FILE = Path(__file__).parent / "sync.log"
+OBSIDIAN_TASKS_DIR = Path.home() / "Vaults/openclaw/bridge/kanban/tasks"
 
 # Polling intervals (seconds)
 POLL_INTERVAL = 5
@@ -77,6 +78,95 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+
+# Obsidian sync configuration
+STATUS_EMOJI = {'todo': '📋', 'progress': '🔄', 'blocked': '🚫', 'done': '✅', 'executing': '⚡', 'backlog': '📋'}
+
+
+def save_task_to_obsidian(task: Dict, column_id: str) -> Optional[Path]:
+    """Save a Cline task card to Obsidian as markdown for history tracking."""
+    try:
+        OBSIDIAN_TASKS_DIR.mkdir(parents=True, exist_ok=True)
+
+        task_id = task.get('id', 'unknown')
+        prompt = task.get('prompt', 'Untitled Task')
+        openclaw = task.get('_openclaw', {})
+        agent = openclaw.get('agent', 'ass')
+        status = COLUMN_TO_STATUS.get(column_id, openclaw.get('status', 'todo'))
+
+        # Parse agent from prompt prefix like "[Bitcoin ML]"
+        if prompt.startswith('['):
+            bracket_end = prompt.find(']')
+            if bracket_end > 0:
+                agent_hint = prompt[1:bracket_end].lower().replace(' ', '')
+                if 'bitcoin' in agent_hint or 'bml' in agent_hint:
+                    agent = 'bml'
+                elif 'energy' in agent_hint:
+                    agent = 'ene'
+                elif 'real' in agent_hint:
+                    agent = 'rea'
+                elif 'analytics' in agent_hint:
+                    agent = 'ana'
+                elif 'assistant' in agent_hint:
+                    agent = 'ass'
+
+        created_ts = task.get('createdAt', 0)
+        created = datetime.fromtimestamp(created_ts / 1000).isoformat() if created_ts else datetime.now().isoformat()
+
+        md = f"""---
+id: {task_id}
+agent: {agent}
+agent_name: {AGENT_NAMES.get(agent, 'Assistant')}
+status: {status}
+column: {column_id}
+created: {created}
+updated: {datetime.now().isoformat()}
+source: cline_kanban
+---
+
+# {STATUS_EMOJI.get(status, '📋')} {prompt}
+
+## Overview
+| Field | Value |
+|-------|-------|
+| **Status** | {status.upper()} |
+| **Column** | {column_id} |
+| **Agent** | {AGENT_NAMES.get(agent, 'Assistant')} |
+| **Base Ref** | {task.get('baseRef', 'main')} |
+| **Auto Review** | {'✅' if task.get('autoReviewEnabled') else '❌'} |
+
+## Task Details
+- **Plan Mode**: {task.get('startInPlanMode', False)}
+- **Auto Review Mode**: {task.get('autoReviewMode', 'commit')}
+
+---
+*Synced from Cline Kanban at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*
+"""
+
+        filepath = OBSIDIAN_TASKS_DIR / f"{task_id}.md"
+        filepath.write_text(md)
+        return filepath
+    except Exception as e:
+        logger.error(f"Failed to save task {task.get('id')} to Obsidian: {e}")
+        return None
+
+
+def sync_board_to_obsidian() -> int:
+    """Sync all tasks from Cline board to Obsidian vault."""
+    try:
+        board = load_cline_board()
+        synced = 0
+        for column in board.get('columns', []):
+            column_id = column.get('id', 'unknown')
+            for card in column.get('cards', []):
+                if save_task_to_obsidian(card, column_id):
+                    synced += 1
+        logger.info(f"Synced {synced} tasks to Obsidian")
+        return synced
+    except Exception as e:
+        logger.error(f"Obsidian sync failed: {e}")
+        return 0
 
 
 class SyncState:
@@ -470,12 +560,15 @@ def run_once():
     changes = sync_openclaw_to_cline(state)
     changes += sync_cline_to_openclaw(state)
 
+    # Sync to Obsidian for history
+    obsidian_synced = sync_board_to_obsidian()
+
     # Update state
     state.cline_hash = state.compute_hash(load_cline_board())
     state.openclaw_hash = state.compute_hash(load_openclaw_tasks())
     state.save()
 
-    logger.info(f"Sync complete: {changes} changes")
+    logger.info(f"Sync complete: {changes} changes, {obsidian_synced} tasks archived to Obsidian")
     return changes
 
 

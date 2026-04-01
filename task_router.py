@@ -2,10 +2,11 @@
 """
 Task Router - Routes kanban tasks to optimal models.
 
-Supports three tiers:
-1. Local Ollama (fastest, free, privacy-safe)
-2. OpenRouter Free (cloud, free tier models)
-3. Claude (most capable, for complex tasks)
+Supports four tiers:
+1. Hermes + Local Ollama (skills + fastest, free, privacy-safe)
+2. Local Ollama (fastest, free, privacy-safe)
+3. OpenRouter Free (cloud, free tier models)
+4. Claude (most capable, for complex tasks)
 
 Free OpenRouter Models:
 - minimax/minimax-m2.5:free - Fast, 1M context
@@ -47,10 +48,11 @@ class RoutingResult:
     """Result of routing decision."""
     use_local: bool
     model: str
-    provider: str  # "ollama", "openrouter", "claude"
+    provider: str  # "hermes", "ollama", "openrouter", "claude"
     reason: str
     task_type: str
     complexity: float
+    hermes_skill: str = ""  # Hermes skill if provider is "hermes"
 
 
 @dataclass
@@ -67,6 +69,23 @@ class ModelConfig:
 
 class KanbanRouter:
     """Routes kanban tasks to optimal models across providers."""
+
+    # Hermes skill mapping for task types
+    HERMES_SKILLS = {
+        "research": "deep-research",
+        "web_search": "web",
+        "note_taking": "obsidian",
+        "code_review": "code-review",
+        "analysis": "deep-research",
+    }
+
+    # Keywords that suggest Hermes skills
+    HERMES_SKILL_KEYWORDS = {
+        "deep-research": ["research", "investigate", "study", "analyze thoroughly", "deep dive"],
+        "web": ["search the web", "google", "find online", "look up online"],
+        "obsidian": ["note", "obsidian", "vault", "journal", "document this"],
+        "code-review": ["review code", "code review", "check this code", "audit code"],
+    }
 
     # OpenRouter free models with capabilities (verified working)
     OPENROUTER_MODELS = {
@@ -154,7 +173,8 @@ class KanbanRouter:
     def __init__(
         self,
         ollama_url: str = "http://localhost:11434",
-        openrouter_api_key: str = None
+        openrouter_api_key: str = None,
+        hermes_enabled: bool = True
     ):
         self.ollama_url = ollama_url
         self.openrouter_api_key = openrouter_api_key or self._load_api_key()
@@ -162,8 +182,12 @@ class KanbanRouter:
         self._router = None
         self._ollama_healthy = None
         self._openrouter_healthy = None
+        self._hermes_healthy = None
+        self._hermes_bridge = None
+        self.hermes_enabled = hermes_enabled
         self.metrics = []
         self._init_router()
+        self._init_hermes()
 
     def _load_api_key(self) -> str:
         """Load OpenRouter API key from config file or environment."""
@@ -191,6 +215,40 @@ class KanbanRouter:
                 self._router = HybridRouter(ollama_url=self.ollama_url)
             except Exception as e:
                 print(f"[TaskRouter] Failed to init HybridRouter: {e}")
+
+    def _init_hermes(self):
+        """Initialize the Hermes bridge if enabled."""
+        if not self.hermes_enabled:
+            return
+        try:
+            from hermes_bridge import HermesBridge
+            self._hermes_bridge = HermesBridge(ollama_url=self.ollama_url)
+        except ImportError:
+            print("[TaskRouter] hermes_bridge not available")
+        except Exception as e:
+            print(f"[TaskRouter] Failed to init HermesBridge: {e}")
+
+    def _detect_hermes_skill(self, task_text: str) -> Optional[str]:
+        """Detect if task matches a Hermes skill."""
+        task_lower = task_text.lower()
+
+        for skill, keywords in self.HERMES_SKILL_KEYWORDS.items():
+            if any(kw in task_lower for kw in keywords):
+                return skill
+
+        return None
+
+    def check_hermes_health(self) -> bool:
+        """Check if Hermes is available."""
+        if self._hermes_healthy is not None:
+            return self._hermes_healthy
+
+        if not self._hermes_bridge:
+            self._hermes_healthy = False
+            return False
+
+        self._hermes_healthy = self._hermes_bridge.check_hermes_available()
+        return self._hermes_healthy
 
     def _classify_task_type(self, task_text: str) -> str:
         """Classify task into a type for routing."""
@@ -253,9 +311,21 @@ class KanbanRouter:
 
         return max(0.0, min(1.0, score))
 
-    def _select_best_model(self, task_type: str, complexity: float, prefer_local: bool = True) -> Tuple[str, str]:
+    def _select_best_model(
+        self,
+        task_type: str,
+        complexity: float,
+        prefer_local: bool = True,
+        task_text: str = ""
+    ) -> Tuple[str, str, str]:
         """
         Select the best model for a task type and complexity.
+
+        Routing priority:
+        1. Hermes with skill (if skill matches and available)
+        2. Local Ollama (for simple tasks)
+        3. OpenRouter free (for medium tasks)
+        4. Claude (for complex tasks)
 
         Routing tiers by task type:
         - classification: up to 0.9 complexity -> local
@@ -267,10 +337,17 @@ class KanbanRouter:
         - general: up to 0.6 complexity -> local
 
         Returns:
-            (model_name, provider)
+            (model_name, provider, hermes_skill)
         """
+        hermes_ok = self.hermes_enabled and self.check_hermes_health()
         ollama_ok = prefer_local and self.check_ollama_health()
         openrouter_ok = bool(self.openrouter_api_key)
+
+        # Check for Hermes skill match first (highest priority for skill-based tasks)
+        if hermes_ok and task_text:
+            hermes_skill = self._detect_hermes_skill(task_text)
+            if hermes_skill and complexity < 0.7:
+                return f"hermes:{hermes_skill}", "hermes", hermes_skill
 
         # Task-type specific thresholds for local routing
         local_thresholds = {
@@ -287,7 +364,7 @@ class KanbanRouter:
 
         # Try local Ollama first
         if ollama_ok and complexity < threshold:
-            return local_model, "ollama"
+            return local_model, "ollama", ""
 
         # Try OpenRouter for medium complexity
         if openrouter_ok and complexity < 0.75:
@@ -301,10 +378,10 @@ class KanbanRouter:
                 "code_generation": "openai/gpt-oss-120b:free",
             }
             model = openrouter_models.get(task_type, "nvidia/nemotron-3-nano-30b-a3b:free")
-            return model, "openrouter"
+            return model, "openrouter", ""
 
         # Complex tasks go to Claude
-        return "claude", "claude"
+        return "claude", "claude", ""
 
     def should_use_local(self, task_text: str, force_cloud: bool = False, prefer_local: bool = True) -> RoutingResult:
         """
@@ -366,10 +443,12 @@ class KanbanRouter:
         task_type = self._classify_task_type(task_text)
         complexity = self._estimate_complexity(task_text)
 
-        # Select best model
-        model, provider = self._select_best_model(task_type, complexity, prefer_local)
+        # Select best model (now returns 3 values: model, provider, hermes_skill)
+        model, provider, hermes_skill = self._select_best_model(
+            task_type, complexity, prefer_local, task_text
+        )
 
-        use_local = provider in ["ollama", "openrouter"]
+        use_local = provider in ["hermes", "ollama", "openrouter"]
 
         return RoutingResult(
             use_local=use_local,
@@ -377,7 +456,8 @@ class KanbanRouter:
             provider=provider,
             reason=f"Complexity {complexity:.2f}, type {task_type} -> {provider}",
             task_type=task_type,
-            complexity=complexity
+            complexity=complexity,
+            hermes_skill=hermes_skill
         )
 
     def execute_local(self, task_text: str, model: str, system_prompt: str = "") -> dict:
@@ -471,9 +551,45 @@ class KanbanRouter:
         except Exception as e:
             return {"success": False, "error": str(e), "content": ""}
 
+    def execute_hermes(self, task_text: str, skill: str = None, system_prompt: str = "") -> dict:
+        """Execute task via Hermes CLI with optional skill."""
+        if not self._hermes_bridge:
+            return {"success": False, "error": "Hermes bridge not available", "content": ""}
+
+        start_time = time.time()
+
+        try:
+            if skill:
+                result = self._hermes_bridge.execute_hermes_cli(task_text, skill=skill)
+            else:
+                result = self._hermes_bridge.execute(task_text)
+
+            latency_ms = result.latency_ms
+
+            self.metrics.append({
+                "timestamp": time.time(),
+                "model": f"hermes:{skill}" if skill else "hermes",
+                "provider": "hermes",
+                "latency_ms": latency_ms
+            })
+
+            return {
+                "success": result.success,
+                "content": result.content,
+                "model": f"hermes:{skill}" if skill else "hermes",
+                "provider": "hermes",
+                "latency_ms": latency_ms,
+                "skill_used": skill,
+                "error": result.error if not result.success else None
+            }
+        except Exception as e:
+            return {"success": False, "error": str(e), "content": ""}
+
     def execute(self, task_text: str, routing: RoutingResult, system_prompt: str = "") -> dict:
         """Execute task using the specified routing."""
-        if routing.provider == "ollama":
+        if routing.provider == "hermes":
+            return self.execute_hermes(task_text, skill=routing.hermes_skill, system_prompt=system_prompt)
+        elif routing.provider == "ollama":
             return self.execute_local(task_text, routing.model, system_prompt)
         elif routing.provider == "openrouter":
             return self.execute_openrouter(task_text, routing.model, system_prompt)
@@ -531,6 +647,7 @@ class KanbanRouter:
 
     def get_routing_stats(self) -> dict:
         """Get routing statistics."""
+        hermes_count = sum(1 for m in self.metrics if m.get('provider') == 'hermes')
         ollama_count = sum(1 for m in self.metrics if m.get('provider') == 'ollama')
         openrouter_count = sum(1 for m in self.metrics if m.get('provider') == 'openrouter')
         cloud_count = sum(1 for m in self.metrics if m.get('provider') == 'claude')
@@ -538,11 +655,14 @@ class KanbanRouter:
 
         return {
             "total_tasks": total,
+            "hermes_tasks": hermes_count,
             "local_tasks": ollama_count,
             "openrouter_tasks": openrouter_count,
             "cloud_tasks": cloud_count,
+            "hermes_percentage": (hermes_count / total * 100) if total > 0 else 0,
             "local_percentage": (ollama_count / total * 100) if total > 0 else 0,
             "openrouter_percentage": (openrouter_count / total * 100) if total > 0 else 0,
+            "avg_hermes_latency_ms": sum(m.get('latency_ms', 0) for m in self.metrics if m.get('provider') == 'hermes') / max(hermes_count, 1),
             "avg_local_latency_ms": sum(m.get('latency_ms', 0) for m in self.metrics if m.get('provider') == 'ollama') / max(ollama_count, 1),
             "avg_openrouter_latency_ms": sum(m.get('latency_ms', 0) for m in self.metrics if m.get('provider') == 'openrouter') / max(openrouter_count, 1)
         }
@@ -550,6 +670,10 @@ class KanbanRouter:
     def get_available_providers(self) -> dict:
         """Get status of all providers."""
         return {
+            "hermes": {
+                "available": self.check_hermes_health(),
+                "skills": list(self.HERMES_SKILLS.values())
+            },
             "ollama": {
                 "available": self.check_ollama_health(),
                 "models": list(self.OLLAMA_MODELS.keys())

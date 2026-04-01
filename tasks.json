@@ -227,9 +227,9 @@
       "text": "Update X10 data to current (last: Jan 2026)",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "blocked",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.784212",
+      "updated": "2026-03-31T23:06:51.080927",
       "workLog": [
         {
           "timestamp": "03/31/2026, 05:05:49 PM",
@@ -244,6 +244,11 @@
         {
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:06:51 PM",
+          "content": "Moved to blocked via Cline sync",
           "type": "move"
         }
       ]
@@ -353,9 +358,9 @@
       "text": "6. BTCautoresearch Integration",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.784069",
+      "updated": "2026-03-31T23:32:07.947563",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -365,6 +370,21 @@
         {
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to bml",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
           "type": "move"
         }
       ]
@@ -427,17 +447,35 @@
       "text": "7. Flows vs Power Law Research Report",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T23:32:07.948271",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to bml",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "gh-17748402656950.9450434206502563",
       "text": "1. ITC Tax Credit Display",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.783729",
+      "updated": "2026-03-31T23:32:07.948346",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -447,6 +485,21 @@
         {
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to ene",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
           "type": "move"
         }
       ]
@@ -480,9 +533,9 @@
       "text": "Research ITC transfer rules for commercial \u2192 residential",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.783778",
+      "updated": "2026-03-31T23:32:07.948396",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -493,6 +546,21 @@
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to ene",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -501,9 +569,9 @@
       "text": "Model financials: required spread, default risk, breakeven",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "blocked",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.784118",
+      "updated": "2026-03-31T23:04:34.481283",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -513,6 +581,11 @@
         {
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:04:34 PM",
+          "content": "Moved to blocked via Cline sync",
           "type": "move"
         }
       ]
@@ -554,24 +627,48 @@
       "text": "Draft term sheet structure (rates, terms, buyout formula)",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "blocked",
+      "scheduled": false,
+      "updated": "2026-03-31T23:08:32.513705",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:08:32 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "gh-17748402656950.9570034438288412",
       "text": "Explore bank partnerships for loan sales",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "blocked",
+      "scheduled": false,
+      "updated": "2026-03-31T23:10:19.134809",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:10:19 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "gh-17748402656950.3248657880305469",
       "text": "Legal review: can commercial entity claim ITC then transfer system?",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "blocked",
+      "scheduled": false,
+      "updated": "2026-03-31T23:12:15.794961",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:12:15 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "gh-17748402656950.8522080834996039",
@@ -586,8 +683,16 @@
       "text": "Identify pilot market (CA? TX? FL?)",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "blocked",
+      "scheduled": false,
+      "updated": "2026-03-31T23:15:08.189445",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:15:08 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "gh-17748402656950.9899066305698515",
@@ -710,9 +815,9 @@
       "text": "Monitor lead flow",
       "agent": "rea",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.784166",
+      "updated": "2026-03-31T23:32:07.948441",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -723,6 +828,21 @@
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to rea",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -731,8 +851,26 @@
       "text": "Update listing copy if needed",
       "agent": "rea",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "progress",
+      "scheduled": false,
+      "updated": "2026-03-31T23:32:07.948493",
+      "workLog": [
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to rea",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "gh-17748402659430.028941979889910097",
@@ -787,9 +925,9 @@
       "text": "**Google Ads MCP Setup** - Account 941-733-0691",
       "agent": "ana",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.783918",
+      "updated": "2026-03-31T23:32:07.948534",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -799,6 +937,21 @@
         {
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to ana",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
           "type": "move"
         }
       ]
@@ -867,17 +1020,25 @@
       "text": "List Tesla Model Y 2024 for sale",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "todo",
-      "scheduled": false
+      "status": "blocked",
+      "scheduled": false,
+      "updated": "2026-03-31T23:17:19.854101",
+      "workLog": [
+        {
+          "timestamp": "03/31/2026, 11:17:19 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "gh-17748402663210.3630898431426094",
       "text": "Use car-valuation dashboard to price it",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.783972",
+      "updated": "2026-03-31T23:32:07.948573",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:07:06 AM",
@@ -902,6 +1063,21 @@
         {
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to ass",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
           "type": "move"
         }
       ]
@@ -943,9 +1119,9 @@
       "text": "2. Hermes Local LLM Agent",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "todo",
+      "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T17:58:10.784023",
+      "updated": "2026-03-31T23:32:07.948613",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -955,6 +1131,21 @@
         {
           "timestamp": "03/31/2026, 05:58:10 PM",
           "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "3/31/2026, 11:01:14 PM",
+          "content": "Auto-delegated to ass",
+          "type": "started"
+        },
+        {
+          "timestamp": "03/31/2026, 11:29:56 PM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
           "type": "move"
         }
       ]
@@ -1847,5 +2038,5 @@
       "created": "2026-03-31T18:29:11.873000"
     }
   ],
-  "updated": "2026-03-31T18:29:15.968481"
+  "updated": "2026-03-31T23:32:07.948704"
 }

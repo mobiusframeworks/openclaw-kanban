@@ -1,0 +1,10 @@
+{
+  "task_id": "test-notify-123",
+  "prompt": "Test notification: what is 5+5?",
+  "provider": "ollama",
+  "model": "qwen2.5:7b",
+  "complexity": 0.4,
+  "latency_ms": 700,
+  "result": "5 + 5 equals 10.",
+  "executed_at": "2026-03-31T17:26:36.201602"
+}

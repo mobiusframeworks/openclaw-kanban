@@ -568,3 +568,115 @@
 2026-03-31 13:42:59,442 [INFO] Moved card gh-17748402659430.9692652972279795 from backlog to in_progress
 2026-03-31 13:42:59,466 [INFO] Synced 3 changes from OpenClaw to Cline
 2026-03-31 13:42:59,466 [INFO] Synced 3 changes from OpenClaw to Cline
+2026-03-31 17:05:49,420 [INFO] Updated task gh-17748402654240.7872274293382812 status to blocked from Cline
+2026-03-31 17:05:49,420 [INFO] Updated task gh-17748402654240.7872274293382812 status to blocked from Cline
+2026-03-31 17:05:49,426 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:05:49,426 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:09:22,266 [INFO] Updated task gh-17748402654240.23840480023227384 status to blocked from Cline
+2026-03-31 17:09:22,266 [INFO] Updated task gh-17748402654240.23840480023227384 status to blocked from Cline
+2026-03-31 17:09:22,269 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:09:22,269 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:10:23,209 [INFO] Updated task gh-17748402654240.03021890087396184 status to blocked from Cline
+2026-03-31 17:10:23,209 [INFO] Updated task gh-17748402654240.03021890087396184 status to blocked from Cline
+2026-03-31 17:10:23,216 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:10:23,216 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:11:55,523 [INFO] Updated task gh-17748402654240.9323337077199921 status to blocked from Cline
+2026-03-31 17:11:55,523 [INFO] Updated task gh-17748402654240.9323337077199921 status to blocked from Cline
+2026-03-31 17:11:55,530 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:11:55,530 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:12:54,325 [INFO] Updated task gh-17748402654240.6027020566869178 status to blocked from Cline
+2026-03-31 17:12:54,325 [INFO] Updated task gh-17748402654240.6027020566869178 status to blocked from Cline
+2026-03-31 17:12:54,331 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:12:54,331 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:13:35,831 [WARNING] Both systems changed - OpenClaw takes precedence
+2026-03-31 17:13:35,831 [WARNING] Both systems changed - OpenClaw takes precedence
+2026-03-31 17:13:35,842 [INFO] Moved card gh-17748402654240.30005107646020857 from review to backlog
+2026-03-31 17:13:35,842 [INFO] Moved card gh-17748402654240.30005107646020857 from review to backlog
+2026-03-31 17:13:35,848 [INFO] Synced 1 changes from OpenClaw to Cline
+2026-03-31 17:13:35,848 [INFO] Synced 1 changes from OpenClaw to Cline
+2026-03-31 17:16:50,122 [INFO] Updated task gh-17748402654240.5400380247612766 status to blocked from Cline
+2026-03-31 17:16:50,122 [INFO] Updated task gh-17748402654240.5400380247612766 status to blocked from Cline
+2026-03-31 17:16:50,128 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:16:50,128 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:24:16,497 [INFO] Moved card gh-17748402654240.7872274293382812 from review to in_progress
+2026-03-31 17:24:16,497 [INFO] Moved card gh-17748402654240.7872274293382812 from review to in_progress
+2026-03-31 17:24:16,849 [INFO] Moved card gh-17748402654240.23840480023227384 from review to backlog
+2026-03-31 17:24:16,849 [INFO] Moved card gh-17748402654240.23840480023227384 from review to backlog
+2026-03-31 17:24:16,852 [INFO] Moved card gh-17748402654240.03021890087396184 from review to backlog
+2026-03-31 17:24:16,852 [INFO] Moved card gh-17748402654240.03021890087396184 from review to backlog
+2026-03-31 17:24:16,853 [INFO] Moved card gh-17748402654240.9323337077199921 from review to backlog
+2026-03-31 17:24:16,853 [INFO] Moved card gh-17748402654240.9323337077199921 from review to backlog
+2026-03-31 17:24:16,853 [INFO] Moved card gh-17748402654240.6027020566869178 from review to backlog
+2026-03-31 17:24:16,853 [INFO] Moved card gh-17748402654240.6027020566869178 from review to backlog
+2026-03-31 17:24:16,853 [INFO] Moved card gh-17748402654240.5400380247612766 from review to backlog
+2026-03-31 17:24:16,853 [INFO] Moved card gh-17748402654240.5400380247612766 from review to backlog
+2026-03-31 17:24:16,881 [INFO] Synced 6 changes from OpenClaw to Cline
+2026-03-31 17:24:16,881 [INFO] Synced 6 changes from OpenClaw to Cline
+2026-03-31 17:32:22,892 [INFO] Updated task gh-17748402656950.36973744001352615 status to blocked from Cline
+2026-03-31 17:32:22,892 [INFO] Updated task gh-17748402656950.36973744001352615 status to blocked from Cline
+2026-03-31 17:32:22,907 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:32:22,907 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:39:52,992 [INFO] Updated task gh-17748402654240.9225415197024703 status to blocked from Cline
+2026-03-31 17:39:52,992 [INFO] Updated task gh-17748402654240.9225415197024703 status to blocked from Cline
+2026-03-31 17:39:52,999 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:39:52,999 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:47:57,997 [WARNING] Both systems changed - OpenClaw takes precedence
+2026-03-31 17:47:57,997 [WARNING] Both systems changed - OpenClaw takes precedence
+2026-03-31 17:47:58,198 [INFO] Moved card gh-17748402654240.0835457932907282 from review to backlog
+2026-03-31 17:47:58,198 [INFO] Moved card gh-17748402654240.0835457932907282 from review to backlog
+2026-03-31 17:47:58,420 [INFO] Synced 1 changes from OpenClaw to Cline
+2026-03-31 17:47:58,420 [INFO] Synced 1 changes from OpenClaw to Cline
+2026-03-31 17:49:02,978 [WARNING] Both systems changed - OpenClaw takes precedence
+2026-03-31 17:49:02,978 [WARNING] Both systems changed - OpenClaw takes precedence
+2026-03-31 17:49:03,834 [INFO] Moved card gh-17748402656950.179910314407149 from review to backlog
+2026-03-31 17:49:03,834 [INFO] Moved card gh-17748402656950.179910314407149 from review to backlog
+2026-03-31 17:49:04,408 [INFO] Synced 1 changes from OpenClaw to Cline
+2026-03-31 17:49:04,408 [INFO] Synced 1 changes from OpenClaw to Cline
+2026-03-31 17:58:10,765 [INFO] Updated task gh-17748402654240.17463672242170347 status to todo from Cline
+2026-03-31 17:58:10,765 [INFO] Updated task gh-17748402654240.17463672242170347 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402654240.8562488539421408 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402654240.8562488539421408 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402656950.9450434206502563 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402656950.9450434206502563 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402656950.5567018275995496 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402656950.5567018275995496 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402659430.49222795617723536 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402659430.49222795617723536 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402659430.8311342067344044 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402659430.8311342067344044 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402661810.767886845281434 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402661810.767886845281434 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402663210.3630898431426094 status to todo from Cline
+2026-03-31 17:58:10,783 [INFO] Updated task gh-17748402663210.3630898431426094 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402663210.614031184287342 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402663210.614031184287342 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402654240.0482479775048279 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402654240.0482479775048279 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402656950.9359507323417173 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402656950.9359507323417173 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402659430.9692652972279795 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402659430.9692652972279795 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402654240.7872274293382812 status to todo from Cline
+2026-03-31 17:58:10,784 [INFO] Updated task gh-17748402654240.7872274293382812 status to todo from Cline
+2026-03-31 17:58:10,786 [INFO] Synced 13 changes from Cline to OpenClaw
+2026-03-31 17:58:10,786 [INFO] Synced 13 changes from Cline to OpenClaw
+2026-03-31 17:59:33,124 [INFO] Updated task gh-17748402654240.17463672242170347 status to blocked from Cline
+2026-03-31 17:59:33,124 [INFO] Updated task gh-17748402654240.17463672242170347 status to blocked from Cline
+2026-03-31 17:59:33,130 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 17:59:33,130 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:00:03,579 [INFO] Updated task gh-17748402654240.8562488539421408 status to blocked from Cline
+2026-03-31 18:00:03,579 [INFO] Updated task gh-17748402654240.8562488539421408 status to blocked from Cline
+2026-03-31 18:00:03,581 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:00:03,581 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:01:26,123 [INFO] Updated task gh-17748402659430.49222795617723536 status to blocked from Cline
+2026-03-31 18:01:26,123 [INFO] Updated task gh-17748402659430.49222795617723536 status to blocked from Cline
+2026-03-31 18:01:26,128 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:01:26,128 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:02:38,257 [INFO] Updated task gh-17748402659430.8311342067344044 status to blocked from Cline
+2026-03-31 18:02:38,257 [INFO] Updated task gh-17748402659430.8311342067344044 status to blocked from Cline
+2026-03-31 18:02:38,262 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:02:38,262 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:29:15,966 [INFO] Created new OpenClaw task tg-1775006951873 from Cline
+2026-03-31 18:29:15,966 [INFO] Created new OpenClaw task tg-1775006951873 from Cline
+2026-03-31 18:29:15,973 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-03-31 18:29:15,973 [INFO] Synced 1 changes from Cline to OpenClaw

@@ -40,6 +40,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from task_router import KanbanRouter, RoutingResult
 from hermes_bridge import HermesBridge, HermesResult
+from telegram_notify import notify_task_complete
 
 
 @dataclass
@@ -267,6 +268,7 @@ class TaskPrefilter:
             return decision
 
         start_time = time.time()
+        success = False
 
         if decision.provider == "hermes":
             # Use Hermes CLI with skill
@@ -278,7 +280,8 @@ class TaskPrefilter:
 
             if result.success:
                 decision.result = result.content
-                self.metrics["local_executed"] += 1
+                self.metrics["hermes_executed"] = self.metrics.get("hermes_executed", 0) + 1
+                success = True
             else:
                 decision.result = f"Error: {result.error}"
 
@@ -291,7 +294,8 @@ class TaskPrefilter:
 
             if result.success:
                 decision.result = result.content
-                self.metrics["local_executed"] += 1
+                self.metrics["local_executed"] = self.metrics.get("local_executed", 0) + 1
+                success = True
             else:
                 decision.result = f"Error: {result.error}"
 
@@ -312,11 +316,95 @@ class TaskPrefilter:
 
             if result.get("success"):
                 decision.result = result.get("content", "")
-                self.metrics["openrouter_executed"] += 1
+                self.metrics["openrouter_executed"] = self.metrics.get("openrouter_executed", 0) + 1
+                success = True
             else:
                 decision.result = f"Error: {result.get('error', 'Unknown error')}"
 
+        # If execution succeeded, update kanban, save result, and notify
+        if success and decision.task_id:
+            self._save_task_result(decision)
+            self._move_task_to_review(decision.task_id)
+
+            # Send Telegram notification
+            if self.config.get("telegram_notifications", True):
+                try:
+                    notify_task_complete(
+                        task_id=decision.task_id,
+                        prompt=decision.task_prompt,
+                        result=decision.result or "",
+                        provider=decision.provider,
+                        model=decision.model,
+                        latency_ms=decision.latency_ms,
+                        success=True
+                    )
+                except Exception as e:
+                    print(f"  [Telegram notification failed: {e}]")
+
         return decision
+
+    def _save_task_result(self, decision: PrefilterDecision):
+        """Save task execution result to file."""
+        results_dir = Path(__file__).parent / "results"
+        results_dir.mkdir(exist_ok=True)
+
+        result_file = results_dir / f"{decision.task_id[:20]}.json"
+        result_data = {
+            "task_id": decision.task_id,
+            "prompt": decision.task_prompt,
+            "provider": decision.provider,
+            "model": decision.model,
+            "complexity": decision.complexity,
+            "latency_ms": decision.latency_ms,
+            "result": decision.result,
+            "executed_at": datetime.now().isoformat()
+        }
+
+        with open(result_file, "w") as f:
+            json.dump(result_data, f, indent=2)
+
+        print(f"  [Saved result to {result_file.name}]")
+
+    def _move_task_to_review(self, task_id: str):
+        """Move a completed task to the review column in kanban."""
+        if not self.KANBAN_PATH.exists():
+            return
+
+        try:
+            with open(self.KANBAN_PATH) as f:
+                board = json.load(f)
+
+            # Find and remove task from current column
+            task_card = None
+            for column in board.get("columns", []):
+                for i, card in enumerate(column.get("cards", [])):
+                    if card.get("id") == task_id:
+                        task_card = column["cards"].pop(i)
+                        break
+                if task_card:
+                    break
+
+            if not task_card:
+                return
+
+            # Add to review column
+            for column in board.get("columns", []):
+                if column.get("id") == "review":
+                    # Add metadata about local execution
+                    task_card["localExecuted"] = True
+                    task_card["localExecutedAt"] = datetime.now().isoformat()
+                    task_card["updatedAt"] = int(time.time() * 1000)
+                    column["cards"].insert(0, task_card)
+                    break
+
+            # Save updated board
+            with open(self.KANBAN_PATH, "w") as f:
+                json.dump(board, f, indent=2)
+
+            print(f"  [Moved task to review column]")
+
+        except Exception as e:
+            print(f"  [Error moving task: {e}]")
 
     def scan_and_filter(self, dry_run: bool = False, execute: bool = False) -> List[PrefilterDecision]:
         """
@@ -335,16 +423,24 @@ class TaskPrefilter:
 
         tasks = self._get_filterable_tasks()
         decisions = []
+        max_exec = self.config.get("max_tasks_per_cycle", 3)
+        executed_count = 0
 
-        print(f"[PreFilter] Analyzing {len(tasks)} tasks...")
+        print(f"[PreFilter] Analyzing {len(tasks)} tasks (max {max_exec} executions)...")
 
         for task in tasks:
             decision = self.analyze_task(task["prompt"], task["id"])
             decisions.append(decision)
 
-            # Execute if requested and interceptable
+            # Execute if requested, interceptable, and under limit
             if execute and not dry_run and decision.should_intercept:
-                decision = self.execute_filtered_task(decision)
+                if executed_count < max_exec:
+                    print(f"\n  >>> EXECUTING locally ({executed_count + 1}/{max_exec})...")
+                    decision = self.execute_filtered_task(decision)
+                    if decision.executed:
+                        executed_count += 1
+                else:
+                    print(f"  [Skipped - max executions ({max_exec}) reached]")
 
             # Track metrics
             self.metrics["total_filtered"] += 1
@@ -353,7 +449,8 @@ class TaskPrefilter:
 
             # Log decision
             tier_emoji = {"local": "🏠", "openrouter": "☁️", "claude": "🤖"}.get(decision.tier, "?")
-            print(f"  {tier_emoji} [{decision.tier:10}] {decision.model:30} | {decision.task_prompt[:40]}...")
+            exec_status = " [DONE]" if decision.executed else ""
+            print(f"  {tier_emoji} [{decision.tier:10}] {decision.model:30} | {decision.task_prompt[:40]}...{exec_status}")
 
             # Store decision summary in metrics
             self.metrics["decisions"].append({

@@ -189,6 +189,17 @@ class KanbanRouter:
         self._init_router()
         self._init_hermes()
 
+    def _load_config(self) -> dict:
+        """Load routing config from file."""
+        config_path = Path(__file__).parent / "routing_config.json"
+        if config_path.exists():
+            try:
+                with open(config_path) as f:
+                    return json.load(f)
+            except:
+                pass
+        return {}
+
     def _load_api_key(self) -> str:
         """Load OpenRouter API key from config file or environment."""
         # Try environment variable first
@@ -197,16 +208,8 @@ class KanbanRouter:
             return key
 
         # Try config file
-        config_path = Path(__file__).parent / "routing_config.json"
-        if config_path.exists():
-            try:
-                with open(config_path) as f:
-                    config = json.load(f)
-                    return config.get("openrouter_api_key", "")
-            except:
-                pass
-
-        return ""
+        config = self._load_config()
+        return config.get("openrouter_api_key", "")
 
     def _init_router(self):
         """Initialize the HybridRouter if available."""
@@ -341,7 +344,11 @@ class KanbanRouter:
         """
         hermes_ok = self.hermes_enabled and self.check_hermes_health()
         ollama_ok = prefer_local and self.check_ollama_health()
-        openrouter_ok = bool(self.openrouter_api_key)
+
+        # Check if OpenRouter is enabled in config
+        config = self._load_config()
+        openrouter_enabled = config.get("openrouter_enabled", True)
+        openrouter_ok = openrouter_enabled and bool(self.openrouter_api_key)
 
         # Check for Hermes skill match first (highest priority for skill-based tasks)
         if hermes_ok and task_text:
@@ -362,11 +369,12 @@ class KanbanRouter:
 
         threshold, local_model = local_thresholds.get(task_type, (0.5, "qwen2.5:7b"))
 
-        # Try local Ollama first
-        if ollama_ok and complexity < threshold:
+        # Try local Ollama first (expanded threshold when OpenRouter disabled)
+        effective_threshold = 0.75 if (not openrouter_ok and ollama_ok) else threshold
+        if ollama_ok and complexity < effective_threshold:
             return local_model, "ollama", ""
 
-        # Try OpenRouter for medium complexity
+        # Try OpenRouter for medium complexity (if enabled)
         if openrouter_ok and complexity < 0.75:
             openrouter_models = {
                 "summarization": "nvidia/nemotron-3-nano-30b-a3b:free",

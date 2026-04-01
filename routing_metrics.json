@@ -1,1107 +1,9 @@
 {
-  "total_filtered": 23509,
-  "local_executed": 43,
+  "total_filtered": 23631,
+  "local_executed": 45,
   "openrouter_executed": 0,
-  "claude_passed": 3619,
+  "claude_passed": 3639,
   "decisions": [
-    {
-      "timestamp": "2026-04-01T10:58:06.309950",
-      "task_id": "gh-17748402654240.0482479775048279",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.310041",
-      "task_id": "gh-17748402654240.7252715730150389",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.310052",
-      "task_id": "gh-17748402656950.9450434206502563",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.311535",
-      "task_id": "gh-17748402656950.5567018275995496",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.311726",
-      "task_id": "gh-17748402659430.9692652972279795",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.311894",
-      "task_id": "gh-17748402659430.16980564972837697",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.311994",
-      "task_id": "gh-17748402661810.767886845281434",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:web",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.312090",
-      "task_id": "gh-17748402663210.3630898431426094",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T10:58:06.312188",
-      "task_id": "gh-17748402663210.614031184287342",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:50.790943",
-      "task_id": "tg-1775006951873",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:obsidian",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:00:50.791307",
-      "task_id": "gh-17748402654240.09859610648881922",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:50.791327",
-      "task_id": "gh-17748402656950.8522080834996039",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.602058",
-      "task_id": "gh-17748402663210.4160037409424261",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.602565",
-      "task_id": "gh-17748402663210.4523214556967602",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.602690",
-      "task_id": "gh-17748402663210.8992758893184065",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.602814",
-      "task_id": "gh-17748402663210.6056173568975511",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.602850",
-      "task_id": "gh-17748402654240.4813468850410083",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603041",
-      "task_id": "gh-17748402656950.8548135281829877",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603059",
-      "task_id": "task-1774950648017",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603205",
-      "task_id": "gh-17748402663210.5509899698523011",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603305",
-      "task_id": "task-1774899022615",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603412",
-      "task_id": "test-link-001",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603519",
-      "task_id": "gh-17748402654240.30005107646020857",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603619",
-      "task_id": "gh-17748402654240.23840480023227384",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.603808",
-      "task_id": "gh-17748402654240.03021890087396184",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604068",
-      "task_id": "gh-17748402654240.9323337077199921",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604285",
-      "task_id": "gh-17748402654240.6027020566869178",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604429",
-      "task_id": "gh-17748402654240.5400380247612766",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604542",
-      "task_id": "gh-17748402654240.0835457932907282",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604641",
-      "task_id": "gh-17748402656950.179910314407149",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604729",
-      "task_id": "gh-17748402654240.0482479775048279",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604821",
-      "task_id": "gh-17748402654240.7252715730150389",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604839",
-      "task_id": "gh-17748402656950.9450434206502563",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.604944",
-      "task_id": "gh-17748402656950.5567018275995496",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.605041",
-      "task_id": "gh-17748402659430.9692652972279795",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.605139",
-      "task_id": "gh-17748402659430.16980564972837697",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.605252",
-      "task_id": "gh-17748402661810.767886845281434",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:web",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.605355",
-      "task_id": "gh-17748402663210.3630898431426094",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:00:53.605448",
-      "task_id": "gh-17748402663210.614031184287342",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:21.399925",
-      "task_id": "tg-1775006951873",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:obsidian",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:02:21.400126",
-      "task_id": "gh-17748402654240.09859610648881922",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:21.400138",
-      "task_id": "gh-17748402656950.8522080834996039",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306061",
-      "task_id": "gh-17748402663210.4160037409424261",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306574",
-      "task_id": "gh-17748402663210.4523214556967602",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306685",
-      "task_id": "gh-17748402663210.8992758893184065",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306778",
-      "task_id": "gh-17748402663210.6056173568975511",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306795",
-      "task_id": "gh-17748402654240.4813468850410083",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306888",
-      "task_id": "gh-17748402656950.8548135281829877",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306904",
-      "task_id": "task-1774950648017",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.306997",
-      "task_id": "gh-17748402663210.5509899698523011",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307084",
-      "task_id": "task-1774899022615",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307170",
-      "task_id": "test-link-001",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307254",
-      "task_id": "gh-17748402654240.30005107646020857",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307340",
-      "task_id": "gh-17748402654240.23840480023227384",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307438",
-      "task_id": "gh-17748402654240.03021890087396184",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307523",
-      "task_id": "gh-17748402654240.9323337077199921",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307607",
-      "task_id": "gh-17748402654240.6027020566869178",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307695",
-      "task_id": "gh-17748402654240.5400380247612766",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307780",
-      "task_id": "gh-17748402654240.0835457932907282",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307863",
-      "task_id": "gh-17748402656950.179910314407149",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.307940",
-      "task_id": "gh-17748402654240.0482479775048279",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308016",
-      "task_id": "gh-17748402654240.7252715730150389",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308026",
-      "task_id": "gh-17748402656950.9450434206502563",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308117",
-      "task_id": "gh-17748402656950.5567018275995496",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308200",
-      "task_id": "gh-17748402659430.9692652972279795",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308284",
-      "task_id": "gh-17748402659430.16980564972837697",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308370",
-      "task_id": "gh-17748402661810.767886845281434",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:web",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308453",
-      "task_id": "gh-17748402663210.3630898431426094",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:02:24.308541",
-      "task_id": "gh-17748402663210.614031184287342",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:27.354734",
-      "task_id": "tg-1775006951873",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:obsidian",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:04:27.354938",
-      "task_id": "gh-17748402654240.09859610648881922",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:27.354949",
-      "task_id": "gh-17748402656950.8522080834996039",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.093755",
-      "task_id": "gh-17748402663210.4160037409424261",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.094429",
-      "task_id": "gh-17748402663210.4523214556967602",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.094629",
-      "task_id": "gh-17748402663210.8992758893184065",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.094762",
-      "task_id": "gh-17748402663210.6056173568975511",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.094791",
-      "task_id": "gh-17748402654240.4813468850410083",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.094918",
-      "task_id": "gh-17748402656950.8548135281829877",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.094933",
-      "task_id": "task-1774950648017",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095062",
-      "task_id": "gh-17748402663210.5509899698523011",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095176",
-      "task_id": "task-1774899022615",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095294",
-      "task_id": "test-link-001",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095400",
-      "task_id": "gh-17748402654240.30005107646020857",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095492",
-      "task_id": "gh-17748402654240.23840480023227384",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095594",
-      "task_id": "gh-17748402654240.03021890087396184",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095684",
-      "task_id": "gh-17748402654240.9323337077199921",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095772",
-      "task_id": "gh-17748402654240.6027020566869178",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095867",
-      "task_id": "gh-17748402654240.5400380247612766",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.095961",
-      "task_id": "gh-17748402654240.0835457932907282",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096052",
-      "task_id": "gh-17748402656950.179910314407149",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096137",
-      "task_id": "gh-17748402654240.0482479775048279",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096219",
-      "task_id": "gh-17748402654240.7252715730150389",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096229",
-      "task_id": "gh-17748402656950.9450434206502563",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096330",
-      "task_id": "gh-17748402656950.5567018275995496",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096416",
-      "task_id": "gh-17748402659430.9692652972279795",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096517",
-      "task_id": "gh-17748402659430.16980564972837697",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096615",
-      "task_id": "gh-17748402661810.767886845281434",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:web",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096709",
-      "task_id": "gh-17748402663210.3630898431426094",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:04:30.096799",
-      "task_id": "gh-17748402663210.614031184287342",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:10.313028",
-      "task_id": "tg-1775006951873",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:obsidian",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:06:10.313214",
-      "task_id": "gh-17748402654240.09859610648881922",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:10.313225",
-      "task_id": "gh-17748402656950.8522080834996039",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.804803",
-      "task_id": "gh-17748402663210.4160037409424261",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": true
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.806334",
-      "task_id": "gh-17748402663210.4523214556967602",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.806696",
-      "task_id": "gh-17748402663210.8992758893184065",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.806913",
-      "task_id": "gh-17748402663210.6056173568975511",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.806944",
-      "task_id": "gh-17748402654240.4813468850410083",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807095",
-      "task_id": "gh-17748402656950.8548135281829877",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807126",
-      "task_id": "task-1774950648017",
-      "tier": "claude",
-      "provider": "claude",
-      "model": "claude",
-      "complexity": 1.0,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807259",
-      "task_id": "gh-17748402663210.5509899698523011",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807360",
-      "task_id": "task-1774899022615",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807459",
-      "task_id": "test-link-001",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807558",
-      "task_id": "gh-17748402654240.30005107646020857",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807658",
-      "task_id": "gh-17748402654240.23840480023227384",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.35000000000000003,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807748",
-      "task_id": "gh-17748402654240.03021890087396184",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807837",
-      "task_id": "gh-17748402654240.9323337077199921",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.807923",
-      "task_id": "gh-17748402654240.6027020566869178",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.808019",
-      "task_id": "gh-17748402654240.5400380247612766",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.808105",
-      "task_id": "gh-17748402654240.0835457932907282",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "deepseek-r1:latest",
-      "complexity": 0.45,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.808190",
-      "task_id": "gh-17748402656950.179910314407149",
-      "tier": "local",
-      "provider": "ollama",
-      "model": "qwen2.5:7b",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.808268",
-      "task_id": "gh-17748402654240.0482479775048279",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
-    {
-      "timestamp": "2026-04-01T11:06:12.808348",
-      "task_id": "gh-17748402654240.7252715730150389",
-      "tier": "local",
-      "provider": "hermes",
-      "model": "hermes:deep-research",
-      "complexity": 0.4,
-      "executed": false
-    },
     {
       "timestamp": "2026-04-01T11:06:12.808357",
       "task_id": "gh-17748402656950.9450434206502563",
@@ -8997,6 +7899,1104 @@
     },
     {
       "timestamp": "2026-04-01T11:53:16.628968",
+      "task_id": "gh-17748402663210.614031184287342",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:54:19.290607",
+      "task_id": "tg-1775069573632",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.218949",
+      "task_id": "tg-1775006951873",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:obsidian",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.219117",
+      "task_id": "gh-17748402654240.09859610648881922",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.219126",
+      "task_id": "gh-17748402656950.8522080834996039",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.220453",
+      "task_id": "gh-17748402663210.4160037409424261",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.220650",
+      "task_id": "gh-17748402663210.4523214556967602",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.220786",
+      "task_id": "gh-17748402663210.8992758893184065",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.220903",
+      "task_id": "gh-17748402663210.6056173568975511",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.220917",
+      "task_id": "gh-17748402654240.4813468850410083",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221037",
+      "task_id": "gh-17748402656950.8548135281829877",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221046",
+      "task_id": "task-1774950648017",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221152",
+      "task_id": "gh-17748402663210.5509899698523011",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221269",
+      "task_id": "task-1774899022615",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221363",
+      "task_id": "test-link-001",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221453",
+      "task_id": "gh-17748402654240.30005107646020857",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221543",
+      "task_id": "gh-17748402654240.23840480023227384",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221636",
+      "task_id": "gh-17748402654240.03021890087396184",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221725",
+      "task_id": "gh-17748402654240.9323337077199921",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221824",
+      "task_id": "gh-17748402654240.6027020566869178",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.221920",
+      "task_id": "gh-17748402654240.5400380247612766",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222013",
+      "task_id": "gh-17748402654240.0835457932907282",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222108",
+      "task_id": "gh-17748402656950.179910314407149",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222190",
+      "task_id": "gh-17748402654240.0482479775048279",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222278",
+      "task_id": "gh-17748402654240.7252715730150389",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222289",
+      "task_id": "gh-17748402656950.9450434206502563",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222379",
+      "task_id": "gh-17748402656950.5567018275995496",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222478",
+      "task_id": "gh-17748402659430.9692652972279795",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222571",
+      "task_id": "gh-17748402659430.16980564972837697",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222663",
+      "task_id": "gh-17748402661810.767886845281434",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:web",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222757",
+      "task_id": "gh-17748402663210.3630898431426094",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:55:42.222848",
+      "task_id": "gh-17748402663210.614031184287342",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:06.665088",
+      "task_id": "tg-1775069726031",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.004618",
+      "task_id": "tg-1775006951873",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:obsidian",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.004801",
+      "task_id": "gh-17748402654240.09859610648881922",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.004818",
+      "task_id": "gh-17748402656950.8522080834996039",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.006997",
+      "task_id": "gh-17748402663210.4160037409424261",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.007682",
+      "task_id": "gh-17748402663210.4523214556967602",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.007950",
+      "task_id": "gh-17748402663210.8992758893184065",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008071",
+      "task_id": "gh-17748402663210.6056173568975511",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008086",
+      "task_id": "gh-17748402654240.4813468850410083",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008191",
+      "task_id": "gh-17748402656950.8548135281829877",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008200",
+      "task_id": "task-1774950648017",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008304",
+      "task_id": "gh-17748402663210.5509899698523011",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008400",
+      "task_id": "task-1774899022615",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008496",
+      "task_id": "test-link-001",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008587",
+      "task_id": "gh-17748402654240.30005107646020857",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008674",
+      "task_id": "gh-17748402654240.23840480023227384",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008769",
+      "task_id": "gh-17748402654240.03021890087396184",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008858",
+      "task_id": "gh-17748402654240.9323337077199921",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.008945",
+      "task_id": "gh-17748402654240.6027020566869178",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009032",
+      "task_id": "gh-17748402654240.5400380247612766",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009120",
+      "task_id": "gh-17748402654240.0835457932907282",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009216",
+      "task_id": "gh-17748402656950.179910314407149",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009300",
+      "task_id": "gh-17748402654240.0482479775048279",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009383",
+      "task_id": "gh-17748402654240.7252715730150389",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009393",
+      "task_id": "gh-17748402656950.9450434206502563",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009485",
+      "task_id": "gh-17748402656950.5567018275995496",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009572",
+      "task_id": "gh-17748402659430.9692652972279795",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009664",
+      "task_id": "gh-17748402659430.16980564972837697",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009749",
+      "task_id": "gh-17748402661810.767886845281434",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:web",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009835",
+      "task_id": "gh-17748402663210.3630898431426094",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:56:57.009925",
+      "task_id": "gh-17748402663210.614031184287342",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:55.373967",
+      "task_id": "tg-1775006951873",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:obsidian",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:57:55.374312",
+      "task_id": "gh-17748402654240.09859610648881922",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:55.374327",
+      "task_id": "gh-17748402656950.8522080834996039",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.029223",
+      "task_id": "gh-17748402663210.4160037409424261",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.029995",
+      "task_id": "gh-17748402663210.4523214556967602",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030161",
+      "task_id": "gh-17748402663210.8992758893184065",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030263",
+      "task_id": "gh-17748402663210.6056173568975511",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030280",
+      "task_id": "gh-17748402654240.4813468850410083",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030384",
+      "task_id": "gh-17748402656950.8548135281829877",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030396",
+      "task_id": "task-1774950648017",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030505",
+      "task_id": "gh-17748402663210.5509899698523011",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030798",
+      "task_id": "task-1774899022615",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.030921",
+      "task_id": "test-link-001",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031023",
+      "task_id": "gh-17748402654240.30005107646020857",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031118",
+      "task_id": "gh-17748402654240.23840480023227384",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031211",
+      "task_id": "gh-17748402654240.03021890087396184",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031302",
+      "task_id": "gh-17748402654240.9323337077199921",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031397",
+      "task_id": "gh-17748402654240.6027020566869178",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031493",
+      "task_id": "gh-17748402654240.5400380247612766",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031588",
+      "task_id": "gh-17748402654240.0835457932907282",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031676",
+      "task_id": "gh-17748402656950.179910314407149",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031756",
+      "task_id": "gh-17748402654240.0482479775048279",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031833",
+      "task_id": "gh-17748402654240.7252715730150389",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031842",
+      "task_id": "gh-17748402656950.9450434206502563",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.031932",
+      "task_id": "gh-17748402656950.5567018275995496",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.032014",
+      "task_id": "gh-17748402659430.9692652972279795",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.032097",
+      "task_id": "gh-17748402659430.16980564972837697",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.032184",
+      "task_id": "gh-17748402661810.767886845281434",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:web",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.032267",
+      "task_id": "gh-17748402663210.3630898431426094",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:57:58.032348",
+      "task_id": "gh-17748402663210.614031184287342",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:37.808100",
+      "task_id": "tg-1775006951873",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:obsidian",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:59:37.808432",
+      "task_id": "gh-17748402654240.09859610648881922",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:37.808446",
+      "task_id": "gh-17748402656950.8522080834996039",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.256174",
+      "task_id": "gh-17748402663210.4160037409424261",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": true
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.257790",
+      "task_id": "gh-17748402663210.4523214556967602",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.258651",
+      "task_id": "gh-17748402663210.8992758893184065",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.258817",
+      "task_id": "gh-17748402663210.6056173568975511",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.258849",
+      "task_id": "gh-17748402654240.4813468850410083",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.258972",
+      "task_id": "gh-17748402656950.8548135281829877",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.258988",
+      "task_id": "task-1774950648017",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.259375",
+      "task_id": "gh-17748402663210.5509899698523011",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.259653",
+      "task_id": "task-1774899022615",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.259933",
+      "task_id": "test-link-001",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.260217",
+      "task_id": "gh-17748402654240.30005107646020857",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.260496",
+      "task_id": "gh-17748402654240.23840480023227384",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.260774",
+      "task_id": "gh-17748402654240.03021890087396184",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.261026",
+      "task_id": "gh-17748402654240.9323337077199921",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.262110",
+      "task_id": "gh-17748402654240.6027020566869178",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.262948",
+      "task_id": "gh-17748402654240.5400380247612766",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.263731",
+      "task_id": "gh-17748402654240.0835457932907282",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "deepseek-r1:latest",
+      "complexity": 0.45,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.264052",
+      "task_id": "gh-17748402656950.179910314407149",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.265162",
+      "task_id": "gh-17748402654240.0482479775048279",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.265568",
+      "task_id": "gh-17748402654240.7252715730150389",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.267578",
+      "task_id": "gh-17748402656950.9450434206502563",
+      "tier": "claude",
+      "provider": "claude",
+      "model": "claude",
+      "complexity": 1.0,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.267919",
+      "task_id": "gh-17748402656950.5567018275995496",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:deep-research",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.268073",
+      "task_id": "gh-17748402659430.9692652972279795",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.268243",
+      "task_id": "gh-17748402659430.16980564972837697",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.268481",
+      "task_id": "gh-17748402661810.767886845281434",
+      "tier": "local",
+      "provider": "hermes",
+      "model": "hermes:web",
+      "complexity": 0.35000000000000003,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.269697",
+      "task_id": "gh-17748402663210.3630898431426094",
+      "tier": "local",
+      "provider": "ollama",
+      "model": "qwen2.5:7b",
+      "complexity": 0.4,
+      "executed": false
+    },
+    {
+      "timestamp": "2026-04-01T11:59:41.270149",
       "task_id": "gh-17748402663210.614031184287342",
       "tier": "local",
       "provider": "ollama",

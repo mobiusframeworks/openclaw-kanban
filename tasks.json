@@ -661,10 +661,20 @@
       "quadrant": "q2",
       "status": "blocked",
       "scheduled": false,
-      "updated": "2026-03-31T23:12:15.794961",
+      "updated": "2026-04-01T00:30:31.656348",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:12:15 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/01/2026, 12:30:26 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/01/2026, 12:30:31 AM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
         }
@@ -685,10 +695,20 @@
       "quadrant": "q2",
       "status": "blocked",
       "scheduled": false,
-      "updated": "2026-03-31T23:15:08.189445",
+      "updated": "2026-04-01T00:30:31.654962",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:15:08 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/01/2026, 12:30:21 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/01/2026, 12:30:31 AM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
         }
@@ -1022,10 +1042,20 @@
       "quadrant": "q2",
       "status": "blocked",
       "scheduled": false,
-      "updated": "2026-03-31T23:17:19.854101",
+      "updated": "2026-04-01T00:30:41.767069",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:17:19 PM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/01/2026, 12:30:21 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/01/2026, 12:30:41 AM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
         }
@@ -2038,5 +2068,5 @@
       "created": "2026-03-31T18:29:11.873000"
     }
   ],
-  "updated": "2026-03-31T23:32:07.948704"
+  "updated": "2026-04-01T00:30:41.767758"
 }

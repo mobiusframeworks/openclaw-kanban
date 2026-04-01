@@ -992,3 +992,19 @@
 2026-04-01 10:51:49,272 [ERROR] Failed to load OpenClaw tasks: [Errno 1] Operation not permitted: '/Users/macmini/Vaults/openclaw/bridge/kanban/tasks.json'
 2026-04-01 10:51:54,303 [ERROR] Failed to load OpenClaw tasks: [Errno 1] Operation not permitted: '/Users/macmini/Vaults/openclaw/bridge/kanban/tasks.json'
 2026-04-01 10:51:54,303 [ERROR] Failed to load OpenClaw tasks: [Errno 1] Operation not permitted: '/Users/macmini/Vaults/openclaw/bridge/kanban/tasks.json'
+2026-04-01 11:45:12,842 [INFO] Created new OpenClaw task tg-1775069112316 from Cline
+2026-04-01 11:45:12,842 [INFO] Created new OpenClaw task tg-1775069112316 from Cline
+2026-04-01 11:45:12,849 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-04-01 11:45:12,849 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-04-01 11:47:25,131 [INFO] Updated task tg-1775069112316 status to blocked from Cline
+2026-04-01 11:47:25,131 [INFO] Updated task tg-1775069112316 status to blocked from Cline
+2026-04-01 11:47:25,183 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-04-01 11:47:25,183 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-04-01 11:52:55,559 [INFO] Created new OpenClaw task tg-1775069573632 from Cline
+2026-04-01 11:52:55,559 [INFO] Created new OpenClaw task tg-1775069573632 from Cline
+2026-04-01 11:52:55,562 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-04-01 11:52:55,562 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-04-01 11:54:22,027 [INFO] Updated task tg-1775069573632 status to blocked from Cline
+2026-04-01 11:54:22,027 [INFO] Updated task tg-1775069573632 status to blocked from Cline
+2026-04-01 11:54:22,035 [INFO] Synced 1 changes from Cline to OpenClaw
+2026-04-01 11:54:22,035 [INFO] Synced 1 changes from Cline to OpenClaw

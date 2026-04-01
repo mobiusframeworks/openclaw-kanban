@@ -76,16 +76,17 @@ A financing company that offers a **better alternative to solar leases** by comb
 ## SEO / AI Visibility (energyscout.org)
 
 ### 1. Fix SPA Invisibility for AI Crawlers
-**Status:** BACKLOG
+**Status:** DONE (2026-04-01)
 **Priority:** HIGH
 **Added:** 2026-03-29
 
-**Problem:** energyscout.org is Vite React SPA - AI crawlers see empty `<div id="root"></div>`
+**Solution:** Implemented Vite SSG (Static Site Generation) - content now pre-renders server-side.
 
-**Options:**
-- [ ] Option A: Migrate to Next.js (big effort, best long-term)
-- [ ] Option B: Add Vite prerendering plugin (`vite-plugin-ssr` or `prerender-spa-plugin`)
-- [ ] Option C: Use a prerender service (prerender.io)
+**Verification (2026-04-01):**
+- ✅ HTML contains full content (navigation, hero, FAQ, footer)
+- ✅ robots.txt allows all AI crawlers (GPTBot, ClaudeBot, PerplexityBot, etc.)
+- ✅ sitemap.xml present with 11 URLs
+- ✅ `__VITE_REACT_SSG_HASH__` confirms SSG active
 
 **Note:** battery.energyscout.org (Next.js) is fine - has SSR, robots.ts, sitemap.ts
 

@@ -2066,7 +2066,43 @@
       "scheduled": false,
       "tags": [],
       "created": "2026-03-31T18:29:11.873000"
+    },
+    {
+      "id": "tg-1775069112316",
+      "text": "Add RSSE AB 209 Info (new $280M program",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "blocked",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-01T11:45:12.316000",
+      "updated": "2026-04-01T11:47:25.131277",
+      "workLog": [
+        {
+          "timestamp": "04/01/2026, 11:47:25 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "tg-1775069573632",
+      "text": "I want to also make sure that the info on the site is correct. For exampel, the itc is mentioned for cash and loan systems and displayed in the calculator. This is incorrect as it is only avaibale for leased systems",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "blocked",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-01T11:52:53.632000",
+      "updated": "2026-04-01T11:54:22.027410",
+      "workLog": [
+        {
+          "timestamp": "04/01/2026, 11:54:22 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
     }
   ],
-  "updated": "2026-04-01T00:30:41.767758"
+  "updated": "2026-04-01T11:54:22.029730"
 }

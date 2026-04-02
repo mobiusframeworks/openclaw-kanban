@@ -8,6 +8,17 @@
 **Issue:** Calculator currently shows 30% ITC for all purchase types
 **Fix:** Dynamic ITC rate - shows 0% for cash/loan (expired), 30% for lease
 
+### 1b. Remove ITC Display from "Your Recommended Solar System"
+**Status:** BACKLOG
+**Priority:** HIGH
+**Added:** 2026-04-01
+**Issue:** ITC tax credit is still being displayed somewhere on the site (possibly "Your Recommended Solar System" section) with incorrect information
+**Fix:**
+- Audit all pages for ITC mentions
+- Remove or correct ITC display from recommendation results
+- Ensure ITC only shows for lease/PPA options where it applies
+- Add disclaimer that residential ITC for cash/loan purchases requires sufficient tax liability
+
 ### 2. NEM 3.0 Bill Coverage Accuracy
 **Status:** DONE (Sprint 3)
 **Priority:** HIGH

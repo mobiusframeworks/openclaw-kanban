@@ -2120,7 +2120,123 @@
           "type": "move"
         }
       ]
+    },
+    {
+      "id": "algo-backtest-1775113920698",
+      "text": "Algorithm Backtesting & Automation Pipeline\n\nGOAL: Transparent, step-by-step backtesting with full documentation, then deploy to VPS with alerts.\n\nPHASE 1: BACKTEST DOCUMENTATION\n- Document the complete algorithm (power law model, halving cycles, factor importance)\n- Create step-by-step backtest methodology with contextual links\n- Show all data sources, parameters, and assumptions\n- Generate visual results (equity curves, drawdowns, win rates)\n- Link to relevant research files in ~/Vaults/openclaw/knowledge/bitcoin/\n\nPHASE 2: RESULTS & TRANSPARENCY\n- Publish backtest results with full methodology\n- Include walk-forward validation (out-of-sample testing)\n- Document any overfitting checks performed\n- Create public-facing summary for bitcoinmachinelearning.com\n\nPHASE 3: VPS DEPLOYMENT\n- Set up VPS (DigitalOcean/Vultr/Linode)\n- Deploy algorithm with automated daily runs\n- Configure alerts (Telegram, email) for:\n  - Buy/sell signals\n  - Model deviation alerts\n  - System health checks\n- Set up logging and monitoring dashboard\n\nPHASE 4: AUTOMATION\n- Cron jobs for daily data fetching\n- Automated report generation\n- Alert thresholds configuration\n- Failover and recovery procedures\n\nDELIVERABLES:\n1. Backtest report (PDF + web)\n2. Methodology documentation (linked in Obsidian)\n3. VPS deployment script\n4. Alert configuration\n5. Monitoring dashboard",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:12:00.698000"
+    },
+    {
+      "id": "algo-phase1-1775113934224",
+      "text": "Phase 1: Document algorithm & backtest methodology - Create step-by-step docs with links to power law model, halving cycles, factor importance research",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:12:14.224000"
+    },
+    {
+      "id": "algo-phase2-1775113934225",
+      "text": "Phase 2: Run backtest & publish results - Walk-forward validation, equity curves, drawdowns, overfitting checks, public summary",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:12:14.225000"
+    },
+    {
+      "id": "algo-phase3-1775113934226",
+      "text": "Phase 3: VPS deployment - Set up server, deploy algorithm, configure Telegram/email alerts for signals and health",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:12:14.226000"
+    },
+    {
+      "id": "algo-phase4-1775113934227",
+      "text": "Phase 4: Automation & monitoring - Cron jobs, automated reports, alert thresholds, failover procedures, monitoring dashboard",
+      "agent": "bml",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:12:14.227000"
+    },
+    {
+      "id": "arcgrid-1775114328113",
+      "text": "1. Site Restructuring - Change default tab to Solar+Battery, Battery second, Solar third",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "blocked",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:18:48.113000",
+      "updated": "2026-04-02T00:39:35.987731",
+      "workLog": [
+        {
+          "timestamp": "04/02/2026, 12:39:35 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "arcgrid-1775114328114",
+      "text": "2. Calculator Reframe - Show power capture potential and independence score instead of payback period",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:18:48.114000"
+    },
+    {
+      "id": "arcgrid-1775114328115",
+      "text": "3. Fix ITC Display - Remove ITC from cash/loan calculators (only valid for leased systems)",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "blocked",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:18:48.115000",
+      "updated": "2026-04-02T00:39:35.984594",
+      "workLog": [
+        {
+          "timestamp": "04/02/2026, 12:39:35 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        }
+      ]
+    },
+    {
+      "id": "arcgrid-1775114328116",
+      "text": "4. Brand Tone Audit - Align all copy with transparent/authoritative voice, sovereignty messaging",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:18:48.116000"
+    },
+    {
+      "id": "arcgrid-1775114328117",
+      "text": "5. AI Visibility Fix - Add prerendering, robots.txt, sitemap to energyscout.org SPA",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "progress",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-02T00:18:48.117000"
     }
   ],
-  "updated": "2026-04-01T11:56:10.001634"
+  "updated": "2026-04-02T00:39:35.987894"
 }

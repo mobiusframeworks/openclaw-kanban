@@ -513,9 +513,9 @@
       "text": "1. ITC Tax Credit Display",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.243937",
+      "updated": "2026-04-02T11:19:18.258208",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -555,6 +555,61 @@
         {
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:57:59 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:58:19 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:59:10 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:59:35 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:02:38 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:05:57 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:06:42 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:08:45 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:12:03 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:12:24 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:19:18 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2402,11 +2457,11 @@
       "text": "3. Fix ITC Display - Remove ITC from cash/loan calculators (only valid for leased systems)",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-02T00:18:48.115000",
-      "updated": "2026-04-02T10:46:47.181150",
+      "updated": "2026-04-02T11:19:13.218940",
       "workLog": [
         {
           "timestamp": "04/02/2026, 12:39:35 AM",
@@ -2441,6 +2496,11 @@
         {
           "timestamp": "04/02/2026, 10:46:47 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 11:19:13 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2512,5 +2572,5 @@
       ]
     }
   ],
-  "updated": "2026-04-02T10:50:41.244254"
+  "updated": "2026-04-02T11:19:18.258839"
 }

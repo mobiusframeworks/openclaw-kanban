@@ -360,7 +360,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.947563",
+      "updated": "2026-04-02T10:50:41.242660",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -384,6 +384,26 @@
         },
         {
           "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
         }
@@ -449,7 +469,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948271",
+      "updated": "2026-04-02T10:50:41.242965",
       "workLog": [
         {
           "timestamp": "3/31/2026, 11:01:14 PM",
@@ -465,6 +485,26 @@
           "timestamp": "03/31/2026, 11:32:07 PM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -473,9 +513,9 @@
       "text": "1. ITC Tax Credit Display",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "blocked",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948346",
+      "updated": "2026-04-02T10:50:41.243937",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -500,6 +540,21 @@
         {
           "timestamp": "03/31/2026, 11:32:07 PM",
           "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:44:04 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
+          "content": "Moved to blocked via Cline sync",
           "type": "move"
         }
       ]
@@ -535,7 +590,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948396",
+      "updated": "2026-04-02T10:50:41.243140",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -559,6 +614,26 @@
         },
         {
           "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
         }
@@ -837,7 +912,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948441",
+      "updated": "2026-04-02T10:50:41.243284",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -863,6 +938,26 @@
           "timestamp": "03/31/2026, 11:32:07 PM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -873,7 +968,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948493",
+      "updated": "2026-04-02T10:50:41.243421",
       "workLog": [
         {
           "timestamp": "3/31/2026, 11:01:14 PM",
@@ -887,6 +982,26 @@
         },
         {
           "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
         }
@@ -947,7 +1062,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948534",
+      "updated": "2026-04-02T10:50:41.243553",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -971,6 +1086,26 @@
         },
         {
           "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
         }
@@ -1068,7 +1203,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948573",
+      "updated": "2026-04-02T10:50:41.243681",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:07:06 AM",
@@ -1107,6 +1242,26 @@
         },
         {
           "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
         }
@@ -1151,7 +1306,7 @@
       "quadrant": "q2",
       "status": "progress",
       "scheduled": false,
-      "updated": "2026-03-31T23:32:07.948613",
+      "updated": "2026-04-02T10:50:41.243808",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -1175,6 +1330,26 @@
         },
         {
           "timestamp": "03/31/2026, 11:32:07 PM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
         }
@@ -2197,7 +2372,30 @@
       "status": "progress",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:18:48.114000"
+      "created": "2026-04-02T00:18:48.114000",
+      "updated": "2026-04-02T10:50:41.240644",
+      "workLog": [
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "arcgrid-1775114328115",
@@ -2208,10 +2406,40 @@
       "scheduled": false,
       "tags": [],
       "created": "2026-04-02T00:18:48.115000",
-      "updated": "2026-04-02T00:39:35.984594",
+      "updated": "2026-04-02T10:46:47.181150",
       "workLog": [
         {
           "timestamp": "04/02/2026, 12:39:35 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:38:08 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:40:36 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:43:23 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:44:04 AM",
+          "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:45:51 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:46:47 AM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
         }
@@ -2225,7 +2453,30 @@
       "status": "progress",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:18:48.116000"
+      "created": "2026-04-02T00:18:48.116000",
+      "updated": "2026-04-02T10:50:41.242337",
+      "workLog": [
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        }
+      ]
     },
     {
       "id": "arcgrid-1775114328117",
@@ -2235,8 +2486,31 @@
       "status": "progress",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:18:48.117000"
+      "created": "2026-04-02T00:18:48.117000",
+      "updated": "2026-04-02T10:50:41.242525",
+      "workLog": [
+        {
+          "timestamp": "04/02/2026, 10:48:13 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:04 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:49:45 AM",
+          "content": "Moved to todo via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/02/2026, 10:50:41 AM",
+          "content": "Moved to progress via Cline sync",
+          "type": "move"
+        }
+      ]
     }
   ],
-  "updated": "2026-04-02T00:39:35.987894"
+  "updated": "2026-04-02T10:50:41.244254"
 }

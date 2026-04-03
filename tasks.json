@@ -5,7 +5,7 @@
       "text": "1. Power Law Blog Post - Add Disclaimers",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": true,
       "scheduledAgent": "bml",
       "scheduledSlot": 0,
@@ -39,9 +39,14 @@
           "timestamp": "03/31/2026, 05:59:33 PM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:59:33.124352"
+      "updated": "2026-04-03T01:51:08.012006"
     },
     {
       "id": "gh-17748402654240.04440781857466969",
@@ -89,9 +94,9 @@
       "text": "3. Medium & Substack Setup",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T18:00:03.579053",
+      "updated": "2026-04-03T01:51:08.012059",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -106,6 +111,11 @@
         {
           "timestamp": "03/31/2026, 06:00:03 PM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -227,9 +237,9 @@
       "text": "Update X10 data to current (last: Jan 2026)",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T23:06:51.080927",
+      "updated": "2026-04-03T01:51:08.012255",
       "workLog": [
         {
           "timestamp": "03/31/2026, 05:05:49 PM",
@@ -249,6 +259,11 @@
         {
           "timestamp": "03/31/2026, 11:06:51 PM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -358,9 +373,9 @@
       "text": "6. BTCautoresearch Integration",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.242660",
+      "updated": "2026-04-03T01:51:08.013046",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -406,6 +421,11 @@
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -430,13 +450,18 @@
       "text": "Compare their R\u00b2 to ours",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T17:39:52.990850",
+      "updated": "2026-04-03T01:51:08.011931",
       "workLog": [
         {
           "timestamp": "03/31/2026, 05:39:52 PM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -467,9 +492,9 @@
       "text": "7. Flows vs Power Law Research Report",
       "agent": "bml",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.242965",
+      "updated": "2026-04-03T01:51:08.012992",
       "workLog": [
         {
           "timestamp": "3/31/2026, 11:01:14 PM",
@@ -504,6 +529,11 @@
         {
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -643,9 +673,9 @@
       "text": "Research ITC transfer rules for commercial \u2192 residential",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.243140",
+      "updated": "2026-04-03T01:51:08.012916",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -691,6 +721,11 @@
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -699,9 +734,9 @@
       "text": "Model financials: required spread, default risk, breakeven",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T23:04:34.481283",
+      "updated": "2026-04-03T01:51:08.012210",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -716,6 +751,11 @@
         {
           "timestamp": "03/31/2026, 11:04:34 PM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -733,13 +773,18 @@
       "text": "Competitive analysis: Sunrun, Mosaic, GoodLeap models",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T17:32:22.891092",
+      "updated": "2026-04-03T01:51:08.011752",
       "workLog": [
         {
           "timestamp": "03/31/2026, 05:32:22 PM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -757,13 +802,18 @@
       "text": "Draft term sheet structure (rates, terms, buyout formula)",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T23:08:32.513705",
+      "updated": "2026-04-03T01:51:08.012300",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:08:32 PM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -773,13 +823,18 @@
       "text": "Explore bank partnerships for loan sales",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T23:10:19.134809",
+      "updated": "2026-04-03T01:51:08.012344",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:10:19 PM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -789,9 +844,9 @@
       "text": "Legal review: can commercial entity claim ITC then transfer system?",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-01T00:30:31.656348",
+      "updated": "2026-04-03T01:51:08.012391",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:12:15 PM",
@@ -806,6 +861,11 @@
         {
           "timestamp": "04/01/2026, 12:30:31 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -823,9 +883,9 @@
       "text": "Identify pilot market (CA? TX? FL?)",
       "agent": "ene",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-01T00:30:31.654962",
+      "updated": "2026-04-03T01:51:08.013295",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:15:08 PM",
@@ -840,6 +900,11 @@
         {
           "timestamp": "04/01/2026, 12:30:31 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -913,9 +978,9 @@
       "text": "Monterey Terrace Gilroy",
       "agent": "rea",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T18:01:26.123074",
+      "updated": "2026-04-03T01:51:08.012119",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -931,6 +996,11 @@
           "timestamp": "03/31/2026, 06:01:26 PM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -939,9 +1009,9 @@
       "text": "Continue Facebook/social outreach",
       "agent": "rea",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-03-31T18:02:38.257010",
+      "updated": "2026-04-03T01:51:08.012165",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -957,6 +1027,11 @@
           "timestamp": "03/31/2026, 06:02:38 PM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -965,9 +1040,9 @@
       "text": "Monitor lead flow",
       "agent": "rea",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.243284",
+      "updated": "2026-04-03T01:51:08.012824",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:42:49 PM",
@@ -1013,6 +1088,11 @@
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -1021,9 +1101,9 @@
       "text": "Update listing copy if needed",
       "agent": "rea",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.243421",
+      "updated": "2026-04-03T01:51:08.012780",
       "workLog": [
         {
           "timestamp": "3/31/2026, 11:01:14 PM",
@@ -1058,6 +1138,11 @@
         {
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -1115,9 +1200,9 @@
       "text": "**Google Ads MCP Setup** - Account 941-733-0691",
       "agent": "ana",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.243553",
+      "updated": "2026-04-03T01:51:08.012736",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -1162,6 +1247,11 @@
         {
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -1230,9 +1320,9 @@
       "text": "List Tesla Model Y 2024 for sale",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-01T00:30:41.767069",
+      "updated": "2026-04-03T01:51:08.013241",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:17:19 PM",
@@ -1248,6 +1338,11 @@
           "timestamp": "04/01/2026, 12:30:41 AM",
           "content": "Moved to blocked via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -1256,9 +1351,9 @@
       "text": "Use car-valuation dashboard to price it",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.243681",
+      "updated": "2026-04-03T01:51:08.012687",
       "workLog": [
         {
           "timestamp": "03/31/2026, 11:07:06 AM",
@@ -1319,6 +1414,11 @@
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     },
@@ -1359,9 +1459,9 @@
       "text": "2. Hermes Local LLM Agent",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
-      "updated": "2026-04-02T10:50:41.243808",
+      "updated": "2026-04-03T01:51:08.012576",
       "workLog": [
         {
           "timestamp": "3/31/2026, 1:00:45 PM",
@@ -1406,6 +1506,11 @@
         {
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2302,15 +2407,20 @@
       "text": "Add RSSE AB 209 Info (new $280M program",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-01T11:45:12.316000",
-      "updated": "2026-04-01T11:47:25.131277",
+      "updated": "2026-04-03T01:51:08.012436",
       "workLog": [
         {
           "timestamp": "04/01/2026, 11:47:25 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2320,15 +2430,20 @@
       "text": "I want to also make sure that the info on the site is correct. For exampel, the itc is mentioned for cash and loan systems and displayed in the calculator. This is incorrect as it is only avaibale for leased systems",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-01T11:52:53.632000",
-      "updated": "2026-04-01T11:54:22.027410",
+      "updated": "2026-04-03T01:51:08.012482",
       "workLog": [
         {
           "timestamp": "04/01/2026, 11:54:22 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2338,15 +2453,20 @@
       "text": "Please pass this task along to the enegy scout manager and have him complete it",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-01T11:55:26.031000",
-      "updated": "2026-04-01T11:56:09.966690",
+      "updated": "2026-04-03T01:51:08.012527",
       "workLog": [
         {
           "timestamp": "04/01/2026, 11:56:09 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2406,15 +2526,20 @@
       "text": "1. Site Restructuring - Change default tab to Solar+Battery, Battery second, Solar third",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "blocked",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-02T00:18:48.113000",
-      "updated": "2026-04-02T00:39:35.987731",
+      "updated": "2026-04-03T01:51:08.013341",
       "workLog": [
         {
           "timestamp": "04/02/2026, 12:39:35 AM",
           "content": "Moved to blocked via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2424,11 +2549,11 @@
       "text": "2. Calculator Reframe - Show power capture potential and independence score instead of payback period",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-02T00:18:48.114000",
-      "updated": "2026-04-02T10:50:41.240644",
+      "updated": "2026-04-03T01:51:08.013193",
       "workLog": [
         {
           "timestamp": "04/02/2026, 10:48:13 AM",
@@ -2448,6 +2573,11 @@
         {
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2510,11 +2640,11 @@
       "text": "4. Brand Tone Audit - Align all copy with transparent/authoritative voice, sovereignty messaging",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-02T00:18:48.116000",
-      "updated": "2026-04-02T10:50:41.242337",
+      "updated": "2026-04-03T01:51:08.013144",
       "workLog": [
         {
           "timestamp": "04/02/2026, 10:48:13 AM",
@@ -2534,6 +2664,11 @@
         {
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
+          "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
           "type": "move"
         }
       ]
@@ -2543,11 +2678,11 @@
       "text": "5. AI Visibility Fix - Add prerendering, robots.txt, sitemap to energyscout.org SPA",
       "agent": "ass",
       "quadrant": "q2",
-      "status": "progress",
+      "status": "done",
       "scheduled": false,
       "tags": [],
       "created": "2026-04-02T00:18:48.117000",
-      "updated": "2026-04-02T10:50:41.242525",
+      "updated": "2026-04-03T01:51:08.013096",
       "workLog": [
         {
           "timestamp": "04/02/2026, 10:48:13 AM",
@@ -2568,9 +2703,14 @@
           "timestamp": "04/02/2026, 10:50:41 AM",
           "content": "Moved to progress via Cline sync",
           "type": "move"
+        },
+        {
+          "timestamp": "04/03/2026, 01:51:08 AM",
+          "content": "Moved to done via Cline sync",
+          "type": "move"
         }
       ]
     }
   ],
-  "updated": "2026-04-02T11:19:18.258839"
+  "updated": "2026-04-03T01:51:08.013415"
 }

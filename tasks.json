@@ -2710,7 +2710,57 @@
           "type": "move"
         }
       ]
+    },
+    {
+      "id": "energyscout-p0-affiliate-1775206500000",
+      "text": "P0: Sign up for affiliate programs\n\nCRITICAL - Enables all affiliate revenue\n\nPrograms to apply:\n1. Amazon Associates: https://affiliate-program.amazon.com\n2. EcoFlow (3-8%): https://www.ecoflow.com/us/affiliate-program\n3. Jackery (5-10%): https://www.jackery.com/pages/affiliate-program\n4. Anker SOLIX: Contact anker.com\n5. Bluetti (5-8%): https://www.bluettipower.com/pages/affiliate\n\nAfter approval:\n- Update scripts/deal-sync.js with affiliate IDs\n- Update affiliate tags in pluginSolarAdvisor.js\n- Verify all Amazon ASINs work\n\nRef: ~/Vaults/openclaw/agents/memory/energyscout-ceo/briefs/revenue-roadmap-2026-q2.md",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-03T01:55:00"
+    },
+    {
+      "id": "energyscout-p0-photos-1775206500001",
+      "text": "P0: Get official product photos\n\nAfter affiliate approval:\n1. Download official product images from media kits\n2. Replace placeholder images in /public/assets/plugin-solar/\n3. Update image paths in pluginSolarAdvisor.js if needed\n\nProducts needing photos:\n- EcoFlow Delta 2 Max\n- Jackery 1000 v2\n- Anker SOLIX C1000\n- Bluetti AC200MAX\n- Goal Zero Yeti 1500X\n- BrightSaver Balcony Kit\n\nBlocked by: affiliate program approval",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-03T01:55:00.001000"
+    },
+    {
+      "id": "energyscout-p1-blog-cron-1775206500002",
+      "text": "P1: Build blog writing cron job\n\nArchitecture:\nCron (weekly) \u2192 AI generates blog post \u2192 Human review queue \u2192 Publish\n\nTechnical Plan:\n1. Create scripts/blog-generator.js\n2. Use Claude API for content generation\n3. Output to review queue (Supabase table or local file)\n4. energyscout-ceo reviews and publishes\n\nTarget SEO Keywords:\n- \"best portable solar panels 2026\"\n- \"apartment solar options California\"\n- \"solar generator vs gas generator\"\n- \"how much can balcony solar save\"\n- \"PG&E rate increases 2026\"\n\nRef: ~/Vaults/openclaw/agents/memory/energyscout-ceo/briefs/revenue-roadmap-2026-q2.md",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-03T01:55:00.002000"
+    },
+    {
+      "id": "energyscout-p1-news-bot-1775206500003",
+      "text": "P1: Build news bot cron job\n\nArchitecture:\nCron (daily) \u2192 Fetch solar news \u2192 Summarize \u2192 Post to /news page\n\nTechnical Plan:\n1. Create scripts/news-sync.js\n2. RSS feed parsing + AI summarization\n3. Auto-publish to news section\n\nSources:\n- PV Magazine\n- Solar Power World\n- Utility Dive\n- State energy commission announcements\n\nRef: ~/Vaults/openclaw/agents/memory/energyscout-ceo/briefs/revenue-roadmap-2026-q2.md",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-03T01:55:00.003000"
+    },
+    {
+      "id": "energyscout-p2-social-bot-1775206500004",
+      "text": "P2: Build social outreach bot\n\nPlatforms (Priority Order):\n1. Reddit - r/solar, r/homeimprovement, r/frugal (high intent)\n2. Twitter/X - Solar community, energy independence crowd\n3. YouTube - Video content (longer-term)\n\nStrategy:\n- Monitor relevant subreddits for questions we can answer\n- Share blog posts with genuine value\n- Build reputation before promoting\n\nCAUTION: Must be authentic engagement, not spam. Focus on providing value.\n\nRef: ~/Vaults/openclaw/agents/memory/energyscout-ceo/briefs/revenue-roadmap-2026-q2.md",
+      "agent": "ene",
+      "quadrant": "q2",
+      "status": "todo",
+      "scheduled": false,
+      "tags": [],
+      "created": "2026-04-03T01:55:00.004000"
     }
   ],
-  "updated": "2026-04-03T01:51:08.013415"
+  "updated": "2026-04-03T13:39:19.066844"
 }

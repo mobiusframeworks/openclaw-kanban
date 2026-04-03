@@ -21,7 +21,26 @@
 **Implementation:** Use TradingView Lightweight Charts (MIT license, 40KB gzipped)
 **Future:** Consider paid indicator tool once user base established
 
-### 3. Medium & Substack Setup
+### 3. Social Media Automation (Upload-Post / Similar Service)
+**Status:** BACKLOG
+**Priority:** HIGH
+**Description:** Set up automated social posting service
+**Platform Priority:**
+1. **Facebook (PRIMARY)** - Short videos, informative posts
+2. **X/Twitter (SECONDARY)** - Cross-posting
+
+**Options to evaluate:**
+- Upload-Post
+- Ayrshare
+- Buffer / Hootsuite alternatives
+
+**Subtasks:**
+- [ ] Research Upload-Post pricing/features
+- [ ] Test Facebook video posting workflow
+- [ ] Set up content calendar for FB-first strategy
+- [ ] Configure X cross-posting
+
+### 4. Medium & Substack Setup
 **Status:** APPROVED (Council Item #11)
 **Priority:** MEDIUM
 **Description:**

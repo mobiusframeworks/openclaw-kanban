@@ -179,6 +179,27 @@
 **Previous SEO Score:** 62/100
 **Estimated New Score:** 80+
 
+### 11. Canonical Tags
+**Status:** TODO
+**Priority:** HIGH
+**Description:** Add canonical tags to all pages
+**Pages:** homepage, /advanced-dashboard, /faq, /about
+**Code:** `<link rel="canonical" href="https://bitcoinmachinelearning.com/">`
+
+### 12. Security Headers
+**Status:** TODO
+**Priority:** HIGH
+**Description:** Add security headers via vercel.json
+**Headers:** X-Frame-Options, X-Content-Type-Options, Referrer-Policy
+
+### 13. Sitemap URL Cleanup
+**Status:** TODO
+**Priority:** MEDIUM
+**Description:** Change .html extensions to clean URLs in sitemap.xml
+**Fix:** `/faq.html` → `/faq`, `/about.html` → `/about`
+
+**Current SEO Score:** 78/100 (2026-04-03)
+
 ---
 
 ## Notes

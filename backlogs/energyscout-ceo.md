@@ -127,6 +127,32 @@ A financing company that offers a **better alternative to solar leases** by comb
 **Priority:** MEDIUM
 **File:** `/workspace/scout/public/sitemap.xml`
 
+### 4. Add Canonical Tags
+**Status:** BACKLOG
+**Priority:** CRITICAL
+**Added:** 2026-04-03
+**Issue:** www vs non-www causing duplicate content
+**Fix:** Add `<link rel="canonical" href="https://www.energyscout.org/">` to index.html
+
+### 5. Add Open Graph & Twitter Meta Tags
+**Status:** BACKLOG
+**Priority:** CRITICAL
+**Added:** 2026-04-03
+**Issue:** Missing social preview tags - poor social shares
+**Fix:** Add og:title, og:description, og:image, twitter:card to index.html
+
+### 6. Add JSON-LD Structured Data
+**Status:** BACKLOG
+**Priority:** HIGH
+**Added:** 2026-04-03
+**Fix:** Add Organization, FAQPage, WebSite schemas to index.html
+
+### 7. Fix Redirects (307 → 301)
+**Status:** BACKLOG
+**Priority:** HIGH
+**Added:** 2026-04-03
+**Fix:** Update Vercel config, update sitemap to use www URLs
+
 ---
 
 ## Content Updates Needed

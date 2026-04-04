@@ -1,5 +1,21 @@
 # EnergyScout CEO - Backlog
 
+## Active Priority: Plug-In Power Site Build
+
+### Build Out Plug-In Solar Site
+**Status:** IN PROGRESS
+**Priority:** HIGH
+**Added:** 2026-04-03
+**Description:** Continue building out the new site focused on plug-in solar/battery products
+**Scope:**
+- Product pages for plug-in solar systems
+- Deals/affiliate section with live pricing
+- Educational content on plug-in vs grid-tied
+- Calculator for plug-in system sizing
+**Related:** See `briefs/affiliate-deal-system.md` for deal sync infrastructure
+
+---
+
 ## Calculator Accuracy Fixes
 
 ### 1. ITC Tax Credit Display

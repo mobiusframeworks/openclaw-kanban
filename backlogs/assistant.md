@@ -8,11 +8,24 @@
 
 **Goal:** Sell 2024 Tesla Model Y, get 4x4 truck with camper for self-sufficient lifestyle
 
-**Target Vehicles:**
-| Vehicle | Spec | Years |
-|---------|------|-------|
-| Toyota Tacoma | 4-door (double cab), long bed, 4x4 | Any |
-| Toyota Tundra | Double cab, 4x4 | 2005-2021 (NOT 2022/2023) |
+**Budget:** ~$20,000
+**Mileage Range:** 60,000 - 120,000 miles
+**Priority:** Reliable, utilitarian, good MPG preferred
+
+**Target Vehicles (Toyota priority):**
+| Vehicle | Spec | Years | Notes |
+|---------|------|-------|-------|
+| Toyota Tacoma | 4-door (double cab), long bed, 4x4 | 2016-2017 focus | Best MPG (19-23) |
+| Toyota Tundra | Double cab, 4x4 | 2016-2017 focus | More towing, worse MPG |
+| Toyota 4Runner | 4x4, SR5 or TRD | 2016-2017 | SUV option, 17-21 MPG |
+| Toyota Sequoia | 4x4 | 2016-2017 | Full-size SUV, 13-17 MPG |
+
+**Secondary (Domestic):**
+| Vehicle | Years | Notes |
+|---------|-------|-------|
+| Ford F-150 | 2016-2018 | EcoBoost good MPG |
+| Chevy Silverado | 2016-2017 | Comfortable |
+| Dodge Ram | 2016-2017 | Best interior |
 
 **Search Regions:**
 - Baja Mexico

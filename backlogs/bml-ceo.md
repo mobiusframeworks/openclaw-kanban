@@ -21,24 +21,26 @@
 **Implementation:** Use TradingView Lightweight Charts (MIT license, 40KB gzipped)
 **Future:** Consider paid indicator tool once user base established
 
-### 3. Social Media Automation (Upload-Post / Similar Service)
+### 3. Social Media Automation (ALL BOTS)
 **Status:** BACKLOG
 **Priority:** HIGH
-**Description:** Set up automated social posting service
+**Description:** Set up automated social posting service for all bots (BML, EnergyScout, RealEstate, Assistant)
 **Platform Priority:**
 1. **Facebook (PRIMARY)** - Short videos, informative posts
 2. **X/Twitter (SECONDARY)** - Cross-posting
 
 **Options to evaluate:**
-- Upload-Post
+- Upload-Post (current - quota exhausted)
 - Ayrshare
 - Buffer / Hootsuite alternatives
+- Meta Business Suite (native)
 
 **Subtasks:**
-- [ ] Research Upload-Post pricing/features
+- [ ] Research alternative to Upload-Post (quota hit)
 - [ ] Test Facebook video posting workflow
 - [ ] Set up content calendar for FB-first strategy
 - [ ] Configure X cross-posting
+- [ ] Enable for all bot agents
 
 ### 4. Medium & Substack Setup
 **Status:** APPROVED (Council Item #11)

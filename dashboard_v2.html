@@ -1183,6 +1183,8 @@
                     <button class="view-tab active" onclick="switchView('kanban')">📋 Board</button>
                     <span class="view-arrow">→</span>
                     <button class="view-tab" onclick="switchView('timeline')">📅 Schedule</button>
+                    <span class="view-arrow">→</span>
+                    <button class="view-tab" onclick="switchView(\'paperclip\')">📎 Agents</button>
                     <span class="view-subtitle">(Prioritize → Schedule)</span>
                 </div>
             </div>
@@ -1266,6 +1268,14 @@
                     <span id="sidebarLabel">Ready to Schedule</span>
                 </button>
                 <div class="sidebar-content" id="readyTasks"></div>
+
+        <!-- Paperclip View -->
+        <div id="paperclip-view" class="view" style="display:none; padding:20px;">
+            <h2 style="margin-bottom:20px;">📎 Agent Contexts & Configuration</h2>
+            <div id="agent-contexts" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap:20px;">
+                <!-- Agent cards will be loaded here -->
+            </div>
+        </div>
             </div>
             <div class="timeline-main">
                 <div class="swimlanes">
@@ -1527,6 +1537,72 @@
         </div>
     </div>
 
-    <script src="dashboard_v2_core.js"></script>
+    <script src="dashboard_v2_core.js">
+        // Paperclip View Functions
+        function switchView(viewName) {
+            // Hide all views
+            document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+            // Remove active class from all tabs
+            document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
+            
+            // Show selected view
+            const viewMap = {
+                'kanban': 'kanban-container',
+                'timeline': 'timeline-view',
+                'paperclip': 'paperclip-view'
+            };
+            
+            const viewId = viewMap[viewName];
+            if (viewId) {
+                const viewEl = document.getElementById(viewId);
+                if (viewEl) viewEl.style.display = 'block';
+            }
+            
+            // Set active tab
+            event.target.classList.add('active');
+            
+            // Load data for the view
+            if (viewName === 'paperclip') {
+                loadAgentContexts();
+            }
+        }
+
+        async function loadAgentContexts() {
+            const container = document.getElementById('agent-contexts');
+            if (!container) return;
+            
+            const agents = [
+                { name: 'Hub Agent', file: '.paperclip.hub.json', emoji: '🎯' },
+                { name: 'EnergyScout CEO', file: '.paperclip.energyscout.json', emoji: '⚡' }
+            ];
+            
+            container.innerHTML = '';
+            
+            for (const agent of agents) {
+                const card = document.createElement('div');
+                card.style.cssText = 'background:#161b22; border:1px solid #30363d; border-radius:8px; padding:20px;';
+                card.innerHTML = `
+                    <h3 style="margin:0 0 12px 0;">${agent.emoji} ${agent.name}</h3>
+                    <div style="color:#9eaab6; font-size:12px; font-family:monospace;">
+                        Config: ${agent.file}<br>
+                        Status: <span style="color:#3fb950;">●</span> Active<br>
+                        Context: Loaded via manifest
+                    </div>
+                    <div style="margin-top:15px; padding-top:15px; border-top:1px solid #30363d;">
+                        <button onclick="viewAgentConfig('${agent.file}')" 
+                                style="background:#238636; color:#fff; border:none; padding:8px 14px; border-radius:6px; cursor:pointer; font-size:12px;">
+                            View Configuration
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        function viewAgentConfig(filename) {
+            window.open(`/${filename}`, '_blank');
+        }
+
+</script>
 </body>
 </html>

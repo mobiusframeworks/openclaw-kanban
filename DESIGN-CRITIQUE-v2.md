@@ -1,3 +1,15 @@
+---
+doc_type: task
+project: none
+priority: 8
+compression_level: L2-COOL
+age_days: 5.4
+tags: [task, L2-COOL]
+spatial_x: 1774913886
+spatial_y: 8.0
+updated: 2026-04-05
+---
+
 # OpenClaw Command Center — Deep Design Critique
 
 *March 30, 2026 — Benchmarked against Cline Kanban, KanVibe, Vibe Kanban, Linear, and emerging agentic AI UI patterns*

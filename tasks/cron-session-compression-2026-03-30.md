@@ -1,14 +1,13 @@
 ---
-id: cron-session-compression-2026-03-30
-agent: ass
-agent_name: Assistant
-status: blocked
-quadrant: q3
-tags: []
-created: 2026-03-30T21:00:13.144Z
-updated: 2026-03-30T22:25:05.859Z
-delegated_by: dashboard
-vault_path: bridge/kanban/tasks/cron-session-compression-2026-03-30.md
+doc_type: task
+project: none
+priority: 8
+compression_level: L2-COOL
+age_days: 5.4
+tags: [task, L2-COOL]
+spatial_x: 1774909506
+spatial_y: 8.0
+updated: 2026-04-05
 ---
 
 # 🚫 [CRON] session-compression

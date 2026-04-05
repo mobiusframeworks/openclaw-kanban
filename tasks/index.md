@@ -1,6 +1,13 @@
 ---
-tags: [kanban, tasks, index]
-updated: $(date -Iseconds)
+doc_type: task
+project: none
+priority: 8
+compression_level: L2-COOL
+age_days: 5.0
+tags: [task, L2-COOL]
+spatial_x: 1774948428
+spatial_y: 8.0
+updated: 2026-04-05
 ---
 
 # 📋 Task Archive Index

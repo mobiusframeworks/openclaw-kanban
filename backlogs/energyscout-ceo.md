@@ -1,3 +1,15 @@
+---
+doc_type: agent_memory
+project: energyscout
+priority: 5
+compression_level: L1-WARM
+age_days: 0.7
+tags: [agent_memory, energyscout, L1-WARM]
+spatial_x: 1775322086
+spatial_y: 5.0
+updated: 2026-04-05
+---
+
 # EnergyScout CEO - Backlog
 
 ## Active Priority: Plug-In Power Site Build

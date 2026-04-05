@@ -1,12 +1,13 @@
 ---
-id: c4fa4
-agent: ass
-agent_name: Assistant
-status: todo
-column: backlog
-created: 2026-03-31T02:11:49.526000
-updated: 2026-03-31T02:14:37.068803
-source: cline_kanban
+doc_type: task
+project: none
+priority: 8
+compression_level: L2-COOL
+age_days: 5.0
+tags: [task, L2-COOL]
+spatial_x: 1774948477
+spatial_y: 8.0
+updated: 2026-04-05
 ---
 
 # 📋 [Infrastructure] Automated Social Posting Pipeline - Set up UploadPost API integration to auto-post articles to X (@bitcoinml2009) and Facebook for both Bitcoin ML and EnergyScout content. Include: 1) UploadPost API setup and auth, 2) Content queue system in bridge/, 3) Scheduled posting via cron, 4) Image/media handling, 5) Post tracking to avoid duplicates

@@ -1,3 +1,15 @@
+---
+doc_type: agent_memory
+project: none
+priority: 5
+compression_level: L2-COOL
+age_days: 1.2
+tags: [agent_memory, L2-COOL]
+spatial_x: 1775271471
+spatial_y: 5.0
+updated: 2026-04-05
+---
+
 # Bitcoin ML CEO - Backlog
 
 ## Approved Tasks (Ready to Execute)

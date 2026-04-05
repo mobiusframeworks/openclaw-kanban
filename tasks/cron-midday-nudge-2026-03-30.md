@@ -1,14 +1,13 @@
 ---
-id: cron-midday-nudge-2026-03-30
-agent: ass
-agent_name: Assistant
-status: human-review
-quadrant: q3
-tags: []
-created: 2026-03-30T20:00:41.936Z
-updated: 2026-03-30T22:24:43.001Z
-delegated_by: dashboard
-vault_path: bridge/kanban/tasks/cron-midday-nudge-2026-03-30.md
+doc_type: task
+project: none
+priority: 8
+compression_level: L2-COOL
+age_days: 5.4
+tags: [task, L2-COOL]
+spatial_x: 1774909483
+spatial_y: 8.0
+updated: 2026-04-05
 ---
 
 # 📋 [CRON] midday-nudge

@@ -258,15 +258,21 @@
         .view.active { display: flex; }
 
         /* ==================== KANBAN VIEW ==================== */
-        .kanban-view { padding: 20px; gap: 16px; overflow: auto; }
+        .kanban-view {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            height: calc(100vh - 180px);
+            overflow: auto;
+        }
         .kanban-column {
-            flex: 1;
-            min-width: 200px;
             background: #161b22;
-            border-radius: 12px;
+            border: 1px solid #30363d;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
-            max-height: 100%;
+            min-height: 200px;
         }
         .kanban-header {
             padding: 14px;
@@ -1244,7 +1250,7 @@
                     <span class="view-arrow">→</span>
                     <button class="view-tab" onclick="switchView('timeline')">📅 Schedule</button>
                     <span class="view-arrow">→</span>
-                    <button class="view-tab" onclick="window.open('paperclip.html', '_blank')" style="background:#30363d;" title="Open Paperclip in new window">📎 Agents</button>
+                    <button class="view-tab" onclick="window.open('http://100.101.74.72:3100', '_blank')" style="background:#30363d;" title="Open Paperclip AI Dashboard">📎 Paperclip</button>
                     <span class="view-subtitle">(Prioritize → Schedule)</span>
                 </div>
             </div>

@@ -1184,7 +1184,7 @@
                     <span class="view-arrow">→</span>
                     <button class="view-tab" onclick="switchView('timeline')">📅 Schedule</button>
                     <span class="view-arrow">→</span>
-                    <button class="view-tab" onclick="switchView(\'paperclip\')">📎 Agents</button>
+                    <button class="view-tab" onclick="window.open('paperclip.html', '_blank')" style="background:#30363d;" title="Open Paperclip in new window">📎 Agents</button>
                     <span class="view-subtitle">(Prioritize → Schedule)</span>
                 </div>
             </div>
@@ -1241,7 +1241,7 @@
 
     <div class="main-content">
         <!-- Kanban View -->
-        <div id="kanban-view" class="view kanban-view active">
+        <div id="kanban-view" class="view kanban-view" style="display:block;">
             <div class="kanban-column col-todo" data-status="todo">
                 <div class="kanban-header">Backlog <span class="count" id="k-count-todo">0</span></div>
                 <div class="kanban-cards" id="k-todo"></div>
@@ -1261,7 +1261,7 @@
         </div>
 
         <!-- Timeline View -->
-        <div id="timeline-view" class="view" class="view timeline-view">
+        <div id="timeline-view" class="view timeline-view" style="display:none;">
             <div class="ready-sidebar" id="readySidebar">
                 <button class="sidebar-toggle" onclick="toggleReadySidebar()">
                     <span id="sidebarArrow">◀</span>
@@ -1270,7 +1270,7 @@
                 <div class="sidebar-content" id="readyTasks"></div>
 
         <!-- Paperclip View -->
-        <div id="paperclip-view" class="view" style="display:none; padding:20px;">
+        <div id="paperclip-view" class="view" style="padding:20px; display:none;">
             <h2 style="margin-bottom:20px;">📎 Agent Contexts & Configuration</h2>
             <div id="agent-contexts" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap:20px;">
                 <!-- Agent cards will be loaded here -->
@@ -1540,8 +1540,14 @@
     <script src="dashboard_v2_core.js">
         // Paperclip View Functions
         function switchView(viewName) {
+            console.log('switchView called with:', viewName);
+            
             // Hide all views
-            document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+            document.querySelectorAll('.view').forEach(v => {
+                console.log('Hiding view:', v.id);
+                v.style.display = 'none';
+            });
+            
             // Remove active class from all tabs
             document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
             
@@ -1553,9 +1559,15 @@
             };
             
             const viewId = viewMap[viewName];
+            console.log('Target view ID:', viewId);
+            
             if (viewId) {
                 const viewEl = document.getElementById(viewId);
-                if (viewEl) viewEl.style.display = 'block';
+                console.log('Found element:', viewEl);
+                if (viewEl) {
+                    viewEl.style.display = 'block';
+                    console.log('Set display to block for:', viewId);
+                }
             }
             
             // Set active tab
@@ -1563,6 +1575,7 @@
             
             // Load data for the view
             if (viewName === 'paperclip') {
+                console.log('Loading agent contexts...');
                 loadAgentContexts();
             }
         }

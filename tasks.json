@@ -8,7 +8,7 @@
       "status": "done",
       "scheduled": true,
       "scheduledAgent": "bml",
-      "scheduledSlot": 0,
+      "scheduledSlot": 1,
       "workLog": [
         {
           "timestamp": "3/29/2026, 8:37:55 PM",
@@ -46,7 +46,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-04-03T01:51:08.012006"
+      "updated": "2026-04-03T01:51:08.012006",
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.17463672242170347.md"
     },
     {
       "id": "gh-17748402654240.04440781857466969",
@@ -87,7 +88,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.04440781857466969.md"
     },
     {
       "id": "gh-17748402654240.8562488539421408",
@@ -118,7 +120,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.8562488539421408.md"
     },
     {
       "id": "gh-17748402654240.07668712166443448",
@@ -134,7 +137,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.07668712166443448.md"
     },
     {
       "id": "gh-17748402654240.8343234815831149",
@@ -142,7 +146,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.8343234815831149.md"
     },
     {
       "id": "gh-17748402654240.1364990925044881",
@@ -150,7 +155,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.1364990925044881.md"
     },
     {
       "id": "gh-17748402654240.025800494829215315",
@@ -158,7 +164,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.025800494829215315.md"
     },
     {
       "id": "gh-17748402654240.5001110231276819",
@@ -166,7 +173,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.5001110231276819.md"
     },
     {
       "id": "gh-17748402654240.5849554406794598",
@@ -174,7 +182,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.5849554406794598.md"
     },
     {
       "id": "gh-17748402654240.795986208340029",
@@ -182,7 +191,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.795986208340029.md"
     },
     {
       "id": "gh-17748402654240.9967708323067779",
@@ -190,7 +200,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.9967708323067779.md"
     },
     {
       "id": "gh-17748402654240.6004648914524212",
@@ -198,7 +209,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.6004648914524212.md"
     },
     {
       "id": "gh-17748402654240.9083002125962062",
@@ -206,7 +218,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.9083002125962062.md"
     },
     {
       "id": "gh-17748402654240.45155332437004936",
@@ -214,7 +227,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.45155332437004936.md"
     },
     {
       "id": "gh-17748402654240.5396691564681462",
@@ -222,7 +236,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.5396691564681462.md"
     },
     {
       "id": "gh-17748402654240.6383419553251553",
@@ -230,7 +245,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.6383419553251553.md"
     },
     {
       "id": "gh-17748402654240.7872274293382812",
@@ -266,7 +282,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.7872274293382812.md"
     },
     {
       "id": "gh-17748402654240.4813468850410083",
@@ -274,7 +291,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.4813468850410083.md"
     },
     {
       "id": "gh-17748402654240.23840480023227384",
@@ -295,7 +313,8 @@
           "content": "Moved back to backlog \u2014 needs API setup first (BGeometrics)",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.23840480023227384.md"
     },
     {
       "id": "gh-17748402654240.09859610648881922",
@@ -303,7 +322,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.09859610648881922.md"
     },
     {
       "id": "gh-17748402654240.03021890087396184",
@@ -324,7 +344,8 @@
           "content": "Moved back to backlog \u2014 needs API setup first (BGeometrics)",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.03021890087396184.md"
     },
     {
       "id": "gh-17748402654240.9323337077199921",
@@ -345,7 +366,8 @@
           "content": "Moved back to backlog \u2014 needs API setup first (BGeometrics)",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.9323337077199921.md"
     },
     {
       "id": "gh-17748402654240.6027020566869178",
@@ -366,7 +388,8 @@
           "content": "Moved back to backlog \u2014 needs API setup first (BGeometrics)",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.6027020566869178.md"
     },
     {
       "id": "gh-17748402654240.0482479775048279",
@@ -427,7 +450,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.0482479775048279.md"
     },
     {
       "id": "gh-17748402654240.30005107646020857",
@@ -435,7 +459,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.30005107646020857.md"
     },
     {
       "id": "gh-17748402654240.0835457932907282",
@@ -443,7 +468,8 @@
       "agent": "bml",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.0835457932907282.md"
     },
     {
       "id": "gh-17748402654240.9225415197024703",
@@ -464,7 +490,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.9225415197024703.md"
     },
     {
       "id": "gh-17748402654240.5400380247612766",
@@ -485,7 +512,8 @@
           "content": "Moved back to backlog \u2014 needs API setup first (BGeometrics)",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.5400380247612766.md"
     },
     {
       "id": "gh-17748402654240.7252715730150389",
@@ -536,7 +564,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402654240.7252715730150389.md"
     },
     {
       "id": "gh-17748402656950.9450434206502563",
@@ -642,7 +671,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.9450434206502563.md"
     },
     {
       "id": "gh-17748402656950.20034766434599616",
@@ -650,7 +680,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.20034766434599616.md"
     },
     {
       "id": "gh-17748402656950.7813586608765267",
@@ -658,7 +689,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.7813586608765267.md"
     },
     {
       "id": "gh-17748402656950.9292012708597691",
@@ -666,7 +698,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.9292012708597691.md"
     },
     {
       "id": "gh-17748402656950.5567018275995496",
@@ -727,7 +760,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.5567018275995496.md"
     },
     {
       "id": "gh-17748402656950.9359507323417173",
@@ -758,7 +792,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.9359507323417173.md"
     },
     {
       "id": "gh-17748402656950.8548135281829877",
@@ -766,7 +801,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.8548135281829877.md"
     },
     {
       "id": "gh-17748402656950.36973744001352615",
@@ -787,7 +823,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.36973744001352615.md"
     },
     {
       "id": "gh-17748402656950.179910314407149",
@@ -795,7 +832,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.179910314407149.md"
     },
     {
       "id": "gh-17748402656950.8837986072013827",
@@ -816,7 +854,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.8837986072013827.md"
     },
     {
       "id": "gh-17748402656950.9570034438288412",
@@ -837,7 +876,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.9570034438288412.md"
     },
     {
       "id": "gh-17748402656950.3248657880305469",
@@ -868,7 +908,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.3248657880305469.md"
     },
     {
       "id": "gh-17748402656950.8522080834996039",
@@ -876,7 +917,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.8522080834996039.md"
     },
     {
       "id": "gh-17748402656950.6614821114766962",
@@ -907,7 +949,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.6614821114766962.md"
     },
     {
       "id": "gh-17748402656950.9899066305698515",
@@ -915,7 +958,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.9899066305698515.md"
     },
     {
       "id": "gh-17748402656950.3099535721215223",
@@ -923,7 +967,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.3099535721215223.md"
     },
     {
       "id": "gh-17748402656950.9566443697396145",
@@ -931,7 +976,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.9566443697396145.md"
     },
     {
       "id": "gh-17748402656950.15011304098849598",
@@ -939,7 +985,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.15011304098849598.md"
     },
     {
       "id": "gh-17748402656950.519459536087764",
@@ -947,7 +994,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.519459536087764.md"
     },
     {
       "id": "gh-17748402656950.3795093267357835",
@@ -955,7 +1003,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.3795093267357835.md"
     },
     {
       "id": "gh-17748402656950.4590512031423518",
@@ -963,7 +1012,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.4590512031423518.md"
     },
     {
       "id": "gh-17748402656950.5878993840111228",
@@ -971,7 +1021,8 @@
       "agent": "ene",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402656950.5878993840111228.md"
     },
     {
       "id": "gh-17748402659430.49222795617723536",
@@ -1002,7 +1053,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.49222795617723536.md"
     },
     {
       "id": "gh-17748402659430.8311342067344044",
@@ -1033,7 +1085,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.8311342067344044.md"
     },
     {
       "id": "gh-17748402659430.9692652972279795",
@@ -1094,7 +1147,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.9692652972279795.md"
     },
     {
       "id": "gh-17748402659430.16980564972837697",
@@ -1145,7 +1199,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.16980564972837697.md"
     },
     {
       "id": "gh-17748402659430.028941979889910097",
@@ -1153,7 +1208,8 @@
       "agent": "rea",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.028941979889910097.md"
     },
     {
       "id": "gh-17748402659430.504657070033154",
@@ -1161,7 +1217,8 @@
       "agent": "rea",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.504657070033154.md"
     },
     {
       "id": "gh-17748402659430.5044115759798585",
@@ -1169,7 +1226,8 @@
       "agent": "rea",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.5044115759798585.md"
     },
     {
       "id": "gh-17748402659430.10055052033207545",
@@ -1177,7 +1235,8 @@
       "agent": "rea",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.10055052033207545.md"
     },
     {
       "id": "gh-17748402659430.5099284434367192",
@@ -1185,7 +1244,8 @@
       "agent": "rea",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.5099284434367192.md"
     },
     {
       "id": "gh-17748402659430.08152260442494697",
@@ -1193,7 +1253,8 @@
       "agent": "rea",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402659430.08152260442494697.md"
     },
     {
       "id": "gh-17748402661810.767886845281434",
@@ -1254,7 +1315,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402661810.767886845281434.md"
     },
     {
       "id": "gh-17748402663210.5509899698523011",
@@ -1344,7 +1406,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.4350003268939351.md"
     },
     {
       "id": "gh-17748402663210.3630898431426094",
@@ -1420,7 +1483,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.3630898431426094.md"
     },
     {
       "id": "gh-17748402663210.4160037409424261",
@@ -1428,7 +1492,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.4160037409424261.md"
     },
     {
       "id": "gh-17748402663210.4523214556967602",
@@ -1436,7 +1501,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.4523214556967602.md"
     },
     {
       "id": "gh-17748402663210.8992758893184065",
@@ -1444,7 +1510,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.8992758893184065.md"
     },
     {
       "id": "gh-17748402663210.6056173568975511",
@@ -1452,7 +1519,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "todo",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.6056173568975511.md"
     },
     {
       "id": "gh-17748402663210.614031184287342",
@@ -1513,7 +1581,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.614031184287342.md"
     },
     {
       "id": "gh-17748402663210.30286377079943705",
@@ -1521,7 +1590,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.30286377079943705.md"
     },
     {
       "id": "gh-17748402663210.057557507699313004",
@@ -1529,7 +1599,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.057557507699313004.md"
     },
     {
       "id": "gh-17748402663210.8462430283118945",
@@ -1537,7 +1608,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.8462430283118945.md"
     },
     {
       "id": "gh-17748402663210.6889513631036026",
@@ -1545,7 +1617,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.6889513631036026.md"
     },
     {
       "id": "gh-17748402663210.07183805403504973",
@@ -1553,7 +1626,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.07183805403504973.md"
     },
     {
       "id": "gh-17748402663210.4892587349550729",
@@ -1561,7 +1635,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.4892587349550729.md"
     },
     {
       "id": "gh-17748402663210.9198815230601803",
@@ -1569,7 +1644,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.9198815230601803.md"
     },
     {
       "id": "gh-17748402663210.6400502601741113",
@@ -1577,7 +1653,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.6400502601741113.md"
     },
     {
       "id": "gh-17748402663210.14672786902342072",
@@ -1585,7 +1662,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.14672786902342072.md"
     },
     {
       "id": "gh-17748402663210.0859059750645721",
@@ -1593,7 +1671,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.0859059750645721.md"
     },
     {
       "id": "gh-17748402663210.31022743927158325",
@@ -1601,7 +1680,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.31022743927158325.md"
     },
     {
       "id": "gh-17748402663210.6816803863703469",
@@ -1609,7 +1689,8 @@
       "agent": "ass",
       "quadrant": "q2",
       "status": "done",
-      "scheduled": false
+      "scheduled": false,
+      "vaultPath": "bridge/kanban/tasks/gh-17748402663210.6816803863703469.md"
     },
     {
       "id": "cron-morning-briefing-2026-03-30",
@@ -1630,7 +1711,8 @@
           "content": "\u2713 Cron job completed at 2026-03-30 07:00:46",
           "type": "completed"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-morning-briefing-2026-03-30.md"
     },
     {
       "id": "cron-bml-content-pipeline-2026-03-30",
@@ -1651,7 +1733,8 @@
           "content": "\u2713 Cron job completed at 2026-03-30 09:00:59",
           "type": "completed"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-bml-content-pipeline-2026-03-30.md"
     },
     {
       "id": "cron-es-sprint-check-2026-03-30",
@@ -1672,7 +1755,8 @@
           "content": "\u2713 Cron job completed at 2026-03-30 10:00:29",
           "type": "completed"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-es-sprint-check-2026-03-30.md"
     },
     {
       "id": "cron-realestate-leads-2026-03-30",
@@ -1693,7 +1777,8 @@
           "content": "\u2713 Cron job completed at 2026-03-30 08:00:53",
           "type": "completed"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-realestate-leads-2026-03-30.md"
     },
     {
       "id": "cron-realestate-social-2026-03-30",
@@ -1714,7 +1799,8 @@
           "content": "\u2713 Cron job completed at 2026-03-30 11:00:30",
           "type": "completed"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-realestate-social-2026-03-30.md"
     },
     {
       "id": "cron-analytics-daily-insights-2026-03-30",
@@ -1740,7 +1826,8 @@
           "content": "Moved to progress",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-analytics-daily-insights-2026-03-30.md"
     },
     {
       "id": "task-1774899022615",
@@ -1832,7 +1919,7 @@
       "status": "done",
       "notes": "\u2713 Cron job completed at 2026-03-30 14:00:24",
       "scheduled": true,
-      "scheduledSlot": 0,
+      "scheduledSlot": 3,
       "scheduledAgent": "bml",
       "created": "2026-03-30T22:00:11.569Z",
       "cronJob": true,
@@ -1849,7 +1936,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-research-bitcoin-2026-03-30.md"
     },
     {
       "id": "cron-truck-search-daily-2026-03-30",
@@ -1876,7 +1964,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-truck-search-daily-2026-03-30.md"
     },
     {
       "id": "cron-research-solar-2026-03-30",
@@ -1903,7 +1992,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-research-solar-2026-03-30.md"
     },
     {
       "id": "test-link-001",
@@ -1969,7 +2059,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-morning-briefing-2026-03-31.md"
     },
     {
       "id": "cron-bml-content-pipeline-2026-03-31",
@@ -1996,7 +2087,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-bml-content-pipeline-2026-03-31.md"
     },
     {
       "id": "cron-es-sprint-check-2026-03-31",
@@ -2023,7 +2115,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-es-sprint-check-2026-03-31.md"
     },
     {
       "id": "cron-midday-nudge-2026-03-31",
@@ -2050,7 +2143,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-midday-nudge-2026-03-31.md"
     },
     {
       "id": "cron-research-bitcoin-2026-03-31",
@@ -2077,7 +2171,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-research-bitcoin-2026-03-31.md"
     },
     {
       "id": "cron-research-solar-2026-03-31",
@@ -2104,7 +2199,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-research-solar-2026-03-31.md"
     },
     {
       "id": "cron-realestate-leads-2026-03-31",
@@ -2131,7 +2227,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-realestate-leads-2026-03-31.md"
     },
     {
       "id": "cron-realestate-social-2026-03-31",
@@ -2158,7 +2255,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-realestate-social-2026-03-31.md"
     },
     {
       "id": "cron-analytics-daily-insights-2026-03-31",
@@ -2179,7 +2277,8 @@
           "content": "? Cron job did not run (no log entry found)",
           "type": "warning"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-analytics-daily-insights-2026-03-31.md"
     },
     {
       "id": "cron-analytics-weekly-seo-2026-03-31",
@@ -2206,7 +2305,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-analytics-weekly-seo-2026-03-31.md"
     },
     {
       "id": "cron-session-compression-2026-03-31",
@@ -2227,7 +2327,8 @@
           "content": "? Cron job did not run (no log entry found)",
           "type": "warning"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-session-compression-2026-03-31.md"
     },
     {
       "id": "cron-truck-search-daily-2026-03-31",
@@ -2254,7 +2355,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-truck-search-daily-2026-03-31.md"
     },
     {
       "id": "cron-daily-metrics-2026-03-31",
@@ -2281,7 +2383,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-daily-metrics-2026-03-31.md"
     },
     {
       "id": "cron-evening-content-2026-03-31",
@@ -2308,7 +2411,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-evening-content-2026-03-31.md"
     },
     {
       "id": "cron-nightly-review-2026-03-31",
@@ -2335,7 +2439,8 @@
           "type": "move"
         }
       ],
-      "updated": "2026-03-31T17:24:03"
+      "updated": "2026-03-31T17:24:03",
+      "vaultPath": "bridge/kanban/tasks/cron-nightly-review-2026-03-31.md"
     },
     {
       "id": "cron-session-compression-night-2026-03-31",
@@ -2356,7 +2461,8 @@
           "content": "? Cron job did not run (no log entry found)",
           "type": "warning"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-session-compression-night-2026-03-31.md"
     },
     {
       "id": "task-1774950648017",
@@ -2390,7 +2496,8 @@
           "content": "? Cron job did not run (no log entry found)",
           "type": "warning"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/cron-social-bml-morning-2026-03-31.md"
     },
     {
       "id": "tg-1775006951873",
@@ -2400,7 +2507,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-03-31T18:29:11.873000"
+      "created": "2026-03-31T18:29:11.873000",
+      "vaultPath": "bridge/kanban/tasks/tg-1775006951873.md"
     },
     {
       "id": "tg-1775069112316",
@@ -2423,7 +2531,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/tg-1775069112316.md"
     },
     {
       "id": "tg-1775069573632",
@@ -2446,7 +2555,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/tg-1775069573632.md"
     },
     {
       "id": "tg-1775069726031",
@@ -2469,7 +2579,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/tg-1775069726031.md"
     },
     {
       "id": "algo-backtest-1775113920698",
@@ -2479,7 +2590,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:12:00.698000"
+      "created": "2026-04-02T00:12:00.698000",
+      "vaultPath": "bridge/kanban/tasks/algo-backtest-1775113920698.md"
     },
     {
       "id": "algo-phase1-1775113934224",
@@ -2489,7 +2601,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:12:14.224000"
+      "created": "2026-04-02T00:12:14.224000",
+      "vaultPath": "bridge/kanban/tasks/algo-phase1-1775113934224.md"
     },
     {
       "id": "algo-phase2-1775113934225",
@@ -2499,7 +2612,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:12:14.225000"
+      "created": "2026-04-02T00:12:14.225000",
+      "vaultPath": "bridge/kanban/tasks/algo-phase2-1775113934225.md"
     },
     {
       "id": "algo-phase3-1775113934226",
@@ -2509,7 +2623,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:12:14.226000"
+      "created": "2026-04-02T00:12:14.226000",
+      "vaultPath": "bridge/kanban/tasks/algo-phase3-1775113934226.md"
     },
     {
       "id": "algo-phase4-1775113934227",
@@ -2519,7 +2634,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-02T00:12:14.227000"
+      "created": "2026-04-02T00:12:14.227000",
+      "vaultPath": "bridge/kanban/tasks/algo-phase4-1775113934227.md"
     },
     {
       "id": "arcgrid-1775114328113",
@@ -2542,7 +2658,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/arcgrid-1775114328113.md"
     },
     {
       "id": "arcgrid-1775114328114",
@@ -2580,7 +2697,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/arcgrid-1775114328114.md"
     },
     {
       "id": "arcgrid-1775114328115",
@@ -2633,7 +2751,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/arcgrid-1775114328115.md"
     },
     {
       "id": "arcgrid-1775114328116",
@@ -2671,7 +2790,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/arcgrid-1775114328116.md"
     },
     {
       "id": "arcgrid-1775114328117",
@@ -2709,7 +2829,8 @@
           "content": "Moved to done via Cline sync",
           "type": "move"
         }
-      ]
+      ],
+      "vaultPath": "bridge/kanban/tasks/arcgrid-1775114328117.md"
     },
     {
       "id": "energyscout-p0-affiliate-1775206500000",
@@ -2719,7 +2840,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-03T01:55:00"
+      "created": "2026-04-03T01:55:00",
+      "vaultPath": "bridge/kanban/tasks/energyscout-p0-affiliate-1775206500000.md"
     },
     {
       "id": "energyscout-p0-photos-1775206500001",
@@ -2729,7 +2851,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-03T01:55:00.001000"
+      "created": "2026-04-03T01:55:00.001000",
+      "vaultPath": "bridge/kanban/tasks/energyscout-p0-photos-1775206500001.md"
     },
     {
       "id": "energyscout-p1-blog-cron-1775206500002",
@@ -2739,7 +2862,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-03T01:55:00.002000"
+      "created": "2026-04-03T01:55:00.002000",
+      "vaultPath": "bridge/kanban/tasks/energyscout-p1-blog-cron-1775206500002.md"
     },
     {
       "id": "energyscout-p1-news-bot-1775206500003",
@@ -2749,7 +2873,8 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-03T01:55:00.003000"
+      "created": "2026-04-03T01:55:00.003000",
+      "vaultPath": "bridge/kanban/tasks/energyscout-p1-news-bot-1775206500003.md"
     },
     {
       "id": "energyscout-p2-social-bot-1775206500004",
@@ -2759,8 +2884,26 @@
       "status": "todo",
       "scheduled": false,
       "tags": [],
-      "created": "2026-04-03T01:55:00.004000"
+      "created": "2026-04-03T01:55:00.004000",
+      "vaultPath": "bridge/kanban/tasks/energyscout-p2-social-bot-1775206500004.md"
+    },
+    {
+      "id": "task-1775382548238",
+      "text": "Explore the Idea of Transitioning the Compnay Name to ArcGrid .",
+      "agent": "ass",
+      "quadrant": "q2",
+      "status": "todo",
+      "notes": "",
+      "scheduled": false,
+      "agentType": "general",
+      "parallel": false,
+      "recurring": false,
+      "created": "2026-04-05T09:49:08.238Z",
+      "tags": [],
+      "workLog": [],
+      "artifacts": [],
+      "vaultPath": "bridge/kanban/tasks/task-1775382548238.md"
     }
   ],
-  "updated": "2026-04-05T02:47:29.399271"
+  "updated": "2026-04-05T02:52:29.503889"
 }
